@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package cosmos.vote.module.v1;
+package samricotta.commit_reveal_scheme.module.v1;
 
 import "cosmos/app/v1alpha1/module.proto";
 
 // Module is the config object of the commit reveal scheme module.
 message Module {
   option (cosmos.app.v1alpha1.module) = {
-    go_import : "cosmossdk.io/x/commit-reveal-scheme"
+    go_import : "cosmossdk.io/vote/x/commit-reveal-scheme"
   };
 
   // authority defines the custom module authority. If not set, defaults to the

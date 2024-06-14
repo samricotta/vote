@@ -1,23 +1,25 @@
 syntax = "proto3";
-package cosmos.vote.v1;
+package samricotta.commit_reveal_scheme.v1;
 
-option go_package = "cosmossdk.io/x/commit-reveal-scheme/types";
+option go_package = "github.com/samricotta/vote/x/commit-reveal-scheme";
 
+import "gogoproto/gogo.proto";
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "google/protobuf/duration.proto";
 import "cosmos/base/v1beta1/coin.proto";
 import "amino/amino.proto";
+import "samricotta/commit_reveal_scheme/v1/types.proto";
 
 service Msg {
-  rpc NewVote(MsgNewVote) returns (MsgNewVoteResponse);
+  rpc NewDecision(MsgNewDecision) returns (MsgNewDecisionResponse);
   rpc Commit(MsgCommit) returns (MsgCommitResponse);
   rpc Reveal(MsgReveal) returns (MsgRevealResponse);
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
 }
 
-message MsgNewVote {
-  // id of the vote
+message MsgNewDecision {
+  // id of the decision
   uint64 id = 1;
   // address to which send the entry_prices to at the end
   bool refund = 2;
@@ -25,49 +27,50 @@ message MsgNewVote {
   google.protobuf.Duration commit_duration = 3;
   // time in which the reveal can be done
   google.protobuf.Duration reveal_duration = 4;
-  // entry price for the vote
+  // entry price for the decision
   cosmos.base.v1beta1.Coin entry_fee = 5 [ (gogoproto.nullable) = false ];
-  // options for the vote for example political candidate names
+  // options for the decision for example political candidate names
   repeated bytes voting_options = 6;
   // address to which send the entry_prices to at the end
   bytes send_funds_to = 7;
 }
 
-message MsgNewVoteResponse {
-  // id of the vote
+message MsgNewDecisionResponse {
+  // id of the decision
   uint64 id = 1;
 }
 
 message MsgCommit {
   option (cosmos.msg.v1.signer) = "voter";
-  option (amino.name) = "samricotta/commit-reveal-scheme/MsgCommit";
-  // id of the vote
+  option (amino.name) = "samricotta/commit_reveal_scheme/MsgCommit";
+  // id of the decision
   uint64 id = 1;
-  // address of the voter
-  bytes voter = 2;
+  // address of the decision
+  bytes decision = 2;
   // hash of the commit
   bytes commit = 3;
   // time in which the commit can be done
 }
 
-message MsgCommitMoveResponse {}
+message MsgCommitResponse {}
 
 message MsgReveal {
   option (cosmos.msg.v1.signer) = "voter";
   option (amino.name) = "samricotta/commit-reveal-scheme/MsgReveal";
 
-  // id of the vote
+  // id of the decision
   uint64 id = 1;
   // address of the voter
   bytes voter = 2;
-  // reveal of the vote
+  // reveal of the Decision
   uint64 reveal = 3;
 }
+message MsgRevealResponse {}
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
   option (cosmos.msg.v1.signer) = "authority";
-  option (amino.name) = "samricotta/commit-reveal-scheme/MsgUpdateParams";
+  option (amino.name) = "samricotta/commit_reveal_scheme/MsgUpdateParams";
 
   // authority is the address that controls the module
   // NOTE: Defaults to the governance module unless overwritten.

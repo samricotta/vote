@@ -1,7 +1,7 @@
 syntax = "proto3";
-package samricotta.commit_reveal_scheme.types.v1;
+package samricotta.commit_reveal_scheme.v1;
 
-option go_package = "github.com/samricotta/vote/x/commit-reveal-scheme/types/v1";
+option go_package = "github.com/samricotta/vote/x/commit-reveal-scheme";
 
 import "amino/amino.proto";
 import "cosmos/base/v1beta1/coin.proto";
@@ -11,12 +11,12 @@ import "cosmos_proto/cosmos.proto";
 
 // Params defines the parameters of the module.
 message Params {
-  option (amino.name) = "samricotta/commit-reveal-scheme/Params";
+  option (amino.name) = "samricotta/vote/x/commit-reveal-scheme/Params";
   uint64 commit_timeout = 1; // in seconds
   uint64 reveal_timeout = 2; // in seconds
 }
 
-message Vote {
+message NewDecision {
   uint64 id = 1;
 
   cosmos.base.v1beta1.Coin entry_fee = 2 [ (gogoproto.nullable) = false ];
