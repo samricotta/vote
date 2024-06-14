@@ -7,35 +7,55 @@ import "cosmos/msg/v1/msg.proto";
 import "time/time.proto";
 
 service Msg {
-  rpc NewDecision(MsgNewDecision) returns (MsgNewDecisionResponse);
+  rpc NewVote(MsgNewVote) returns (MsgNewVoteResponse);
   rpc Commit(MsgCommit) returns (MsgCommitResponse);
   rpc Reveal(MsgReveal) returns (MsgRevealResponse);
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
 }
 
-message MsgNewDecision {
-  // id of the decision
-  uint64 id = 4;
+message MsgNewVote {
+  // id of the vote
+  uint64 id = 1;
   // address to which send the entry_prices to at the end
-  bool refund = 1;
+  bool refund = 2;
   // time in which the commit can be done
-  time.Duration commit_window = 2;
+  time.Duration commit_duration = 3;
   // time in which the reveal can be done
-  time.Duration reveal_window = 3;
-  // entry price for the decision
-  uint64 entry_price = 5;
-  // options for the decision for example political candidate names
-  repeated bytes options = 6;
+  time.Duration reveal_duration = 4;
+  // entry price for the vote
+  cosmos.base.v1beta1.Coin entry_fee = 5 [(gogoproto.nullable) = false];
+  // options for the vote for example political candidate names
+  repeated bytes voting_options = 6;
   // address to which send the entry_prices to at the end
   bytes send_funds_to = 7;
 }
 
-message MsgNewCommit {
-  // id of the decision
+message MsgNewVoteResponse {
+  // id of the vote
+  uint64 id = 1;
+}
+
+message MsgCommit {
+  option (cosmos.msg.v1.signer) = "voter";
+  option (amino.name) = "samricotta/commit-reveal-scheme/MsgCommit";
+  // id of the vote
   uint64 id = 1;
   // address of the voter
   bytes voter = 2;
   // hash of the commit
   bytes32 commit = 3;
+  // time in which the commit can be done
 }
 
+message MsgCommitMoveResponse {}
+
+message MsgReveal {
+  option (cosmos.msg.v1.signer) = "voter";
+  option (amino.name) = "samricotta/commit-reveal-scheme/MsgReveal";
+  // id of the vote
+  uint64 id = 1;
+  // address of the voter
+  bytes voter = 2;
+  // reveal of the vote
+  uint64 reveal = 3;
+}
