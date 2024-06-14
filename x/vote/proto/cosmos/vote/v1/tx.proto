@@ -1,0 +1,30 @@
+syntax = "proto3";
+package cosmos.vote.v1;
+
+option go_package = "cosmossdk.io/x/vote/types";
+
+import "cosmos/msg/v1/msg.proto";
+import "time/time.proto";
+
+service Msg {
+  rpc CreateVote(CreateVoteRequest) returns (CreateVoteResponse) {
+    option (cosmos.msg.v1.description) = "Create a new vote";
+  }
+}
+
+message CreateVoteRequest {
+  option (cosmos.msg.v1.description) = "Request to create a new vote";
+  option (cosmos.msg.v1.route) = "/cosmos.vote.v1.Msg/CreateVote";
+
+  string title = 1 [ (cosmos.msg.v1.field) = {json : {json_name : "title"}} ];
+  repeated string participants = 2
+      [ (cosmos.msg.v1.field) = {json : {json_name : "participants"}} ];
+  string description = 3
+      [ (cosmos.msg.v1.field) = {json : {json_name : "description"}} ];
+  string creator = 4
+      [ (cosmos.msg.v1.field) = {json : {json_name : "creator"}} ];
+  cosmos.vote.v1.VoteOption options = 5
+      [ (cosmos.msg.v1.field) = {json : {json_name : "options"}} ];
+  google.protobuf.Timestamp endTime = 6
+      [ (cosmos.msg.v1.field) = {json : {json_name : "end_time"}} ];
+}

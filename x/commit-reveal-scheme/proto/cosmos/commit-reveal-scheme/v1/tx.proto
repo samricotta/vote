@@ -1,0 +1,41 @@
+syntax = "proto3";
+package cosmos.vote.v1;
+
+option go_package = "cosmossdk.io/x/commit-reveal-scheme/types";
+
+import "cosmos/msg/v1/msg.proto";
+import "time/time.proto";
+
+service Msg {
+  rpc NewDecision(MsgNewDecision) returns (MsgNewDecisionResponse);
+  rpc Commit(MsgCommit) returns (MsgCommitResponse);
+  rpc Reveal(MsgReveal) returns (MsgRevealResponse);
+  rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+}
+
+message MsgNewDecision {
+  // id of the decision
+  uint64 id = 4;
+  // address to which send the entry_prices to at the end
+  bool refund = 1;
+  // time in which the commit can be done
+  time.Duration commit_window = 2;
+  // time in which the reveal can be done
+  time.Duration reveal_window = 3;
+  // entry price for the decision
+  uint64 entry_price = 5;
+  // options for the decision for example political candidate names
+  repeated bytes options = 6;
+  // address to which send the entry_prices to at the end
+  bytes send_funds_to = 7;
+}
+
+message MsgNewCommit {
+  // id of the decision
+  uint64 id = 1;
+  // address of the voter
+  bytes voter = 2;
+  // hash of the commit
+  bytes32 commit = 3;
+}
+
