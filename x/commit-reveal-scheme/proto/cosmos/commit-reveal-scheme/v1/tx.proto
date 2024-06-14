@@ -4,7 +4,10 @@ package cosmos.vote.v1;
 option go_package = "cosmossdk.io/x/commit-reveal-scheme/types";
 
 import "cosmos/msg/v1/msg.proto";
-import "time/time.proto";
+import "cosmos_proto/cosmos.proto";
+import "google/protobuf/duration.proto";
+import "cosmos/base/v1beta1/coin.proto";
+import "amino/amino.proto";
 
 service Msg {
   rpc NewVote(MsgNewVote) returns (MsgNewVoteResponse);
@@ -19,11 +22,11 @@ message MsgNewVote {
   // address to which send the entry_prices to at the end
   bool refund = 2;
   // time in which the commit can be done
-  time.Duration commit_duration = 3;
+  google.protobuf.Duration commit_duration = 3;
   // time in which the reveal can be done
-  time.Duration reveal_duration = 4;
+  google.protobuf.Duration reveal_duration = 4;
   // entry price for the vote
-  cosmos.base.v1beta1.Coin entry_fee = 5 [(gogoproto.nullable) = false];
+  cosmos.base.v1beta1.Coin entry_fee = 5 [ (gogoproto.nullable) = false ];
   // options for the vote for example political candidate names
   repeated bytes voting_options = 6;
   // address to which send the entry_prices to at the end
@@ -43,7 +46,7 @@ message MsgCommit {
   // address of the voter
   bytes voter = 2;
   // hash of the commit
-  bytes32 commit = 3;
+  bytes commit = 3;
   // time in which the commit can be done
 }
 
@@ -52,6 +55,7 @@ message MsgCommitMoveResponse {}
 message MsgReveal {
   option (cosmos.msg.v1.signer) = "voter";
   option (amino.name) = "samricotta/commit-reveal-scheme/MsgReveal";
+
   // id of the vote
   uint64 id = 1;
   // address of the voter
@@ -59,3 +63,22 @@ message MsgReveal {
   // reveal of the vote
   uint64 reveal = 3;
 }
+
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) = "authority";
+  option (amino.name) = "samricotta/commit-reveal-scheme/MsgUpdateParams";
+
+  // authority is the address that controls the module
+  // NOTE: Defaults to the governance module unless overwritten.
+  string authority = 1 [ (cosmos_proto.scalar) = "cosmos.AddressString" ];
+
+  // params defines the module parameters to update.
+  // NOTE: All parameters must be supplied.
+  Params params = 2
+      [ (gogoproto.nullable) = false, (amino.dont_omitempty) = true ];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
