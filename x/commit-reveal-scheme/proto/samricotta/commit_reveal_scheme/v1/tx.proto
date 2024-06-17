@@ -1,7 +1,7 @@
 syntax = "proto3";
 package samricotta.commit_reveal_scheme.v1;
 
-option go_package = "github.com/samricotta/vote/x/commit-reveal-scheme";
+option go_package = "github.com/samricotta/vote/x/commit_reveal_scheme";
 
 import "gogoproto/gogo.proto";
 import "cosmos/msg/v1/msg.proto";
@@ -56,7 +56,7 @@ message MsgCommitResponse {}
 
 message MsgReveal {
   option (cosmos.msg.v1.signer) = "voter";
-  option (amino.name) = "samricotta/commit-reveal-scheme/MsgReveal";
+  option (amino.name) = "samricotta/commit_reveal_scheme/MsgReveal";
 
   // id of the decision
   uint64 id = 1;
