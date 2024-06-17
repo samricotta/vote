@@ -1,0 +1,12 @@
+syntax = "proto3";
+package samricotta.vote.crs.v1;
+
+option go_package = "github.com/samricotta/vote/x/crs";
+
+import "google/api/annotations.proto";
+import "cosmos/query/v1/query.proto";
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+// Msg defines the module Msg service.
+service Query {}
