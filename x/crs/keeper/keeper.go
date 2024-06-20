@@ -9,7 +9,6 @@ import (
 	"cosmossdk.io/core/appmodule"
 	storetypes "cosmossdk.io/core/store"
 	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/samricotta/vote/x/crs"
 
 	expectedkeepers "github.com/samricotta/vote/x/crs/expected_keepers"
@@ -75,9 +74,7 @@ func (k Keeper) Endblocker(ctx context.Context) error {
 	// - if both reveals are available, delete the NewDecision and announce the winning option
 	// - if the reveal timeout has passed, delete the NewDecision and announce the winning option
 
-	newDecisionToDelete := []uint64{}
-
-
+	// newDecisionToDelete := []uint64{}
 
 	return nil
 }

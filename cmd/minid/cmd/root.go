@@ -22,6 +22,9 @@ import (
 	serverconfig "github.com/cosmos/cosmos-sdk/server/config"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
+	"github.com/cosmos/cosmos-sdk/x/auth/tx"
+	authtxconfig "github.com/cosmos/cosmos-sdk/x/auth/tx/config"
+	"github.com/cosmos/cosmos-sdk/x/auth/types"
 
 	"github.com/samricotta/vote/app"
 )
@@ -31,13 +34,13 @@ import (
 func NewRootCmd() *cobra.Command {
 	var (
 		//  It can be used to set options like the signer, fee granularity, and other transaction-related configurations.
-		txConfigOpts       tx.ConfigOptions
+		txConfigOpts tx.ConfigOptions
 		// It can include options for modules, address codecs, and other CLI-related configurations.
-		autoCliOpts        autocli.AppOptions
+		autoCliOpts autocli.AppOptions
 		// This includes things like genesis data, default genesis data, verifying genesis data, and the module's name.
 		moduleBasicManager module.BasicManager
 		// This can include things like the client's home directory, the client's input/output, and the client's trust node.
-		clientCtx          client.Context
+		clientCtx client.Context
 	)
 
 	if err := depinject.Inject(
@@ -81,7 +84,7 @@ func NewRootCmd() *cobra.Command {
 			if !clientCtx.Offline {
 				// This needs to go after ReadFromClientConfig, as that function ets the RPC client needed for SIGN_MODE_TEXTUAL.
 				txConfigOpts.EnabledSignModes = append(txConfigOpts.EnabledSignModes, signing.SignMode_SIGN_MODE_TEXTUAL)
-				txConfigOpts.TextualCoinMetadataQueryFn = txmodule.NewGRPCCoinMetadataQueryFn(clientCtx)
+				txConfigOpts.TextualCoinMetadataQueryFn = authtxconfig.NewGRPCCoinMetadataQueryFn(clientCtx)
 				txConfigWithTextual, err := tx.NewTxConfigWithOptions(codec.NewProtoCodec(clientCtx.InterfaceRegistry), txConfigOpts)
 				if err != nil {
 					return err
