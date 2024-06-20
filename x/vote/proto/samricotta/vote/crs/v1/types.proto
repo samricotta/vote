@@ -1,7 +1,7 @@
 syntax = "proto3";
-package samricotta.vote.crs.v1;
+package samricotta.vote.vote.v1;
 
-option go_package = "github.com/samricotta/vote/x/crs";
+option go_package = "github.com/samricotta/vote/x/vote";
 
 import "amino/amino.proto";
 import "cosmos/base/v1beta1/coin.proto";
@@ -11,44 +11,23 @@ import "cosmos_proto/cosmos.proto";
 
 // Params defines the parameters of the module.
 message Params {
-  option (amino.name) = "samricotta/vote/x/crs/Params";
-  uint64 commit_timeout = 1; // in seconds
-  uint64 reveal_timeout = 2; // in seconds
+  option (amino.name) = "samricotta/vote/x/vote/Params";
+  uint64 voting_period = 1; // Duration of the voting period in seconds
+  cosmos.base.v1beta1.Coin min_entry_fee = 2; // Minimum entry fee to participate in voting
 }
 
-message NewDecision {
-  uint64 id = 1;
-
-  cosmos.base.v1beta1.Coin entry_fee = 2 [ (gogoproto.nullable) = false ];
-
-  google.protobuf.Timestamp commit_timeout = 3 [
-    (gogoproto.stdtime) = true,
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
-  google.protobuf.Timestamp reveal_timeout = 4 [
-    (gogoproto.stdtime) = true,
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+// VoteInfo represents the details of a specific vote.
+message VoteInfo {
+  uint64 id = 1; 
+  repeated string options = 2;
+  cosmos.base.v1beta1.Coin entry_fee = 3;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
 }
 
-message Commit {
-  string commit = 1;
-
-  google.protobuf.Timestamp created_at = 3 [
-    (gogoproto.stdtime) = true,
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
-}
-
-message Reveal {
-  string option = 1;
-
-  google.protobuf.Timestamp created_at = 3 [
-    (gogoproto.stdtime) = true,
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+// VoteResult represents the results of a completed vote.
+message VoteResult {
+  uint64 id = 1; // Identifier of the vote
+  string winning_option = 2; // Option that received the most votes
+  string funds_distributed = 3; // Description of how funds were distributed
 }
