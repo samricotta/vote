@@ -16,8 +16,8 @@ type msgServer struct {
 
 var _ crs.MsgServer = msgServer{}
 
-func NewMsgServerImp() crs.MsgServer {
-	return &msgServer{k: keeper}
+func NewMsgServerImp(k Keeper) crs.MsgServer {
+	return &msgServer{k: k}
 }
 
 func (ms msgServer) NewDecision(ctx context.Context, msg *crs.MsgNewDecision) (*crs.MsgNewDecisionResponse, error) {
@@ -88,10 +88,15 @@ func (ms msgServer) NewDecision(ctx context.Context, msg *crs.MsgNewDecision) (*
 	return &crs.MsgNewDecisionResponse{}, nil
 }
 
-func saveVoterInfo(decisionID uint64, msg *crs.MsgReveal) {
-
+func (ms msgServer) Commit(ctx context.Context, msg *crs.MsgCommit) (*crs.MsgCommitResponse, error) {
+	return nil, nil
 }
 
-func (ms msgServer) Commit(ctx context.Context, msg *crs.MsgCommit) {
-
+func (ms msgServer) Reveal(ctx context.Context, msg *crs.MsgReveal) (*crs.MsgRevealResponse, error) {
+	return nil, nil
 }
+
+func (ms msgServer) UpdateParams(ctx context.Context, msg *crs.MsgUpdateParams) (*crs.MsgUpdateParamsResponse, error) {
+	return nil, nil
+}
+

@@ -9,4 +9,5 @@ import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 
 // Msg defines the module Msg service.
-service Query {}
+service Query {
+}
