@@ -22,7 +22,6 @@ type queryServer struct {
 	k Keeper
 }
 
-
 // Games implements rps.QueryServer.
 func (qs queryServer) NewDecisions(ctx context.Context, _ *crs.QueryNewDecisionsRequest) (*crs.QueryNewDecisionsResponse, error) {
 	res := &crs.QueryNewDecisionsResponse{Games: []crs.NewDecision{}}
@@ -52,4 +51,3 @@ func (qs queryServer) Params(ctx context.Context, req *crs.QueryParamsRequest) (
 
 	return &crs.QueryParamsResponse{Params: params}, nil
 }
-
