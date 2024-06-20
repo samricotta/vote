@@ -79,7 +79,8 @@ proto-all: proto-format proto-lint proto-gen
 
 #? proto-gen: Generate Protobuf files
 proto-gen:
-	@$(protoImage) sh ./x/crs/protocgen.sh
+	@echo $(pwd)
+	@$(protoImage) sh ./scripts/protocgen.sh
 
 #? proto-swagger-gen: Generate Protobuf Swagger
 proto-swagger-gen:

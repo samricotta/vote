@@ -15,7 +15,6 @@ done
 
 echo "Generating pulsar proto code"
  cd $home
- echo ${home}
  buf generate --template x/commit-reveal-scheme/proto/buf.gen.gogo.yaml $file
 
 cd ..

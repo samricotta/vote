@@ -22,11 +22,8 @@ import (
 	serverconfig "github.com/cosmos/cosmos-sdk/server/config"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
-	"github.com/cosmos/cosmos-sdk/x/auth/tx"
-	txmodule "github.com/cosmos/cosmos-sdk/x/auth/tx/config"
-	"github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/cosmosregistry/chain-minimal/app"
+	"github.com/samricotta/vote/app"
 )
 
 // NewRootCmd creates a new root command for minid. It is called once in the
