@@ -16,18 +16,15 @@ message Params {
   cosmos.base.v1beta1.Coin min_entry_fee = 2; // Minimum entry fee to participate in voting
 }
 
-// VoteInfo represents the details of a specific vote.
-message VoteInfo {
+message Vote {
   uint64 id = 1; 
   repeated string options = 2;
-  cosmos.base.v1beta1.Coin entry_fee = 3;
   google.protobuf.Timestamp start_time = 4;
   google.protobuf.Timestamp end_time = 5;
 }
 
-// VoteResult represents the results of a completed vote.
-message VoteResult {
+message ResolveVote {
   uint64 id = 1; // Identifier of the vote
-  string winning_option = 2; // Option that received the most votes
-  string funds_distributed = 3; // Description of how funds were distributed
+  string winning_option = 2; // Winning option
+  int64 funds_amount = 3;
 }

@@ -23,8 +23,8 @@ type queryServer struct {
 }
 
 // Games implements rps.QueryServer.
-func (qs queryServer) NewDecisions(ctx context.Context, _ *crs.QueryNewDecisionsRequest) (*crs.QueryNewDecisionsResponse, error) {
-	res := &crs.QueryNewDecisionsResponse{Games: []crs.NewDecision{}}
+func (qs queryServer) NewDecision(ctx context.Context, _ *crs.QueryNewDecisionRequest) (*crs.QueryNewDecisionResponse, error) {
+	res := &crs.QueryNewDecisionResponse{Games: []crs.NewDecision{}}
 
 	err := qs.k.NewDecision.Walk(ctx, nil, func(key uint64, game crs.NewDecision) (bool, error) {
 		game.Id = key

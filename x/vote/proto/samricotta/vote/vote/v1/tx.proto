@@ -1,5 +1,5 @@
 syntax = "proto3";
-package samricotta.vote.crs.v1;
+package samricotta.vote.vote.v1;
 
 option go_package = "github.com/samricotta/vote/x/vote";
 
@@ -13,23 +13,22 @@ import "samricotta/vote/vote/v1/types.proto";
 
 // Service Msg defines the RPC methods available for the voting system.
 service Msg {
-  rpc MsgNewVote(MsgNewVote) returns (MsgNewVoteResponse);
-  rpc ResolveVote(ResolveVote) returns (ResolveVoteResponse);
+  rpc NewVote(MsgNewVote) returns (MsgNewVoteResponse);
+  rpc ResolveVote(MsgResolveVote) returns (ResolveVoteResponse);
 }
 
 message MsgNewVote {
-  uint64 id = 1;
+  uint64 new_decision_id = 1;
   repeated string options = 2;
-  string entry_fee = 3; 
-  bool refund = 4;     
-  string send_funds_to = 5;  // Escrow or module account to hold funds
 }
 
-message ResolveVote {
-  uint64 id = 1;
+message MsgNewVoteResponse {
+  uint64 vote_id = 1;
 }
 
-message ResolveVoteResponse {
+message MsgResolveVote {
   string winning_option = 1;
-  string funds = 2;  
+  cosmos.base.v1beta1.Coin funds = 2 [(gogoproto.nullable) = false ]; 
 }
+
+message ResolveVoteResponse {}

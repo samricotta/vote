@@ -22,7 +22,7 @@ service Msg {
 // MsgNewDecision represents a request to create a new decision-making process.
 message MsgNewDecision {
   // id of the decision
-  uint64 id = 1;
+  string voter = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // address to which send the entry_prices to at the end
   bool refund = 2;
   // time in which the commit can be done
@@ -36,10 +36,8 @@ message MsgNewDecision {
   // address to which send the entry_prices to at the end
   bytes send_funds_to = 7;
     // commit is the hex encoded commitment to the first move.
-  // hex encoded sha256 of "salt:move" where move is one of "rock", "paper",
-  // "scissors"
+  // hex encoded sha256 of "election:option" which one was voted on
   string commit = 8;
-  string voter = 9 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 }
 
 message MsgNewDecisionResponse {
@@ -51,13 +49,11 @@ message MsgCommit {
   option (cosmos.msg.v1.signer) = "voter";
   option (amino.name) = "samricotta/crs/MsgCommit";
   // id of the decision
-  uint64 id = 1;
-  // address of the decision
-  bytes decision = 2;
+  uint64 new_decision_id = 1;
   // hash of the commit
-  bytes commit = 3;
+  bytes commit = 2;
   // time in which the commit can be done
-  string voter = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string voter = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 }
 
 message MsgCommitResponse {}
@@ -65,13 +61,13 @@ message MsgCommitResponse {}
 message MsgReveal {
   option (cosmos.msg.v1.signer) = "voter";
   option (amino.name) = "samricotta/crs/MsgReveal";
-
   // id of the decision
-  uint64 id = 1;
+  uint64 new_decision_id = 1;
   // address of the voter
   bytes voter = 2;
   // reveal of the Decision
-  uint64 reveal = 3;
+  uint64 selection = 3;
+  string election_placeholder = 4;
 }
 message MsgRevealResponse {}
 
