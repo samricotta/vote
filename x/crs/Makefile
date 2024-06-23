@@ -1,107 +1,59 @@
-BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-COMMIT := $(shell git log -1 --format='%H')
+#!/usr/bin/make -f
+
 DOCKER := $(shell which docker)
 
-# don't override user values
-ifeq (,$(VERSION))
-  VERSION := $(shell git describe --exact-match 2>/dev/null)
-  # if VERSION is empty, then populate it with branch's name and raw commit hash
-  ifeq (,$(VERSION))
-    VERSION := $(BRANCH)-$(COMMIT)
-  endif
-endif
+#################
+###   Build   ###
+#################
 
-# Update the ldflags with the app, client & server names
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=mini \
-	-X github.com/cosmos/cosmos-sdk/version.AppName=minid \
-	-X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
-	-X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT)
+test:
+	@echo "--> Running tests"
+	go test -v ./...
 
-BUILD_FLAGS := -ldflags '$(ldflags)'
+test-integration:
+	@echo "--> Running integration tests"
+	cd integration; go test -v ./...
 
-###########
-# Install #
-###########
+.PHONY: test test-integration
 
-all: install
-
-install:
-	@echo "--> ensure dependencies have not been modified"
-	@go mod verify
-	@echo "--> installing minid"
-	@go install $(BUILD_FLAGS) -mod=readonly ./cmd/minid
-
-init:
-	./scripts/init.sh
-
-###############################################################################
-###                                Linting                                  ###
-###############################################################################
-
-golangci_version=v1.59.0
-
-#? setup-pre-commit: Set pre-commit git hook
-setup-pre-commit:
-	@cp .git/hooks/pre-commit .git/hooks/pre-commit.bak 2>/dev/null || true
-	@echo "Installing pre-commit hook..."
-	@ln -sf ../../scripts/hooks/pre-commit.sh .git/hooks/pre-commit
-	@echo "Pre-commit hook installed successfully"
-
-#? lint-install: Install golangci-lint
-lint-install:
-	@echo "--> Installing golangci-lint $(golangci_version)"
-	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(golangci_version)
-
-#? lint: Run golangci-lint
-lint:
-	@echo "--> Running linter"
-	$(MAKE) lint-install
-	@./scripts/go-lint-all.bash --timeout=15m
-
-#? lint: Run golangci-lint and fix
-lint-fix:
-	@echo "--> Running linter"
-	$(MAKE) lint-install
-	@./scripts/go-lint-all.bash --fix
-
-.PHONY: lint lint-fix
-
-###############################################################################
-###                                Protobuf                                 ###
-###############################################################################
+##################
+###  Protobuf  ###
+##################
 
 protoVer=0.14.0
 protoImageName=ghcr.io/cosmos/proto-builder:$(protoVer)
 protoImage=$(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace $(protoImageName)
 
-#? proto-all: Run make proto-format proto-lint proto-gen
 proto-all: proto-format proto-lint proto-gen
 
-#? proto-gen: Generate Protobuf files
 proto-gen:
-	@echo $(pwd)
+	@echo "Generating protobuf files..."
 	@$(protoImage) sh ./scripts/protocgen.sh
+	@go mod tidy
 
-#? proto-swagger-gen: Generate Protobuf Swagger
-proto-swagger-gen:
-	@echo "Generating Protobuf Swagger"
-	@$(protoImage) sh ./scripts/protoc-swagger-gen.sh
-
-#? proto-format: Format proto file
 proto-format:
 	@$(protoImage) find ./ -name "*.proto" -exec clang-format -i {} \;
 
-#? proto-lint: Lint proto file
 proto-lint:
-	@$(protoImage) buf lint --error-format=json
+	@$(protoImage) buf lint proto/ --error-format=json
 
-#? proto-check-breaking: Check proto file is breaking
-proto-check-breaking:
-	@$(protoImage) buf breaking --against $(HTTPS_GIT)#branch=main
+.PHONY: proto-all proto-gen proto-format proto-lint
 
-#? proto-update-deps: Update protobuf dependencies
-proto-update-deps:
-	@echo "Updating Protobuf dependencies"
-	$(DOCKER) run --rm -v $(CURDIR)/proto:/workspace --workdir /workspace $(protoImageName) buf mod update
+#################
+###  Linting  ###
+#################
 
-.PHONY: proto-all proto-gen proto-swagger-gen proto-format proto-lint proto-check-breaking proto-update-deps
+golangci_lint_cmd=golangci-lint
+golangci_version=v1.51.2
+
+lint:
+	@echo "--> Running linter"
+	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(golangci_version)
+	@$(golangci_lint_cmd) run ./... --timeout 15m
+
+lint-fix:
+	@echo "--> Running linter and fixing issues"
+	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(golangci_version)
+	@$(golangci_lint_cmd) run ./... --fix --timeout 15m
+
+.PHONY: lint lint-fix
