@@ -21,12 +21,14 @@ message NewDecision {
 
   cosmos.base.v1beta1.Coin entry_fee = 2 [ (gogoproto.nullable) = false ];
 
-  google.protobuf.Timestamp commit_timeout = 3 [
+  repeated string voting_options = 3;
+
+  google.protobuf.Timestamp commit_timeout = 4 [
     (gogoproto.stdtime) = true,
     (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
-  google.protobuf.Timestamp reveal_timeout = 4 [
+  google.protobuf.Timestamp reveal_timeout = 5 [
     (gogoproto.stdtime) = true,
     (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true

@@ -39,8 +39,8 @@ func NewVote(ctx context.Context, msg *vote.MsgNewVote) (*vote.MsgNewVoteRespons
 	}
 
 	crs := crs.NewDecision{
-		Options: msg.Options,
-		Vote:    msg.Vote,
+		VotingOptions: msg.Options,
+		
 	}
 
 }

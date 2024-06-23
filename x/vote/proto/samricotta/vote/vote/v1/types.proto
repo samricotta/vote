@@ -17,14 +17,14 @@ message Params {
 }
 
 message Vote {
-  uint64 id = 1; 
+  uint64 new_decision_id = 1; 
   repeated string options = 2;
   google.protobuf.Timestamp start_time = 4;
   google.protobuf.Timestamp end_time = 5;
 }
 
 message ResolveVote {
-  uint64 id = 1; // Identifier of the vote
+  uint64 vote_id = 1; // Identifier of the vote
   string winning_option = 2; // Winning option
   int64 funds_amount = 3;
 }
