@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: samricotta/crs/v1/tx.proto
+// source: samricotta/vote/crs/v1/tx.proto
 
 package crsv1
 
@@ -19,17 +19,17 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_CreateDecision_FullMethodName = "/samricotta.crs.v1.Msg/CreateDecision"
-	Msg_Commit_FullMethodName         = "/samricotta.crs.v1.Msg/Commit"
-	Msg_Reveal_FullMethodName         = "/samricotta.crs.v1.Msg/Reveal"
-	Msg_UpdateParams_FullMethodName   = "/samricotta.crs.v1.Msg/UpdateParams"
+	Msg_NewDecision_FullMethodName  = "/samricotta.vote.crs.v1.Msg/NewDecision"
+	Msg_Commit_FullMethodName       = "/samricotta.vote.crs.v1.Msg/Commit"
+	Msg_Reveal_FullMethodName       = "/samricotta.vote.crs.v1.Msg/Reveal"
+	Msg_UpdateParams_FullMethodName = "/samricotta.vote.crs.v1.Msg/UpdateParams"
 )
 
 // MsgClient is the client API for Msg service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MsgClient interface {
-	CreateDecision(ctx context.Context, in *MsgCreateDecision, opts ...grpc.CallOption) (*MsgCreateDecisionResponse, error)
+	NewDecision(ctx context.Context, in *MsgNewDecision, opts ...grpc.CallOption) (*MsgNewDecisionResponse, error)
 	Commit(ctx context.Context, in *MsgCommit, opts ...grpc.CallOption) (*MsgCommitResponse, error)
 	Reveal(ctx context.Context, in *MsgReveal, opts ...grpc.CallOption) (*MsgRevealResponse, error)
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
@@ -43,9 +43,9 @@ func NewMsgClient(cc grpc.ClientConnInterface) MsgClient {
 	return &msgClient{cc}
 }
 
-func (c *msgClient) CreateDecision(ctx context.Context, in *MsgCreateDecision, opts ...grpc.CallOption) (*MsgCreateDecisionResponse, error) {
-	out := new(MsgCreateDecisionResponse)
-	err := c.cc.Invoke(ctx, Msg_CreateDecision_FullMethodName, in, out, opts...)
+func (c *msgClient) NewDecision(ctx context.Context, in *MsgNewDecision, opts ...grpc.CallOption) (*MsgNewDecisionResponse, error) {
+	out := new(MsgNewDecisionResponse)
+	err := c.cc.Invoke(ctx, Msg_NewDecision_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
 type MsgServer interface {
-	CreateDecision(context.Context, *MsgCreateDecision) (*MsgCreateDecisionResponse, error)
+	NewDecision(context.Context, *MsgNewDecision) (*MsgNewDecisionResponse, error)
 	Commit(context.Context, *MsgCommit) (*MsgCommitResponse, error)
 	Reveal(context.Context, *MsgReveal) (*MsgRevealResponse, error)
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
@@ -94,8 +94,8 @@ type MsgServer interface {
 type UnimplementedMsgServer struct {
 }
 
-func (UnimplementedMsgServer) CreateDecision(context.Context, *MsgCreateDecision) (*MsgCreateDecisionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDecision not implemented")
+func (UnimplementedMsgServer) NewDecision(context.Context, *MsgNewDecision) (*MsgNewDecisionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NewDecision not implemented")
 }
 func (UnimplementedMsgServer) Commit(context.Context, *MsgCommit) (*MsgCommitResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Commit not implemented")
@@ -119,20 +119,20 @@ func RegisterMsgServer(s grpc.ServiceRegistrar, srv MsgServer) {
 	s.RegisterService(&Msg_ServiceDesc, srv)
 }
 
-func _Msg_CreateDecision_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgCreateDecision)
+func _Msg_NewDecision_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgNewDecision)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).CreateDecision(ctx, in)
+		return srv.(MsgServer).NewDecision(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Msg_CreateDecision_FullMethodName,
+		FullMethod: Msg_NewDecision_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).CreateDecision(ctx, req.(*MsgCreateDecision))
+		return srv.(MsgServer).NewDecision(ctx, req.(*MsgNewDecision))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -195,12 +195,12 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Msg_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "samricotta.crs.v1.Msg",
+	ServiceName: "samricotta.vote.crs.v1.Msg",
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateDecision",
-			Handler:    _Msg_CreateDecision_Handler,
+			MethodName: "NewDecision",
+			Handler:    _Msg_NewDecision_Handler,
 		},
 		{
 			MethodName: "Commit",
@@ -216,5 +216,5 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "samricotta/crs/v1/tx.proto",
+	Metadata: "samricotta/vote/crs/v1/tx.proto",
 }
