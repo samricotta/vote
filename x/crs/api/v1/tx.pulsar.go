@@ -12,93 +12,91 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	_ "google.golang.org/protobuf/types/known/durationpb"
 	io "io"
 	reflect "reflect"
 	sync "sync"
 )
 
-var _ protoreflect.List = (*_MsgNewDecision_6_list)(nil)
+var _ protoreflect.List = (*_MsgCreateDecision_2_list)(nil)
 
-type _MsgNewDecision_6_list struct {
+type _MsgCreateDecision_2_list struct {
 	list *[][]byte
 }
 
-func (x *_MsgNewDecision_6_list) Len() int {
+func (x *_MsgCreateDecision_2_list) Len() int {
 	if x.list == nil {
 		return 0
 	}
 	return len(*x.list)
 }
 
-func (x *_MsgNewDecision_6_list) Get(i int) protoreflect.Value {
+func (x *_MsgCreateDecision_2_list) Get(i int) protoreflect.Value {
 	return protoreflect.ValueOfBytes((*x.list)[i])
 }
 
-func (x *_MsgNewDecision_6_list) Set(i int, value protoreflect.Value) {
+func (x *_MsgCreateDecision_2_list) Set(i int, value protoreflect.Value) {
 	valueUnwrapped := value.Bytes()
 	concreteValue := valueUnwrapped
 	(*x.list)[i] = concreteValue
 }
 
-func (x *_MsgNewDecision_6_list) Append(value protoreflect.Value) {
+func (x *_MsgCreateDecision_2_list) Append(value protoreflect.Value) {
 	valueUnwrapped := value.Bytes()
 	concreteValue := valueUnwrapped
 	*x.list = append(*x.list, concreteValue)
 }
 
-func (x *_MsgNewDecision_6_list) AppendMutable() protoreflect.Value {
-	panic(fmt.Errorf("AppendMutable can not be called on message MsgNewDecision at list field VotingOptions as it is not of Message kind"))
+func (x *_MsgCreateDecision_2_list) AppendMutable() protoreflect.Value {
+	panic(fmt.Errorf("AppendMutable can not be called on message MsgCreateDecision at list field Options as it is not of Message kind"))
 }
 
-func (x *_MsgNewDecision_6_list) Truncate(n int) {
+func (x *_MsgCreateDecision_2_list) Truncate(n int) {
 	*x.list = (*x.list)[:n]
 }
 
-func (x *_MsgNewDecision_6_list) NewElement() protoreflect.Value {
+func (x *_MsgCreateDecision_2_list) NewElement() protoreflect.Value {
 	var v []byte
 	return protoreflect.ValueOfBytes(v)
 }
 
-func (x *_MsgNewDecision_6_list) IsValid() bool {
+func (x *_MsgCreateDecision_2_list) IsValid() bool {
 	return x.list != nil
 }
 
 var (
-	md_MsgNewDecision                 protoreflect.MessageDescriptor
-	fd_MsgNewDecision_voter           protoreflect.FieldDescriptor
-	fd_MsgNewDecision_refund          protoreflect.FieldDescriptor
-	fd_MsgNewDecision_commit_duration protoreflect.FieldDescriptor
-	fd_MsgNewDecision_reveal_duration protoreflect.FieldDescriptor
-	fd_MsgNewDecision_entry_fee       protoreflect.FieldDescriptor
-	fd_MsgNewDecision_voting_options  protoreflect.FieldDescriptor
-	fd_MsgNewDecision_send_funds_to   protoreflect.FieldDescriptor
-	fd_MsgNewDecision_commit          protoreflect.FieldDescriptor
+	md_MsgCreateDecision                 protoreflect.MessageDescriptor
+	fd_MsgCreateDecision_sender          protoreflect.FieldDescriptor
+	fd_MsgCreateDecision_options         protoreflect.FieldDescriptor
+	fd_MsgCreateDecision_commit_duration protoreflect.FieldDescriptor
+	fd_MsgCreateDecision_reveal_duration protoreflect.FieldDescriptor
+	fd_MsgCreateDecision_entry_fee       protoreflect.FieldDescriptor
+	fd_MsgCreateDecision_refund          protoreflect.FieldDescriptor
+	fd_MsgCreateDecision_send_funds_to   protoreflect.FieldDescriptor
 )
 
 func init() {
-	file_samricotta_vote_crs_v1_tx_proto_init()
-	md_MsgNewDecision = File_samricotta_vote_crs_v1_tx_proto.Messages().ByName("MsgNewDecision")
-	fd_MsgNewDecision_voter = md_MsgNewDecision.Fields().ByName("voter")
-	fd_MsgNewDecision_refund = md_MsgNewDecision.Fields().ByName("refund")
-	fd_MsgNewDecision_commit_duration = md_MsgNewDecision.Fields().ByName("commit_duration")
-	fd_MsgNewDecision_reveal_duration = md_MsgNewDecision.Fields().ByName("reveal_duration")
-	fd_MsgNewDecision_entry_fee = md_MsgNewDecision.Fields().ByName("entry_fee")
-	fd_MsgNewDecision_voting_options = md_MsgNewDecision.Fields().ByName("voting_options")
-	fd_MsgNewDecision_send_funds_to = md_MsgNewDecision.Fields().ByName("send_funds_to")
-	fd_MsgNewDecision_commit = md_MsgNewDecision.Fields().ByName("commit")
+	file_samricotta_crs_v1_tx_proto_init()
+	md_MsgCreateDecision = File_samricotta_crs_v1_tx_proto.Messages().ByName("MsgCreateDecision")
+	fd_MsgCreateDecision_sender = md_MsgCreateDecision.Fields().ByName("sender")
+	fd_MsgCreateDecision_options = md_MsgCreateDecision.Fields().ByName("options")
+	fd_MsgCreateDecision_commit_duration = md_MsgCreateDecision.Fields().ByName("commit_duration")
+	fd_MsgCreateDecision_reveal_duration = md_MsgCreateDecision.Fields().ByName("reveal_duration")
+	fd_MsgCreateDecision_entry_fee = md_MsgCreateDecision.Fields().ByName("entry_fee")
+	fd_MsgCreateDecision_refund = md_MsgCreateDecision.Fields().ByName("refund")
+	fd_MsgCreateDecision_send_funds_to = md_MsgCreateDecision.Fields().ByName("send_funds_to")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgNewDecision)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgCreateDecision)(nil)
 
-type fastReflection_MsgNewDecision MsgNewDecision
+type fastReflection_MsgCreateDecision MsgCreateDecision
 
-func (x *MsgNewDecision) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgNewDecision)(x)
+func (x *MsgCreateDecision) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgCreateDecision)(x)
 }
 
-func (x *MsgNewDecision) slowProtoReflect() protoreflect.Message {
-	mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[0]
+func (x *MsgCreateDecision) slowProtoReflect() protoreflect.Message {
+	mi := &file_samricotta_crs_v1_tx_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -109,43 +107,43 @@ func (x *MsgNewDecision) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgNewDecision_messageType fastReflection_MsgNewDecision_messageType
-var _ protoreflect.MessageType = fastReflection_MsgNewDecision_messageType{}
+var _fastReflection_MsgCreateDecision_messageType fastReflection_MsgCreateDecision_messageType
+var _ protoreflect.MessageType = fastReflection_MsgCreateDecision_messageType{}
 
-type fastReflection_MsgNewDecision_messageType struct{}
+type fastReflection_MsgCreateDecision_messageType struct{}
 
-func (x fastReflection_MsgNewDecision_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgNewDecision)(nil)
+func (x fastReflection_MsgCreateDecision_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgCreateDecision)(nil)
 }
-func (x fastReflection_MsgNewDecision_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgNewDecision)
+func (x fastReflection_MsgCreateDecision_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateDecision)
 }
-func (x fastReflection_MsgNewDecision_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgNewDecision
+func (x fastReflection_MsgCreateDecision_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateDecision
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgNewDecision) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgNewDecision
+func (x *fastReflection_MsgCreateDecision) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateDecision
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgNewDecision) Type() protoreflect.MessageType {
-	return _fastReflection_MsgNewDecision_messageType
+func (x *fastReflection_MsgCreateDecision) Type() protoreflect.MessageType {
+	return _fastReflection_MsgCreateDecision_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgNewDecision) New() protoreflect.Message {
-	return new(fastReflection_MsgNewDecision)
+func (x *fastReflection_MsgCreateDecision) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateDecision)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgNewDecision) Interface() protoreflect.ProtoMessage {
-	return (*MsgNewDecision)(x)
+func (x *fastReflection_MsgCreateDecision) Interface() protoreflect.ProtoMessage {
+	return (*MsgCreateDecision)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -153,52 +151,46 @@ func (x *fastReflection_MsgNewDecision) Interface() protoreflect.ProtoMessage {
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgNewDecision) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Voter != "" {
-		value := protoreflect.ValueOfString(x.Voter)
-		if !f(fd_MsgNewDecision_voter, value) {
+func (x *fastReflection_MsgCreateDecision) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Sender != "" {
+		value := protoreflect.ValueOfString(x.Sender)
+		if !f(fd_MsgCreateDecision_sender, value) {
 			return
 		}
 	}
-	if x.Refund != false {
-		value := protoreflect.ValueOfBool(x.Refund)
-		if !f(fd_MsgNewDecision_refund, value) {
+	if len(x.Options) != 0 {
+		value := protoreflect.ValueOfList(&_MsgCreateDecision_2_list{list: &x.Options})
+		if !f(fd_MsgCreateDecision_options, value) {
 			return
 		}
 	}
-	if x.CommitDuration != nil {
-		value := protoreflect.ValueOfMessage(x.CommitDuration.ProtoReflect())
-		if !f(fd_MsgNewDecision_commit_duration, value) {
+	if x.CommitDuration != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.CommitDuration)
+		if !f(fd_MsgCreateDecision_commit_duration, value) {
 			return
 		}
 	}
-	if x.RevealDuration != nil {
-		value := protoreflect.ValueOfMessage(x.RevealDuration.ProtoReflect())
-		if !f(fd_MsgNewDecision_reveal_duration, value) {
+	if x.RevealDuration != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.RevealDuration)
+		if !f(fd_MsgCreateDecision_reveal_duration, value) {
 			return
 		}
 	}
 	if x.EntryFee != nil {
 		value := protoreflect.ValueOfMessage(x.EntryFee.ProtoReflect())
-		if !f(fd_MsgNewDecision_entry_fee, value) {
+		if !f(fd_MsgCreateDecision_entry_fee, value) {
 			return
 		}
 	}
-	if len(x.VotingOptions) != 0 {
-		value := protoreflect.ValueOfList(&_MsgNewDecision_6_list{list: &x.VotingOptions})
-		if !f(fd_MsgNewDecision_voting_options, value) {
+	if x.Refund != false {
+		value := protoreflect.ValueOfBool(x.Refund)
+		if !f(fd_MsgCreateDecision_refund, value) {
 			return
 		}
 	}
 	if len(x.SendFundsTo) != 0 {
 		value := protoreflect.ValueOfBytes(x.SendFundsTo)
-		if !f(fd_MsgNewDecision_send_funds_to, value) {
-			return
-		}
-	}
-	if x.Commit != "" {
-		value := protoreflect.ValueOfString(x.Commit)
-		if !f(fd_MsgNewDecision_commit, value) {
+		if !f(fd_MsgCreateDecision_send_funds_to, value) {
 			return
 		}
 	}
@@ -215,29 +207,27 @@ func (x *fastReflection_MsgNewDecision) Range(f func(protoreflect.FieldDescripto
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgNewDecision) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgCreateDecision) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecision.voter":
-		return x.Voter != ""
-	case "samricotta.vote.crs.v1.MsgNewDecision.refund":
-		return x.Refund != false
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit_duration":
-		return x.CommitDuration != nil
-	case "samricotta.vote.crs.v1.MsgNewDecision.reveal_duration":
-		return x.RevealDuration != nil
-	case "samricotta.vote.crs.v1.MsgNewDecision.entry_fee":
+	case "samricotta.crs.v1.MsgCreateDecision.sender":
+		return x.Sender != ""
+	case "samricotta.crs.v1.MsgCreateDecision.options":
+		return len(x.Options) != 0
+	case "samricotta.crs.v1.MsgCreateDecision.commit_duration":
+		return x.CommitDuration != uint64(0)
+	case "samricotta.crs.v1.MsgCreateDecision.reveal_duration":
+		return x.RevealDuration != uint64(0)
+	case "samricotta.crs.v1.MsgCreateDecision.entry_fee":
 		return x.EntryFee != nil
-	case "samricotta.vote.crs.v1.MsgNewDecision.voting_options":
-		return len(x.VotingOptions) != 0
-	case "samricotta.vote.crs.v1.MsgNewDecision.send_funds_to":
+	case "samricotta.crs.v1.MsgCreateDecision.refund":
+		return x.Refund != false
+	case "samricotta.crs.v1.MsgCreateDecision.send_funds_to":
 		return len(x.SendFundsTo) != 0
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit":
-		return x.Commit != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecision"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecision"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecision does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecision does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -247,29 +237,27 @@ func (x *fastReflection_MsgNewDecision) Has(fd protoreflect.FieldDescriptor) boo
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgNewDecision) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgCreateDecision) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecision.voter":
-		x.Voter = ""
-	case "samricotta.vote.crs.v1.MsgNewDecision.refund":
-		x.Refund = false
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit_duration":
-		x.CommitDuration = nil
-	case "samricotta.vote.crs.v1.MsgNewDecision.reveal_duration":
-		x.RevealDuration = nil
-	case "samricotta.vote.crs.v1.MsgNewDecision.entry_fee":
+	case "samricotta.crs.v1.MsgCreateDecision.sender":
+		x.Sender = ""
+	case "samricotta.crs.v1.MsgCreateDecision.options":
+		x.Options = nil
+	case "samricotta.crs.v1.MsgCreateDecision.commit_duration":
+		x.CommitDuration = uint64(0)
+	case "samricotta.crs.v1.MsgCreateDecision.reveal_duration":
+		x.RevealDuration = uint64(0)
+	case "samricotta.crs.v1.MsgCreateDecision.entry_fee":
 		x.EntryFee = nil
-	case "samricotta.vote.crs.v1.MsgNewDecision.voting_options":
-		x.VotingOptions = nil
-	case "samricotta.vote.crs.v1.MsgNewDecision.send_funds_to":
+	case "samricotta.crs.v1.MsgCreateDecision.refund":
+		x.Refund = false
+	case "samricotta.crs.v1.MsgCreateDecision.send_funds_to":
 		x.SendFundsTo = nil
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit":
-		x.Commit = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecision"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecision"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecision does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecision does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -279,40 +267,37 @@ func (x *fastReflection_MsgNewDecision) Clear(fd protoreflect.FieldDescriptor) {
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgNewDecision) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCreateDecision) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecision.voter":
-		value := x.Voter
+	case "samricotta.crs.v1.MsgCreateDecision.sender":
+		value := x.Sender
 		return protoreflect.ValueOfString(value)
-	case "samricotta.vote.crs.v1.MsgNewDecision.refund":
-		value := x.Refund
-		return protoreflect.ValueOfBool(value)
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit_duration":
+	case "samricotta.crs.v1.MsgCreateDecision.options":
+		if len(x.Options) == 0 {
+			return protoreflect.ValueOfList(&_MsgCreateDecision_2_list{})
+		}
+		listValue := &_MsgCreateDecision_2_list{list: &x.Options}
+		return protoreflect.ValueOfList(listValue)
+	case "samricotta.crs.v1.MsgCreateDecision.commit_duration":
 		value := x.CommitDuration
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.reveal_duration":
+		return protoreflect.ValueOfUint64(value)
+	case "samricotta.crs.v1.MsgCreateDecision.reveal_duration":
 		value := x.RevealDuration
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.entry_fee":
+		return protoreflect.ValueOfUint64(value)
+	case "samricotta.crs.v1.MsgCreateDecision.entry_fee":
 		value := x.EntryFee
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.voting_options":
-		if len(x.VotingOptions) == 0 {
-			return protoreflect.ValueOfList(&_MsgNewDecision_6_list{})
-		}
-		listValue := &_MsgNewDecision_6_list{list: &x.VotingOptions}
-		return protoreflect.ValueOfList(listValue)
-	case "samricotta.vote.crs.v1.MsgNewDecision.send_funds_to":
+	case "samricotta.crs.v1.MsgCreateDecision.refund":
+		value := x.Refund
+		return protoreflect.ValueOfBool(value)
+	case "samricotta.crs.v1.MsgCreateDecision.send_funds_to":
 		value := x.SendFundsTo
 		return protoreflect.ValueOfBytes(value)
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit":
-		value := x.Commit
-		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecision"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecision"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecision does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecision does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -326,31 +311,29 @@ func (x *fastReflection_MsgNewDecision) Get(descriptor protoreflect.FieldDescrip
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgNewDecision) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgCreateDecision) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecision.voter":
-		x.Voter = value.Interface().(string)
-	case "samricotta.vote.crs.v1.MsgNewDecision.refund":
-		x.Refund = value.Bool()
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit_duration":
-		x.CommitDuration = value.Message().Interface().(*durationpb.Duration)
-	case "samricotta.vote.crs.v1.MsgNewDecision.reveal_duration":
-		x.RevealDuration = value.Message().Interface().(*durationpb.Duration)
-	case "samricotta.vote.crs.v1.MsgNewDecision.entry_fee":
-		x.EntryFee = value.Message().Interface().(*v1beta1.Coin)
-	case "samricotta.vote.crs.v1.MsgNewDecision.voting_options":
+	case "samricotta.crs.v1.MsgCreateDecision.sender":
+		x.Sender = value.Interface().(string)
+	case "samricotta.crs.v1.MsgCreateDecision.options":
 		lv := value.List()
-		clv := lv.(*_MsgNewDecision_6_list)
-		x.VotingOptions = *clv.list
-	case "samricotta.vote.crs.v1.MsgNewDecision.send_funds_to":
+		clv := lv.(*_MsgCreateDecision_2_list)
+		x.Options = *clv.list
+	case "samricotta.crs.v1.MsgCreateDecision.commit_duration":
+		x.CommitDuration = value.Uint()
+	case "samricotta.crs.v1.MsgCreateDecision.reveal_duration":
+		x.RevealDuration = value.Uint()
+	case "samricotta.crs.v1.MsgCreateDecision.entry_fee":
+		x.EntryFee = value.Message().Interface().(*v1beta1.Coin)
+	case "samricotta.crs.v1.MsgCreateDecision.refund":
+		x.Refund = value.Bool()
+	case "samricotta.crs.v1.MsgCreateDecision.send_funds_to":
 		x.SendFundsTo = value.Bytes()
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit":
-		x.Commit = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecision"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecision"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecision does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecision does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -364,85 +347,73 @@ func (x *fastReflection_MsgNewDecision) Set(fd protoreflect.FieldDescriptor, val
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgNewDecision) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCreateDecision) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit_duration":
-		if x.CommitDuration == nil {
-			x.CommitDuration = new(durationpb.Duration)
+	case "samricotta.crs.v1.MsgCreateDecision.options":
+		if x.Options == nil {
+			x.Options = [][]byte{}
 		}
-		return protoreflect.ValueOfMessage(x.CommitDuration.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.reveal_duration":
-		if x.RevealDuration == nil {
-			x.RevealDuration = new(durationpb.Duration)
-		}
-		return protoreflect.ValueOfMessage(x.RevealDuration.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.entry_fee":
+		value := &_MsgCreateDecision_2_list{list: &x.Options}
+		return protoreflect.ValueOfList(value)
+	case "samricotta.crs.v1.MsgCreateDecision.entry_fee":
 		if x.EntryFee == nil {
 			x.EntryFee = new(v1beta1.Coin)
 		}
 		return protoreflect.ValueOfMessage(x.EntryFee.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.voting_options":
-		if x.VotingOptions == nil {
-			x.VotingOptions = [][]byte{}
-		}
-		value := &_MsgNewDecision_6_list{list: &x.VotingOptions}
-		return protoreflect.ValueOfList(value)
-	case "samricotta.vote.crs.v1.MsgNewDecision.voter":
-		panic(fmt.Errorf("field voter of message samricotta.vote.crs.v1.MsgNewDecision is not mutable"))
-	case "samricotta.vote.crs.v1.MsgNewDecision.refund":
-		panic(fmt.Errorf("field refund of message samricotta.vote.crs.v1.MsgNewDecision is not mutable"))
-	case "samricotta.vote.crs.v1.MsgNewDecision.send_funds_to":
-		panic(fmt.Errorf("field send_funds_to of message samricotta.vote.crs.v1.MsgNewDecision is not mutable"))
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit":
-		panic(fmt.Errorf("field commit of message samricotta.vote.crs.v1.MsgNewDecision is not mutable"))
+	case "samricotta.crs.v1.MsgCreateDecision.sender":
+		panic(fmt.Errorf("field sender of message samricotta.crs.v1.MsgCreateDecision is not mutable"))
+	case "samricotta.crs.v1.MsgCreateDecision.commit_duration":
+		panic(fmt.Errorf("field commit_duration of message samricotta.crs.v1.MsgCreateDecision is not mutable"))
+	case "samricotta.crs.v1.MsgCreateDecision.reveal_duration":
+		panic(fmt.Errorf("field reveal_duration of message samricotta.crs.v1.MsgCreateDecision is not mutable"))
+	case "samricotta.crs.v1.MsgCreateDecision.refund":
+		panic(fmt.Errorf("field refund of message samricotta.crs.v1.MsgCreateDecision is not mutable"))
+	case "samricotta.crs.v1.MsgCreateDecision.send_funds_to":
+		panic(fmt.Errorf("field send_funds_to of message samricotta.crs.v1.MsgCreateDecision is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecision"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecision"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecision does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecision does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgNewDecision) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCreateDecision) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecision.voter":
+	case "samricotta.crs.v1.MsgCreateDecision.sender":
 		return protoreflect.ValueOfString("")
-	case "samricotta.vote.crs.v1.MsgNewDecision.refund":
-		return protoreflect.ValueOfBool(false)
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit_duration":
-		m := new(durationpb.Duration)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.reveal_duration":
-		m := new(durationpb.Duration)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.entry_fee":
+	case "samricotta.crs.v1.MsgCreateDecision.options":
+		list := [][]byte{}
+		return protoreflect.ValueOfList(&_MsgCreateDecision_2_list{list: &list})
+	case "samricotta.crs.v1.MsgCreateDecision.commit_duration":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "samricotta.crs.v1.MsgCreateDecision.reveal_duration":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "samricotta.crs.v1.MsgCreateDecision.entry_fee":
 		m := new(v1beta1.Coin)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgNewDecision.voting_options":
-		list := [][]byte{}
-		return protoreflect.ValueOfList(&_MsgNewDecision_6_list{list: &list})
-	case "samricotta.vote.crs.v1.MsgNewDecision.send_funds_to":
+	case "samricotta.crs.v1.MsgCreateDecision.refund":
+		return protoreflect.ValueOfBool(false)
+	case "samricotta.crs.v1.MsgCreateDecision.send_funds_to":
 		return protoreflect.ValueOfBytes(nil)
-	case "samricotta.vote.crs.v1.MsgNewDecision.commit":
-		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecision"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecision"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecision does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecision does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgNewDecision) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgCreateDecision) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in samricotta.vote.crs.v1.MsgNewDecision", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in samricotta.crs.v1.MsgCreateDecision", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -450,7 +421,7 @@ func (x *fastReflection_MsgNewDecision) WhichOneof(d protoreflect.OneofDescripto
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgNewDecision) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgCreateDecision) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -461,7 +432,7 @@ func (x *fastReflection_MsgNewDecision) GetUnknown() protoreflect.RawFields {
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgNewDecision) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgCreateDecision) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -473,7 +444,7 @@ func (x *fastReflection_MsgNewDecision) SetUnknown(fields protoreflect.RawFields
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgNewDecision) IsValid() bool {
+func (x *fastReflection_MsgCreateDecision) IsValid() bool {
 	return x != nil
 }
 
@@ -483,9 +454,9 @@ func (x *fastReflection_MsgNewDecision) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgCreateDecision) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgNewDecision)
+		x := input.Message.Interface().(*MsgCreateDecision)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -497,36 +468,30 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		l = len(x.Voter)
+		l = len(x.Sender)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if x.Refund {
-			n += 2
+		if len(x.Options) > 0 {
+			for _, b := range x.Options {
+				l = len(b)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
 		}
-		if x.CommitDuration != nil {
-			l = options.Size(x.CommitDuration)
-			n += 1 + l + runtime.Sov(uint64(l))
+		if x.CommitDuration != 0 {
+			n += 1 + runtime.Sov(uint64(x.CommitDuration))
 		}
-		if x.RevealDuration != nil {
-			l = options.Size(x.RevealDuration)
-			n += 1 + l + runtime.Sov(uint64(l))
+		if x.RevealDuration != 0 {
+			n += 1 + runtime.Sov(uint64(x.RevealDuration))
 		}
 		if x.EntryFee != nil {
 			l = options.Size(x.EntryFee)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if len(x.VotingOptions) > 0 {
-			for _, b := range x.VotingOptions {
-				l = len(b)
-				n += 1 + l + runtime.Sov(uint64(l))
-			}
+		if x.Refund {
+			n += 2
 		}
 		l = len(x.SendFundsTo)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		l = len(x.Commit)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -540,7 +505,7 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgNewDecision)
+		x := input.Message.Interface().(*MsgCreateDecision)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -559,13 +524,6 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Commit) > 0 {
-			i -= len(x.Commit)
-			copy(dAtA[i:], x.Commit)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Commit)))
-			i--
-			dAtA[i] = 0x42
-		}
 		if len(x.SendFundsTo) > 0 {
 			i -= len(x.SendFundsTo)
 			copy(dAtA[i:], x.SendFundsTo)
@@ -573,14 +531,15 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x3a
 		}
-		if len(x.VotingOptions) > 0 {
-			for iNdEx := len(x.VotingOptions) - 1; iNdEx >= 0; iNdEx-- {
-				i -= len(x.VotingOptions[iNdEx])
-				copy(dAtA[i:], x.VotingOptions[iNdEx])
-				i = runtime.EncodeVarint(dAtA, i, uint64(len(x.VotingOptions[iNdEx])))
-				i--
-				dAtA[i] = 0x32
+		if x.Refund {
+			i--
+			if x.Refund {
+				dAtA[i] = 1
+			} else {
+				dAtA[i] = 0
 			}
+			i--
+			dAtA[i] = 0x30
 		}
 		if x.EntryFee != nil {
 			encoded, err := options.Marshal(x.EntryFee)
@@ -596,48 +555,29 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x2a
 		}
-		if x.RevealDuration != nil {
-			encoded, err := options.Marshal(x.RevealDuration)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+		if x.RevealDuration != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.RevealDuration))
 			i--
-			dAtA[i] = 0x22
+			dAtA[i] = 0x20
 		}
-		if x.CommitDuration != nil {
-			encoded, err := options.Marshal(x.CommitDuration)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+		if x.CommitDuration != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.CommitDuration))
 			i--
-			dAtA[i] = 0x1a
+			dAtA[i] = 0x18
 		}
-		if x.Refund {
-			i--
-			if x.Refund {
-				dAtA[i] = 1
-			} else {
-				dAtA[i] = 0
+		if len(x.Options) > 0 {
+			for iNdEx := len(x.Options) - 1; iNdEx >= 0; iNdEx-- {
+				i -= len(x.Options[iNdEx])
+				copy(dAtA[i:], x.Options[iNdEx])
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Options[iNdEx])))
+				i--
+				dAtA[i] = 0x12
 			}
-			i--
-			dAtA[i] = 0x10
 		}
-		if len(x.Voter) > 0 {
-			i -= len(x.Voter)
-			copy(dAtA[i:], x.Voter)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Voter)))
+		if len(x.Sender) > 0 {
+			i -= len(x.Sender)
+			copy(dAtA[i:], x.Sender)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Sender)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -652,7 +592,7 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgNewDecision)
+		x := input.Message.Interface().(*MsgCreateDecision)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -684,15 +624,15 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgNewDecision: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateDecision: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgNewDecision: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateDecision: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Voter", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Sender", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -720,13 +660,13 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Voter = string(dAtA[iNdEx:postIndex])
+				x.Sender = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Refund", wireType)
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Options", wireType)
 				}
-				var v int
+				var byteLen int
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -736,17 +676,29 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					v |= int(b&0x7F) << shift
+					byteLen |= int(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				x.Refund = bool(v != 0)
+				if byteLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + byteLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Options = append(x.Options, make([]byte, postIndex-iNdEx))
+				copy(x.Options[len(x.Options)-1], dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			case 3:
-				if wireType != 2 {
+				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CommitDuration", wireType)
 				}
-				var msglen int
+				x.CommitDuration = 0
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -756,33 +708,16 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					msglen |= int(b&0x7F) << shift
+					x.CommitDuration |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.CommitDuration == nil {
-					x.CommitDuration = &durationpb.Duration{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.CommitDuration); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
 			case 4:
-				if wireType != 2 {
+				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RevealDuration", wireType)
 				}
-				var msglen int
+				x.RevealDuration = 0
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -792,28 +727,11 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					msglen |= int(b&0x7F) << shift
+					x.RevealDuration |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.RevealDuration == nil {
-					x.RevealDuration = &durationpb.Duration{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.RevealDuration); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
 			case 5:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EntryFee", wireType)
@@ -851,10 +769,10 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 				}
 				iNdEx = postIndex
 			case 6:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field VotingOptions", wireType)
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Refund", wireType)
 				}
-				var byteLen int
+				var v int
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -864,24 +782,12 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					byteLen |= int(b&0x7F) << shift
+					v |= int(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				if byteLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + byteLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.VotingOptions = append(x.VotingOptions, make([]byte, postIndex-iNdEx))
-				copy(x.VotingOptions[len(x.VotingOptions)-1], dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
+				x.Refund = bool(v != 0)
 			case 7:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SendFundsTo", wireType)
@@ -915,38 +821,6 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 				if x.SendFundsTo == nil {
 					x.SendFundsTo = []byte{}
 				}
-				iNdEx = postIndex
-			case 8:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Commit", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Commit = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -984,26 +858,26 @@ func (x *fastReflection_MsgNewDecision) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_MsgNewDecisionResponse    protoreflect.MessageDescriptor
-	fd_MsgNewDecisionResponse_id protoreflect.FieldDescriptor
+	md_MsgCreateDecisionResponse    protoreflect.MessageDescriptor
+	fd_MsgCreateDecisionResponse_id protoreflect.FieldDescriptor
 )
 
 func init() {
-	file_samricotta_vote_crs_v1_tx_proto_init()
-	md_MsgNewDecisionResponse = File_samricotta_vote_crs_v1_tx_proto.Messages().ByName("MsgNewDecisionResponse")
-	fd_MsgNewDecisionResponse_id = md_MsgNewDecisionResponse.Fields().ByName("id")
+	file_samricotta_crs_v1_tx_proto_init()
+	md_MsgCreateDecisionResponse = File_samricotta_crs_v1_tx_proto.Messages().ByName("MsgCreateDecisionResponse")
+	fd_MsgCreateDecisionResponse_id = md_MsgCreateDecisionResponse.Fields().ByName("id")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgNewDecisionResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgCreateDecisionResponse)(nil)
 
-type fastReflection_MsgNewDecisionResponse MsgNewDecisionResponse
+type fastReflection_MsgCreateDecisionResponse MsgCreateDecisionResponse
 
-func (x *MsgNewDecisionResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgNewDecisionResponse)(x)
+func (x *MsgCreateDecisionResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgCreateDecisionResponse)(x)
 }
 
-func (x *MsgNewDecisionResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[1]
+func (x *MsgCreateDecisionResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_samricotta_crs_v1_tx_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1014,43 +888,43 @@ func (x *MsgNewDecisionResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgNewDecisionResponse_messageType fastReflection_MsgNewDecisionResponse_messageType
-var _ protoreflect.MessageType = fastReflection_MsgNewDecisionResponse_messageType{}
+var _fastReflection_MsgCreateDecisionResponse_messageType fastReflection_MsgCreateDecisionResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgCreateDecisionResponse_messageType{}
 
-type fastReflection_MsgNewDecisionResponse_messageType struct{}
+type fastReflection_MsgCreateDecisionResponse_messageType struct{}
 
-func (x fastReflection_MsgNewDecisionResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgNewDecisionResponse)(nil)
+func (x fastReflection_MsgCreateDecisionResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgCreateDecisionResponse)(nil)
 }
-func (x fastReflection_MsgNewDecisionResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgNewDecisionResponse)
+func (x fastReflection_MsgCreateDecisionResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateDecisionResponse)
 }
-func (x fastReflection_MsgNewDecisionResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgNewDecisionResponse
+func (x fastReflection_MsgCreateDecisionResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateDecisionResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgNewDecisionResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgNewDecisionResponse
+func (x *fastReflection_MsgCreateDecisionResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateDecisionResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgNewDecisionResponse) Type() protoreflect.MessageType {
-	return _fastReflection_MsgNewDecisionResponse_messageType
+func (x *fastReflection_MsgCreateDecisionResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgCreateDecisionResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgNewDecisionResponse) New() protoreflect.Message {
-	return new(fastReflection_MsgNewDecisionResponse)
+func (x *fastReflection_MsgCreateDecisionResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateDecisionResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgNewDecisionResponse) Interface() protoreflect.ProtoMessage {
-	return (*MsgNewDecisionResponse)(x)
+func (x *fastReflection_MsgCreateDecisionResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgCreateDecisionResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1058,10 +932,10 @@ func (x *fastReflection_MsgNewDecisionResponse) Interface() protoreflect.ProtoMe
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgNewDecisionResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgCreateDecisionResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Id != uint64(0) {
 		value := protoreflect.ValueOfUint64(x.Id)
-		if !f(fd_MsgNewDecisionResponse_id, value) {
+		if !f(fd_MsgCreateDecisionResponse_id, value) {
 			return
 		}
 	}
@@ -1078,15 +952,15 @@ func (x *fastReflection_MsgNewDecisionResponse) Range(f func(protoreflect.FieldD
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgNewDecisionResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgCreateDecisionResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecisionResponse.id":
+	case "samricotta.crs.v1.MsgCreateDecisionResponse.id":
 		return x.Id != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecisionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecisionResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecisionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecisionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1096,15 +970,15 @@ func (x *fastReflection_MsgNewDecisionResponse) Has(fd protoreflect.FieldDescrip
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgNewDecisionResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgCreateDecisionResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecisionResponse.id":
+	case "samricotta.crs.v1.MsgCreateDecisionResponse.id":
 		x.Id = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecisionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecisionResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecisionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecisionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1114,16 +988,16 @@ func (x *fastReflection_MsgNewDecisionResponse) Clear(fd protoreflect.FieldDescr
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgNewDecisionResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCreateDecisionResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecisionResponse.id":
+	case "samricotta.crs.v1.MsgCreateDecisionResponse.id":
 		value := x.Id
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecisionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecisionResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecisionResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecisionResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1137,15 +1011,15 @@ func (x *fastReflection_MsgNewDecisionResponse) Get(descriptor protoreflect.Fiel
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgNewDecisionResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgCreateDecisionResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecisionResponse.id":
+	case "samricotta.crs.v1.MsgCreateDecisionResponse.id":
 		x.Id = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecisionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecisionResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecisionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecisionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1159,40 +1033,40 @@ func (x *fastReflection_MsgNewDecisionResponse) Set(fd protoreflect.FieldDescrip
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgNewDecisionResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCreateDecisionResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecisionResponse.id":
-		panic(fmt.Errorf("field id of message samricotta.vote.crs.v1.MsgNewDecisionResponse is not mutable"))
+	case "samricotta.crs.v1.MsgCreateDecisionResponse.id":
+		panic(fmt.Errorf("field id of message samricotta.crs.v1.MsgCreateDecisionResponse is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecisionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecisionResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecisionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecisionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgNewDecisionResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCreateDecisionResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgNewDecisionResponse.id":
+	case "samricotta.crs.v1.MsgCreateDecisionResponse.id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgNewDecisionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCreateDecisionResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgNewDecisionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCreateDecisionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgNewDecisionResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgCreateDecisionResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in samricotta.vote.crs.v1.MsgNewDecisionResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in samricotta.crs.v1.MsgCreateDecisionResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1200,7 +1074,7 @@ func (x *fastReflection_MsgNewDecisionResponse) WhichOneof(d protoreflect.OneofD
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgNewDecisionResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgCreateDecisionResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1211,7 +1085,7 @@ func (x *fastReflection_MsgNewDecisionResponse) GetUnknown() protoreflect.RawFie
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgNewDecisionResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgCreateDecisionResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1223,7 +1097,7 @@ func (x *fastReflection_MsgNewDecisionResponse) SetUnknown(fields protoreflect.R
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgNewDecisionResponse) IsValid() bool {
+func (x *fastReflection_MsgCreateDecisionResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -1233,9 +1107,9 @@ func (x *fastReflection_MsgNewDecisionResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgNewDecisionResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgCreateDecisionResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgNewDecisionResponse)
+		x := input.Message.Interface().(*MsgCreateDecisionResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1260,7 +1134,7 @@ func (x *fastReflection_MsgNewDecisionResponse) ProtoMethods() *protoiface.Metho
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgNewDecisionResponse)
+		x := input.Message.Interface().(*MsgCreateDecisionResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1295,7 +1169,7 @@ func (x *fastReflection_MsgNewDecisionResponse) ProtoMethods() *protoiface.Metho
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgNewDecisionResponse)
+		x := input.Message.Interface().(*MsgCreateDecisionResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1327,10 +1201,10 @@ func (x *fastReflection_MsgNewDecisionResponse) ProtoMethods() *protoiface.Metho
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgNewDecisionResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateDecisionResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgNewDecisionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateDecisionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1388,18 +1262,18 @@ func (x *fastReflection_MsgNewDecisionResponse) ProtoMethods() *protoiface.Metho
 }
 
 var (
-	md_MsgCommit                 protoreflect.MessageDescriptor
-	fd_MsgCommit_new_decision_id protoreflect.FieldDescriptor
-	fd_MsgCommit_commit          protoreflect.FieldDescriptor
-	fd_MsgCommit_voter           protoreflect.FieldDescriptor
+	md_MsgCommit             protoreflect.MessageDescriptor
+	fd_MsgCommit_sender      protoreflect.FieldDescriptor
+	fd_MsgCommit_decision_id protoreflect.FieldDescriptor
+	fd_MsgCommit_commit      protoreflect.FieldDescriptor
 )
 
 func init() {
-	file_samricotta_vote_crs_v1_tx_proto_init()
-	md_MsgCommit = File_samricotta_vote_crs_v1_tx_proto.Messages().ByName("MsgCommit")
-	fd_MsgCommit_new_decision_id = md_MsgCommit.Fields().ByName("new_decision_id")
+	file_samricotta_crs_v1_tx_proto_init()
+	md_MsgCommit = File_samricotta_crs_v1_tx_proto.Messages().ByName("MsgCommit")
+	fd_MsgCommit_sender = md_MsgCommit.Fields().ByName("sender")
+	fd_MsgCommit_decision_id = md_MsgCommit.Fields().ByName("decision_id")
 	fd_MsgCommit_commit = md_MsgCommit.Fields().ByName("commit")
-	fd_MsgCommit_voter = md_MsgCommit.Fields().ByName("voter")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgCommit)(nil)
@@ -1411,7 +1285,7 @@ func (x *MsgCommit) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgCommit) slowProtoReflect() protoreflect.Message {
-	mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[2]
+	mi := &file_samricotta_crs_v1_tx_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1467,21 +1341,21 @@ func (x *fastReflection_MsgCommit) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgCommit) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.NewDecisionId != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.NewDecisionId)
-		if !f(fd_MsgCommit_new_decision_id, value) {
+	if x.Sender != "" {
+		value := protoreflect.ValueOfString(x.Sender)
+		if !f(fd_MsgCommit_sender, value) {
+			return
+		}
+	}
+	if x.DecisionId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.DecisionId)
+		if !f(fd_MsgCommit_decision_id, value) {
 			return
 		}
 	}
 	if len(x.Commit) != 0 {
 		value := protoreflect.ValueOfBytes(x.Commit)
 		if !f(fd_MsgCommit_commit, value) {
-			return
-		}
-	}
-	if x.Voter != "" {
-		value := protoreflect.ValueOfString(x.Voter)
-		if !f(fd_MsgCommit_voter, value) {
 			return
 		}
 	}
@@ -1500,17 +1374,17 @@ func (x *fastReflection_MsgCommit) Range(f func(protoreflect.FieldDescriptor, pr
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgCommit) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgCommit.new_decision_id":
-		return x.NewDecisionId != uint64(0)
-	case "samricotta.vote.crs.v1.MsgCommit.commit":
+	case "samricotta.crs.v1.MsgCommit.sender":
+		return x.Sender != ""
+	case "samricotta.crs.v1.MsgCommit.decision_id":
+		return x.DecisionId != uint64(0)
+	case "samricotta.crs.v1.MsgCommit.commit":
 		return len(x.Commit) != 0
-	case "samricotta.vote.crs.v1.MsgCommit.voter":
-		return x.Voter != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommit"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommit"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1522,17 +1396,17 @@ func (x *fastReflection_MsgCommit) Has(fd protoreflect.FieldDescriptor) bool {
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCommit) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgCommit.new_decision_id":
-		x.NewDecisionId = uint64(0)
-	case "samricotta.vote.crs.v1.MsgCommit.commit":
+	case "samricotta.crs.v1.MsgCommit.sender":
+		x.Sender = ""
+	case "samricotta.crs.v1.MsgCommit.decision_id":
+		x.DecisionId = uint64(0)
+	case "samricotta.crs.v1.MsgCommit.commit":
 		x.Commit = nil
-	case "samricotta.vote.crs.v1.MsgCommit.voter":
-		x.Voter = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommit"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommit"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1544,20 +1418,20 @@ func (x *fastReflection_MsgCommit) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgCommit) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "samricotta.vote.crs.v1.MsgCommit.new_decision_id":
-		value := x.NewDecisionId
+	case "samricotta.crs.v1.MsgCommit.sender":
+		value := x.Sender
+		return protoreflect.ValueOfString(value)
+	case "samricotta.crs.v1.MsgCommit.decision_id":
+		value := x.DecisionId
 		return protoreflect.ValueOfUint64(value)
-	case "samricotta.vote.crs.v1.MsgCommit.commit":
+	case "samricotta.crs.v1.MsgCommit.commit":
 		value := x.Commit
 		return protoreflect.ValueOfBytes(value)
-	case "samricotta.vote.crs.v1.MsgCommit.voter":
-		value := x.Voter
-		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommit"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommit"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommit does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommit does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1573,17 +1447,17 @@ func (x *fastReflection_MsgCommit) Get(descriptor protoreflect.FieldDescriptor) 
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCommit) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgCommit.new_decision_id":
-		x.NewDecisionId = value.Uint()
-	case "samricotta.vote.crs.v1.MsgCommit.commit":
+	case "samricotta.crs.v1.MsgCommit.sender":
+		x.Sender = value.Interface().(string)
+	case "samricotta.crs.v1.MsgCommit.decision_id":
+		x.DecisionId = value.Uint()
+	case "samricotta.crs.v1.MsgCommit.commit":
 		x.Commit = value.Bytes()
-	case "samricotta.vote.crs.v1.MsgCommit.voter":
-		x.Voter = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommit"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommit"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1599,17 +1473,17 @@ func (x *fastReflection_MsgCommit) Set(fd protoreflect.FieldDescriptor, value pr
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCommit) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgCommit.new_decision_id":
-		panic(fmt.Errorf("field new_decision_id of message samricotta.vote.crs.v1.MsgCommit is not mutable"))
-	case "samricotta.vote.crs.v1.MsgCommit.commit":
-		panic(fmt.Errorf("field commit of message samricotta.vote.crs.v1.MsgCommit is not mutable"))
-	case "samricotta.vote.crs.v1.MsgCommit.voter":
-		panic(fmt.Errorf("field voter of message samricotta.vote.crs.v1.MsgCommit is not mutable"))
+	case "samricotta.crs.v1.MsgCommit.sender":
+		panic(fmt.Errorf("field sender of message samricotta.crs.v1.MsgCommit is not mutable"))
+	case "samricotta.crs.v1.MsgCommit.decision_id":
+		panic(fmt.Errorf("field decision_id of message samricotta.crs.v1.MsgCommit is not mutable"))
+	case "samricotta.crs.v1.MsgCommit.commit":
+		panic(fmt.Errorf("field commit of message samricotta.crs.v1.MsgCommit is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommit"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommit"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1618,17 +1492,17 @@ func (x *fastReflection_MsgCommit) Mutable(fd protoreflect.FieldDescriptor) prot
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgCommit) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgCommit.new_decision_id":
-		return protoreflect.ValueOfUint64(uint64(0))
-	case "samricotta.vote.crs.v1.MsgCommit.commit":
-		return protoreflect.ValueOfBytes(nil)
-	case "samricotta.vote.crs.v1.MsgCommit.voter":
+	case "samricotta.crs.v1.MsgCommit.sender":
 		return protoreflect.ValueOfString("")
+	case "samricotta.crs.v1.MsgCommit.decision_id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "samricotta.crs.v1.MsgCommit.commit":
+		return protoreflect.ValueOfBytes(nil)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommit"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommit"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommit does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1638,7 +1512,7 @@ func (x *fastReflection_MsgCommit) NewField(fd protoreflect.FieldDescriptor) pro
 func (x *fastReflection_MsgCommit) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in samricotta.vote.crs.v1.MsgCommit", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in samricotta.crs.v1.MsgCommit", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1693,14 +1567,14 @@ func (x *fastReflection_MsgCommit) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		if x.NewDecisionId != 0 {
-			n += 1 + runtime.Sov(uint64(x.NewDecisionId))
-		}
-		l = len(x.Commit)
+		l = len(x.Sender)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Voter)
+		if x.DecisionId != 0 {
+			n += 1 + runtime.Sov(uint64(x.DecisionId))
+		}
+		l = len(x.Commit)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -1733,24 +1607,24 @@ func (x *fastReflection_MsgCommit) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Voter) > 0 {
-			i -= len(x.Voter)
-			copy(dAtA[i:], x.Voter)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Voter)))
-			i--
-			dAtA[i] = 0x1a
-		}
 		if len(x.Commit) > 0 {
 			i -= len(x.Commit)
 			copy(dAtA[i:], x.Commit)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Commit)))
 			i--
-			dAtA[i] = 0x12
+			dAtA[i] = 0x1a
 		}
-		if x.NewDecisionId != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.NewDecisionId))
+		if x.DecisionId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.DecisionId))
 			i--
-			dAtA[i] = 0x8
+			dAtA[i] = 0x10
+		}
+		if len(x.Sender) > 0 {
+			i -= len(x.Sender)
+			copy(dAtA[i:], x.Sender)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Sender)))
+			i--
+			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -1802,10 +1676,10 @@ func (x *fastReflection_MsgCommit) ProtoMethods() *protoiface.Methods {
 			}
 			switch fieldNum {
 			case 1:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NewDecisionId", wireType)
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Sender", wireType)
 				}
-				x.NewDecisionId = 0
+				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -1815,12 +1689,44 @@ func (x *fastReflection_MsgCommit) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.NewDecisionId |= uint64(b&0x7F) << shift
+					stringLen |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Sender = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			case 2:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field DecisionId", wireType)
+				}
+				x.DecisionId = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.DecisionId |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 3:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Commit", wireType)
 				}
@@ -1853,38 +1759,6 @@ func (x *fastReflection_MsgCommit) ProtoMethods() *protoiface.Methods {
 				if x.Commit == nil {
 					x.Commit = []byte{}
 				}
-				iNdEx = postIndex
-			case 3:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Voter", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Voter = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -1926,8 +1800,8 @@ var (
 )
 
 func init() {
-	file_samricotta_vote_crs_v1_tx_proto_init()
-	md_MsgCommitResponse = File_samricotta_vote_crs_v1_tx_proto.Messages().ByName("MsgCommitResponse")
+	file_samricotta_crs_v1_tx_proto_init()
+	md_MsgCommitResponse = File_samricotta_crs_v1_tx_proto.Messages().ByName("MsgCommitResponse")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgCommitResponse)(nil)
@@ -1939,7 +1813,7 @@ func (x *MsgCommitResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgCommitResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[3]
+	mi := &file_samricotta_crs_v1_tx_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2012,9 +1886,9 @@ func (x *fastReflection_MsgCommitResponse) Has(fd protoreflect.FieldDescriptor) 
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommitResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommitResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2028,9 +1902,9 @@ func (x *fastReflection_MsgCommitResponse) Clear(fd protoreflect.FieldDescriptor
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommitResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommitResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2044,9 +1918,9 @@ func (x *fastReflection_MsgCommitResponse) Get(descriptor protoreflect.FieldDesc
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommitResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommitResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommitResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommitResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2064,9 +1938,9 @@ func (x *fastReflection_MsgCommitResponse) Set(fd protoreflect.FieldDescriptor, 
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommitResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommitResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2084,9 +1958,9 @@ func (x *fastReflection_MsgCommitResponse) Mutable(fd protoreflect.FieldDescript
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommitResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommitResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2097,9 +1971,9 @@ func (x *fastReflection_MsgCommitResponse) NewField(fd protoreflect.FieldDescrip
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgCommitResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgCommitResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgCommitResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2109,7 +1983,7 @@ func (x *fastReflection_MsgCommitResponse) NewField(fd protoreflect.FieldDescrip
 func (x *fastReflection_MsgCommitResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in samricotta.vote.crs.v1.MsgCommitResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in samricotta.crs.v1.MsgCommitResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2278,20 +2152,20 @@ func (x *fastReflection_MsgCommitResponse) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_MsgReveal                      protoreflect.MessageDescriptor
-	fd_MsgReveal_new_decision_id      protoreflect.FieldDescriptor
-	fd_MsgReveal_voter                protoreflect.FieldDescriptor
-	fd_MsgReveal_selection            protoreflect.FieldDescriptor
-	fd_MsgReveal_election_placeholder protoreflect.FieldDescriptor
+	md_MsgReveal               protoreflect.MessageDescriptor
+	fd_MsgReveal_sender        protoreflect.FieldDescriptor
+	fd_MsgReveal_decision_id   protoreflect.FieldDescriptor
+	fd_MsgReveal_salt          protoreflect.FieldDescriptor
+	fd_MsgReveal_option_chosen protoreflect.FieldDescriptor
 )
 
 func init() {
-	file_samricotta_vote_crs_v1_tx_proto_init()
-	md_MsgReveal = File_samricotta_vote_crs_v1_tx_proto.Messages().ByName("MsgReveal")
-	fd_MsgReveal_new_decision_id = md_MsgReveal.Fields().ByName("new_decision_id")
-	fd_MsgReveal_voter = md_MsgReveal.Fields().ByName("voter")
-	fd_MsgReveal_selection = md_MsgReveal.Fields().ByName("selection")
-	fd_MsgReveal_election_placeholder = md_MsgReveal.Fields().ByName("election_placeholder")
+	file_samricotta_crs_v1_tx_proto_init()
+	md_MsgReveal = File_samricotta_crs_v1_tx_proto.Messages().ByName("MsgReveal")
+	fd_MsgReveal_sender = md_MsgReveal.Fields().ByName("sender")
+	fd_MsgReveal_decision_id = md_MsgReveal.Fields().ByName("decision_id")
+	fd_MsgReveal_salt = md_MsgReveal.Fields().ByName("salt")
+	fd_MsgReveal_option_chosen = md_MsgReveal.Fields().ByName("option_chosen")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgReveal)(nil)
@@ -2303,7 +2177,7 @@ func (x *MsgReveal) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgReveal) slowProtoReflect() protoreflect.Message {
-	mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[4]
+	mi := &file_samricotta_crs_v1_tx_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2359,27 +2233,27 @@ func (x *fastReflection_MsgReveal) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgReveal) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.NewDecisionId != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.NewDecisionId)
-		if !f(fd_MsgReveal_new_decision_id, value) {
+	if x.Sender != "" {
+		value := protoreflect.ValueOfString(x.Sender)
+		if !f(fd_MsgReveal_sender, value) {
 			return
 		}
 	}
-	if len(x.Voter) != 0 {
-		value := protoreflect.ValueOfBytes(x.Voter)
-		if !f(fd_MsgReveal_voter, value) {
+	if x.DecisionId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.DecisionId)
+		if !f(fd_MsgReveal_decision_id, value) {
 			return
 		}
 	}
-	if x.Selection != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Selection)
-		if !f(fd_MsgReveal_selection, value) {
+	if len(x.Salt) != 0 {
+		value := protoreflect.ValueOfBytes(x.Salt)
+		if !f(fd_MsgReveal_salt, value) {
 			return
 		}
 	}
-	if x.ElectionPlaceholder != "" {
-		value := protoreflect.ValueOfString(x.ElectionPlaceholder)
-		if !f(fd_MsgReveal_election_placeholder, value) {
+	if len(x.OptionChosen) != 0 {
+		value := protoreflect.ValueOfBytes(x.OptionChosen)
+		if !f(fd_MsgReveal_option_chosen, value) {
 			return
 		}
 	}
@@ -2398,19 +2272,19 @@ func (x *fastReflection_MsgReveal) Range(f func(protoreflect.FieldDescriptor, pr
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgReveal) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgReveal.new_decision_id":
-		return x.NewDecisionId != uint64(0)
-	case "samricotta.vote.crs.v1.MsgReveal.voter":
-		return len(x.Voter) != 0
-	case "samricotta.vote.crs.v1.MsgReveal.selection":
-		return x.Selection != uint64(0)
-	case "samricotta.vote.crs.v1.MsgReveal.election_placeholder":
-		return x.ElectionPlaceholder != ""
+	case "samricotta.crs.v1.MsgReveal.sender":
+		return x.Sender != ""
+	case "samricotta.crs.v1.MsgReveal.decision_id":
+		return x.DecisionId != uint64(0)
+	case "samricotta.crs.v1.MsgReveal.salt":
+		return len(x.Salt) != 0
+	case "samricotta.crs.v1.MsgReveal.option_chosen":
+		return len(x.OptionChosen) != 0
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgReveal"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgReveal"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2422,19 +2296,19 @@ func (x *fastReflection_MsgReveal) Has(fd protoreflect.FieldDescriptor) bool {
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgReveal) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgReveal.new_decision_id":
-		x.NewDecisionId = uint64(0)
-	case "samricotta.vote.crs.v1.MsgReveal.voter":
-		x.Voter = nil
-	case "samricotta.vote.crs.v1.MsgReveal.selection":
-		x.Selection = uint64(0)
-	case "samricotta.vote.crs.v1.MsgReveal.election_placeholder":
-		x.ElectionPlaceholder = ""
+	case "samricotta.crs.v1.MsgReveal.sender":
+		x.Sender = ""
+	case "samricotta.crs.v1.MsgReveal.decision_id":
+		x.DecisionId = uint64(0)
+	case "samricotta.crs.v1.MsgReveal.salt":
+		x.Salt = nil
+	case "samricotta.crs.v1.MsgReveal.option_chosen":
+		x.OptionChosen = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgReveal"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgReveal"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2446,23 +2320,23 @@ func (x *fastReflection_MsgReveal) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgReveal) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "samricotta.vote.crs.v1.MsgReveal.new_decision_id":
-		value := x.NewDecisionId
-		return protoreflect.ValueOfUint64(value)
-	case "samricotta.vote.crs.v1.MsgReveal.voter":
-		value := x.Voter
-		return protoreflect.ValueOfBytes(value)
-	case "samricotta.vote.crs.v1.MsgReveal.selection":
-		value := x.Selection
-		return protoreflect.ValueOfUint64(value)
-	case "samricotta.vote.crs.v1.MsgReveal.election_placeholder":
-		value := x.ElectionPlaceholder
+	case "samricotta.crs.v1.MsgReveal.sender":
+		value := x.Sender
 		return protoreflect.ValueOfString(value)
+	case "samricotta.crs.v1.MsgReveal.decision_id":
+		value := x.DecisionId
+		return protoreflect.ValueOfUint64(value)
+	case "samricotta.crs.v1.MsgReveal.salt":
+		value := x.Salt
+		return protoreflect.ValueOfBytes(value)
+	case "samricotta.crs.v1.MsgReveal.option_chosen":
+		value := x.OptionChosen
+		return protoreflect.ValueOfBytes(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgReveal"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgReveal"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgReveal does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgReveal does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2478,19 +2352,19 @@ func (x *fastReflection_MsgReveal) Get(descriptor protoreflect.FieldDescriptor) 
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgReveal) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgReveal.new_decision_id":
-		x.NewDecisionId = value.Uint()
-	case "samricotta.vote.crs.v1.MsgReveal.voter":
-		x.Voter = value.Bytes()
-	case "samricotta.vote.crs.v1.MsgReveal.selection":
-		x.Selection = value.Uint()
-	case "samricotta.vote.crs.v1.MsgReveal.election_placeholder":
-		x.ElectionPlaceholder = value.Interface().(string)
+	case "samricotta.crs.v1.MsgReveal.sender":
+		x.Sender = value.Interface().(string)
+	case "samricotta.crs.v1.MsgReveal.decision_id":
+		x.DecisionId = value.Uint()
+	case "samricotta.crs.v1.MsgReveal.salt":
+		x.Salt = value.Bytes()
+	case "samricotta.crs.v1.MsgReveal.option_chosen":
+		x.OptionChosen = value.Bytes()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgReveal"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgReveal"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2506,19 +2380,19 @@ func (x *fastReflection_MsgReveal) Set(fd protoreflect.FieldDescriptor, value pr
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgReveal) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgReveal.new_decision_id":
-		panic(fmt.Errorf("field new_decision_id of message samricotta.vote.crs.v1.MsgReveal is not mutable"))
-	case "samricotta.vote.crs.v1.MsgReveal.voter":
-		panic(fmt.Errorf("field voter of message samricotta.vote.crs.v1.MsgReveal is not mutable"))
-	case "samricotta.vote.crs.v1.MsgReveal.selection":
-		panic(fmt.Errorf("field selection of message samricotta.vote.crs.v1.MsgReveal is not mutable"))
-	case "samricotta.vote.crs.v1.MsgReveal.election_placeholder":
-		panic(fmt.Errorf("field election_placeholder of message samricotta.vote.crs.v1.MsgReveal is not mutable"))
+	case "samricotta.crs.v1.MsgReveal.sender":
+		panic(fmt.Errorf("field sender of message samricotta.crs.v1.MsgReveal is not mutable"))
+	case "samricotta.crs.v1.MsgReveal.decision_id":
+		panic(fmt.Errorf("field decision_id of message samricotta.crs.v1.MsgReveal is not mutable"))
+	case "samricotta.crs.v1.MsgReveal.salt":
+		panic(fmt.Errorf("field salt of message samricotta.crs.v1.MsgReveal is not mutable"))
+	case "samricotta.crs.v1.MsgReveal.option_chosen":
+		panic(fmt.Errorf("field option_chosen of message samricotta.crs.v1.MsgReveal is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgReveal"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgReveal"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2527,19 +2401,19 @@ func (x *fastReflection_MsgReveal) Mutable(fd protoreflect.FieldDescriptor) prot
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgReveal) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgReveal.new_decision_id":
-		return protoreflect.ValueOfUint64(uint64(0))
-	case "samricotta.vote.crs.v1.MsgReveal.voter":
-		return protoreflect.ValueOfBytes(nil)
-	case "samricotta.vote.crs.v1.MsgReveal.selection":
-		return protoreflect.ValueOfUint64(uint64(0))
-	case "samricotta.vote.crs.v1.MsgReveal.election_placeholder":
+	case "samricotta.crs.v1.MsgReveal.sender":
 		return protoreflect.ValueOfString("")
+	case "samricotta.crs.v1.MsgReveal.decision_id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "samricotta.crs.v1.MsgReveal.salt":
+		return protoreflect.ValueOfBytes(nil)
+	case "samricotta.crs.v1.MsgReveal.option_chosen":
+		return protoreflect.ValueOfBytes(nil)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgReveal"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgReveal"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgReveal does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2549,7 +2423,7 @@ func (x *fastReflection_MsgReveal) NewField(fd protoreflect.FieldDescriptor) pro
 func (x *fastReflection_MsgReveal) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in samricotta.vote.crs.v1.MsgReveal", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in samricotta.crs.v1.MsgReveal", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2604,17 +2478,18 @@ func (x *fastReflection_MsgReveal) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		if x.NewDecisionId != 0 {
-			n += 1 + runtime.Sov(uint64(x.NewDecisionId))
-		}
-		l = len(x.Voter)
+		l = len(x.Sender)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if x.Selection != 0 {
-			n += 1 + runtime.Sov(uint64(x.Selection))
+		if x.DecisionId != 0 {
+			n += 1 + runtime.Sov(uint64(x.DecisionId))
 		}
-		l = len(x.ElectionPlaceholder)
+		l = len(x.Salt)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OptionChosen)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -2647,29 +2522,31 @@ func (x *fastReflection_MsgReveal) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.ElectionPlaceholder) > 0 {
-			i -= len(x.ElectionPlaceholder)
-			copy(dAtA[i:], x.ElectionPlaceholder)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ElectionPlaceholder)))
+		if len(x.OptionChosen) > 0 {
+			i -= len(x.OptionChosen)
+			copy(dAtA[i:], x.OptionChosen)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OptionChosen)))
 			i--
 			dAtA[i] = 0x22
 		}
-		if x.Selection != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Selection))
+		if len(x.Salt) > 0 {
+			i -= len(x.Salt)
+			copy(dAtA[i:], x.Salt)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Salt)))
 			i--
-			dAtA[i] = 0x18
+			dAtA[i] = 0x1a
 		}
-		if len(x.Voter) > 0 {
-			i -= len(x.Voter)
-			copy(dAtA[i:], x.Voter)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Voter)))
+		if x.DecisionId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.DecisionId))
 			i--
-			dAtA[i] = 0x12
+			dAtA[i] = 0x10
 		}
-		if x.NewDecisionId != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.NewDecisionId))
+		if len(x.Sender) > 0 {
+			i -= len(x.Sender)
+			copy(dAtA[i:], x.Sender)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Sender)))
 			i--
-			dAtA[i] = 0x8
+			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -2721,80 +2598,8 @@ func (x *fastReflection_MsgReveal) ProtoMethods() *protoiface.Methods {
 			}
 			switch fieldNum {
 			case 1:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NewDecisionId", wireType)
-				}
-				x.NewDecisionId = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.NewDecisionId |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-			case 2:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Voter", wireType)
-				}
-				var byteLen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					byteLen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if byteLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + byteLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Voter = append(x.Voter[:0], dAtA[iNdEx:postIndex]...)
-				if x.Voter == nil {
-					x.Voter = []byte{}
-				}
-				iNdEx = postIndex
-			case 3:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Selection", wireType)
-				}
-				x.Selection = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.Selection |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-			case 4:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ElectionPlaceholder", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Sender", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -2822,7 +2627,94 @@ func (x *fastReflection_MsgReveal) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.ElectionPlaceholder = string(dAtA[iNdEx:postIndex])
+				x.Sender = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field DecisionId", wireType)
+				}
+				x.DecisionId = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.DecisionId |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Salt", wireType)
+				}
+				var byteLen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					byteLen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if byteLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + byteLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Salt = append(x.Salt[:0], dAtA[iNdEx:postIndex]...)
+				if x.Salt == nil {
+					x.Salt = []byte{}
+				}
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OptionChosen", wireType)
+				}
+				var byteLen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					byteLen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if byteLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + byteLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OptionChosen = append(x.OptionChosen[:0], dAtA[iNdEx:postIndex]...)
+				if x.OptionChosen == nil {
+					x.OptionChosen = []byte{}
+				}
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -2864,8 +2756,8 @@ var (
 )
 
 func init() {
-	file_samricotta_vote_crs_v1_tx_proto_init()
-	md_MsgRevealResponse = File_samricotta_vote_crs_v1_tx_proto.Messages().ByName("MsgRevealResponse")
+	file_samricotta_crs_v1_tx_proto_init()
+	md_MsgRevealResponse = File_samricotta_crs_v1_tx_proto.Messages().ByName("MsgRevealResponse")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgRevealResponse)(nil)
@@ -2877,7 +2769,7 @@ func (x *MsgRevealResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgRevealResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[5]
+	mi := &file_samricotta_crs_v1_tx_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2950,9 +2842,9 @@ func (x *fastReflection_MsgRevealResponse) Has(fd protoreflect.FieldDescriptor) 
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgRevealResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgRevealResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2966,9 +2858,9 @@ func (x *fastReflection_MsgRevealResponse) Clear(fd protoreflect.FieldDescriptor
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgRevealResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgRevealResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2982,9 +2874,9 @@ func (x *fastReflection_MsgRevealResponse) Get(descriptor protoreflect.FieldDesc
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgRevealResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgRevealResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgRevealResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgRevealResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -3002,9 +2894,9 @@ func (x *fastReflection_MsgRevealResponse) Set(fd protoreflect.FieldDescriptor, 
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgRevealResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgRevealResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3022,9 +2914,9 @@ func (x *fastReflection_MsgRevealResponse) Mutable(fd protoreflect.FieldDescript
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgRevealResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgRevealResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3035,9 +2927,9 @@ func (x *fastReflection_MsgRevealResponse) NewField(fd protoreflect.FieldDescrip
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgRevealResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgRevealResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgRevealResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3047,7 +2939,7 @@ func (x *fastReflection_MsgRevealResponse) NewField(fd protoreflect.FieldDescrip
 func (x *fastReflection_MsgRevealResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in samricotta.vote.crs.v1.MsgRevealResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in samricotta.crs.v1.MsgRevealResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -3222,8 +3114,8 @@ var (
 )
 
 func init() {
-	file_samricotta_vote_crs_v1_tx_proto_init()
-	md_MsgUpdateParams = File_samricotta_vote_crs_v1_tx_proto.Messages().ByName("MsgUpdateParams")
+	file_samricotta_crs_v1_tx_proto_init()
+	md_MsgUpdateParams = File_samricotta_crs_v1_tx_proto.Messages().ByName("MsgUpdateParams")
 	fd_MsgUpdateParams_authority = md_MsgUpdateParams.Fields().ByName("authority")
 	fd_MsgUpdateParams_params = md_MsgUpdateParams.Fields().ByName("params")
 }
@@ -3237,7 +3129,7 @@ func (x *MsgUpdateParams) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgUpdateParams) slowProtoReflect() protoreflect.Message {
-	mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[6]
+	mi := &file_samricotta_crs_v1_tx_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3320,15 +3212,15 @@ func (x *fastReflection_MsgUpdateParams) Range(f func(protoreflect.FieldDescript
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgUpdateParams) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgUpdateParams.authority":
+	case "samricotta.crs.v1.MsgUpdateParams.authority":
 		return x.Authority != ""
-	case "samricotta.vote.crs.v1.MsgUpdateParams.params":
+	case "samricotta.crs.v1.MsgUpdateParams.params":
 		return x.Params != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParams"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParams"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3340,15 +3232,15 @@ func (x *fastReflection_MsgUpdateParams) Has(fd protoreflect.FieldDescriptor) bo
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgUpdateParams) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgUpdateParams.authority":
+	case "samricotta.crs.v1.MsgUpdateParams.authority":
 		x.Authority = ""
-	case "samricotta.vote.crs.v1.MsgUpdateParams.params":
+	case "samricotta.crs.v1.MsgUpdateParams.params":
 		x.Params = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParams"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParams"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3360,17 +3252,17 @@ func (x *fastReflection_MsgUpdateParams) Clear(fd protoreflect.FieldDescriptor) 
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgUpdateParams) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "samricotta.vote.crs.v1.MsgUpdateParams.authority":
+	case "samricotta.crs.v1.MsgUpdateParams.authority":
 		value := x.Authority
 		return protoreflect.ValueOfString(value)
-	case "samricotta.vote.crs.v1.MsgUpdateParams.params":
+	case "samricotta.crs.v1.MsgUpdateParams.params":
 		value := x.Params
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParams"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParams"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParams does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParams does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -3386,15 +3278,15 @@ func (x *fastReflection_MsgUpdateParams) Get(descriptor protoreflect.FieldDescri
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgUpdateParams) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgUpdateParams.authority":
+	case "samricotta.crs.v1.MsgUpdateParams.authority":
 		x.Authority = value.Interface().(string)
-	case "samricotta.vote.crs.v1.MsgUpdateParams.params":
+	case "samricotta.crs.v1.MsgUpdateParams.params":
 		x.Params = value.Message().Interface().(*Params)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParams"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParams"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3410,18 +3302,18 @@ func (x *fastReflection_MsgUpdateParams) Set(fd protoreflect.FieldDescriptor, va
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgUpdateParams) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgUpdateParams.params":
+	case "samricotta.crs.v1.MsgUpdateParams.params":
 		if x.Params == nil {
 			x.Params = new(Params)
 		}
 		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
-	case "samricotta.vote.crs.v1.MsgUpdateParams.authority":
-		panic(fmt.Errorf("field authority of message samricotta.vote.crs.v1.MsgUpdateParams is not mutable"))
+	case "samricotta.crs.v1.MsgUpdateParams.authority":
+		panic(fmt.Errorf("field authority of message samricotta.crs.v1.MsgUpdateParams is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParams"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParams"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3430,16 +3322,16 @@ func (x *fastReflection_MsgUpdateParams) Mutable(fd protoreflect.FieldDescriptor
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgUpdateParams) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "samricotta.vote.crs.v1.MsgUpdateParams.authority":
+	case "samricotta.crs.v1.MsgUpdateParams.authority":
 		return protoreflect.ValueOfString("")
-	case "samricotta.vote.crs.v1.MsgUpdateParams.params":
+	case "samricotta.crs.v1.MsgUpdateParams.params":
 		m := new(Params)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParams"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParams"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParams does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3449,7 +3341,7 @@ func (x *fastReflection_MsgUpdateParams) NewField(fd protoreflect.FieldDescripto
 func (x *fastReflection_MsgUpdateParams) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in samricotta.vote.crs.v1.MsgUpdateParams", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in samricotta.crs.v1.MsgUpdateParams", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -3719,8 +3611,8 @@ var (
 )
 
 func init() {
-	file_samricotta_vote_crs_v1_tx_proto_init()
-	md_MsgUpdateParamsResponse = File_samricotta_vote_crs_v1_tx_proto.Messages().ByName("MsgUpdateParamsResponse")
+	file_samricotta_crs_v1_tx_proto_init()
+	md_MsgUpdateParamsResponse = File_samricotta_crs_v1_tx_proto.Messages().ByName("MsgUpdateParamsResponse")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgUpdateParamsResponse)(nil)
@@ -3732,7 +3624,7 @@ func (x *MsgUpdateParamsResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgUpdateParamsResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[7]
+	mi := &file_samricotta_crs_v1_tx_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3805,9 +3697,9 @@ func (x *fastReflection_MsgUpdateParamsResponse) Has(fd protoreflect.FieldDescri
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParamsResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3821,9 +3713,9 @@ func (x *fastReflection_MsgUpdateParamsResponse) Clear(fd protoreflect.FieldDesc
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParamsResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3837,9 +3729,9 @@ func (x *fastReflection_MsgUpdateParamsResponse) Get(descriptor protoreflect.Fie
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParamsResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParamsResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParamsResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -3857,9 +3749,9 @@ func (x *fastReflection_MsgUpdateParamsResponse) Set(fd protoreflect.FieldDescri
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParamsResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3877,9 +3769,9 @@ func (x *fastReflection_MsgUpdateParamsResponse) Mutable(fd protoreflect.FieldDe
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParamsResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3890,9 +3782,9 @@ func (x *fastReflection_MsgUpdateParamsResponse) NewField(fd protoreflect.FieldD
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.vote.crs.v1.MsgUpdateParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.MsgUpdateParamsResponse"))
 		}
-		panic(fmt.Errorf("message samricotta.vote.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message samricotta.crs.v1.MsgUpdateParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3902,7 +3794,7 @@ func (x *fastReflection_MsgUpdateParamsResponse) NewField(fd protoreflect.FieldD
 func (x *fastReflection_MsgUpdateParamsResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in samricotta.vote.crs.v1.MsgUpdateParamsResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in samricotta.crs.v1.MsgUpdateParamsResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -4074,7 +3966,7 @@ func (x *fastReflection_MsgUpdateParamsResponse) ProtoMethods() *protoiface.Meth
 // versions:
 // 	protoc-gen-go v1.27.0
 // 	protoc        (unknown)
-// source: samricotta/vote/crs/v1/tx.proto
+// source: samricotta/crs/v1/tx.proto
 
 const (
 	// Verify that this generated code is sufficiently up-to-date.
@@ -4083,137 +3975,128 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// MsgNewDecision represents a request to create a new decision-making process.
-type MsgNewDecision struct {
+// MsgCreateDecision represents a request to create a new decision-making process.
+type MsgCreateDecision struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// id of the decision
-	Voter string `protobuf:"bytes,1,opt,name=voter,proto3" json:"voter,omitempty"`
-	// address to which send the entry_prices to at the end
-	Refund bool `protobuf:"varint,2,opt,name=refund,proto3" json:"refund,omitempty"`
-	// time in which the commit can be done
-	CommitDuration *durationpb.Duration `protobuf:"bytes,3,opt,name=commit_duration,json=commitDuration,proto3" json:"commit_duration,omitempty"`
-	// time in which the reveal can be done
-	RevealDuration *durationpb.Duration `protobuf:"bytes,4,opt,name=reveal_duration,json=revealDuration,proto3" json:"reveal_duration,omitempty"`
+	// creator of the decision, can be a user or a module
+	Sender string `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`
+	// options for the decision for example political candidate names or game moves.
+	// It can also be empty to allow use cases like a price oracle or a RNG.
+	Options [][]byte `protobuf:"bytes,2,rep,name=options,proto3" json:"options,omitempty"`
+	// time in which the commit can be done in seconds
+	CommitDuration uint64 `protobuf:"varint,3,opt,name=commit_duration,json=commitDuration,proto3" json:"commit_duration,omitempty"`
+	// time in which the reveal can be done in seconds
+	RevealDuration uint64 `protobuf:"varint,4,opt,name=reveal_duration,json=revealDuration,proto3" json:"reveal_duration,omitempty"`
 	// entry price for the decision
 	EntryFee *v1beta1.Coin `protobuf:"bytes,5,opt,name=entry_fee,json=entryFee,proto3" json:"entry_fee,omitempty"`
-	// options for the decision for example political candidate names
-	VotingOptions [][]byte `protobuf:"bytes,6,rep,name=voting_options,json=votingOptions,proto3" json:"voting_options,omitempty"`
-	// address to which send the entry_prices to at the end
+	// if the entry fee should be refunded to participants after the reveal period ends
+	Refund bool `protobuf:"varint,6,opt,name=refund,proto3" json:"refund,omitempty"`
+	// address to which send the entry fees to, must be empty if refund is true
 	SendFundsTo []byte `protobuf:"bytes,7,opt,name=send_funds_to,json=sendFundsTo,proto3" json:"send_funds_to,omitempty"`
-	// commit is the hex encoded commitment to the first move.
-	// hex encoded sha256 of "election:option" which one was voted on
-	Commit string `protobuf:"bytes,8,opt,name=commit,proto3" json:"commit,omitempty"`
 }
 
-func (x *MsgNewDecision) Reset() {
-	*x = MsgNewDecision{}
+func (x *MsgCreateDecision) Reset() {
+	*x = MsgCreateDecision{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[0]
+		mi := &file_samricotta_crs_v1_tx_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *MsgNewDecision) String() string {
+func (x *MsgCreateDecision) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgNewDecision) ProtoMessage() {}
+func (*MsgCreateDecision) ProtoMessage() {}
 
-// Deprecated: Use MsgNewDecision.ProtoReflect.Descriptor instead.
-func (*MsgNewDecision) Descriptor() ([]byte, []int) {
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use MsgCreateDecision.ProtoReflect.Descriptor instead.
+func (*MsgCreateDecision) Descriptor() ([]byte, []int) {
+	return file_samricotta_crs_v1_tx_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *MsgNewDecision) GetVoter() string {
+func (x *MsgCreateDecision) GetSender() string {
 	if x != nil {
-		return x.Voter
+		return x.Sender
 	}
 	return ""
 }
 
-func (x *MsgNewDecision) GetRefund() bool {
+func (x *MsgCreateDecision) GetOptions() [][]byte {
 	if x != nil {
-		return x.Refund
+		return x.Options
 	}
-	return false
+	return nil
 }
 
-func (x *MsgNewDecision) GetCommitDuration() *durationpb.Duration {
+func (x *MsgCreateDecision) GetCommitDuration() uint64 {
 	if x != nil {
 		return x.CommitDuration
 	}
-	return nil
+	return 0
 }
 
-func (x *MsgNewDecision) GetRevealDuration() *durationpb.Duration {
+func (x *MsgCreateDecision) GetRevealDuration() uint64 {
 	if x != nil {
 		return x.RevealDuration
 	}
-	return nil
+	return 0
 }
 
-func (x *MsgNewDecision) GetEntryFee() *v1beta1.Coin {
+func (x *MsgCreateDecision) GetEntryFee() *v1beta1.Coin {
 	if x != nil {
 		return x.EntryFee
 	}
 	return nil
 }
 
-func (x *MsgNewDecision) GetVotingOptions() [][]byte {
+func (x *MsgCreateDecision) GetRefund() bool {
 	if x != nil {
-		return x.VotingOptions
+		return x.Refund
 	}
-	return nil
+	return false
 }
 
-func (x *MsgNewDecision) GetSendFundsTo() []byte {
+func (x *MsgCreateDecision) GetSendFundsTo() []byte {
 	if x != nil {
 		return x.SendFundsTo
 	}
 	return nil
 }
 
-func (x *MsgNewDecision) GetCommit() string {
-	if x != nil {
-		return x.Commit
-	}
-	return ""
-}
-
-type MsgNewDecisionResponse struct {
+type MsgCreateDecisionResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// id of the decision
+	// id of the decision, must be provided in the commit and reveal messages
 	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *MsgNewDecisionResponse) Reset() {
-	*x = MsgNewDecisionResponse{}
+func (x *MsgCreateDecisionResponse) Reset() {
+	*x = MsgCreateDecisionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[1]
+		mi := &file_samricotta_crs_v1_tx_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *MsgNewDecisionResponse) String() string {
+func (x *MsgCreateDecisionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgNewDecisionResponse) ProtoMessage() {}
+func (*MsgCreateDecisionResponse) ProtoMessage() {}
 
-// Deprecated: Use MsgNewDecisionResponse.ProtoReflect.Descriptor instead.
-func (*MsgNewDecisionResponse) Descriptor() ([]byte, []int) {
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use MsgCreateDecisionResponse.ProtoReflect.Descriptor instead.
+func (*MsgCreateDecisionResponse) Descriptor() ([]byte, []int) {
+	return file_samricotta_crs_v1_tx_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *MsgNewDecisionResponse) GetId() uint64 {
+func (x *MsgCreateDecisionResponse) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
@@ -4225,18 +4108,18 @@ type MsgCommit struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	Sender string `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`
 	// id of the decision
-	NewDecisionId uint64 `protobuf:"varint,1,opt,name=new_decision_id,json=newDecisionId,proto3" json:"new_decision_id,omitempty"`
-	// hash of the commit
-	Commit []byte `protobuf:"bytes,2,opt,name=commit,proto3" json:"commit,omitempty"`
-	// time in which the commit can be done
-	Voter string `protobuf:"bytes,3,opt,name=voter,proto3" json:"voter,omitempty"`
+	DecisionId uint64 `protobuf:"varint,2,opt,name=decision_id,json=decisionId,proto3" json:"decision_id,omitempty"`
+	// hash of the commit, must be sha256(decision_id + ":" + option_chosen + ":" + salt)
+	// salt must be exactly 32 bytes
+	Commit []byte `protobuf:"bytes,3,opt,name=commit,proto3" json:"commit,omitempty"`
 }
 
 func (x *MsgCommit) Reset() {
 	*x = MsgCommit{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[2]
+		mi := &file_samricotta_crs_v1_tx_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4250,12 +4133,19 @@ func (*MsgCommit) ProtoMessage() {}
 
 // Deprecated: Use MsgCommit.ProtoReflect.Descriptor instead.
 func (*MsgCommit) Descriptor() ([]byte, []int) {
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP(), []int{2}
+	return file_samricotta_crs_v1_tx_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *MsgCommit) GetNewDecisionId() uint64 {
+func (x *MsgCommit) GetSender() string {
 	if x != nil {
-		return x.NewDecisionId
+		return x.Sender
+	}
+	return ""
+}
+
+func (x *MsgCommit) GetDecisionId() uint64 {
+	if x != nil {
+		return x.DecisionId
 	}
 	return 0
 }
@@ -4267,13 +4157,6 @@ func (x *MsgCommit) GetCommit() []byte {
 	return nil
 }
 
-func (x *MsgCommit) GetVoter() string {
-	if x != nil {
-		return x.Voter
-	}
-	return ""
-}
-
 type MsgCommitResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -4283,7 +4166,7 @@ type MsgCommitResponse struct {
 func (x *MsgCommitResponse) Reset() {
 	*x = MsgCommitResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[3]
+		mi := &file_samricotta_crs_v1_tx_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4297,7 +4180,7 @@ func (*MsgCommitResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgCommitResponse.ProtoReflect.Descriptor instead.
 func (*MsgCommitResponse) Descriptor() ([]byte, []int) {
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP(), []int{3}
+	return file_samricotta_crs_v1_tx_proto_rawDescGZIP(), []int{3}
 }
 
 type MsgReveal struct {
@@ -4305,19 +4188,19 @@ type MsgReveal struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// id of the decision
-	NewDecisionId uint64 `protobuf:"varint,1,opt,name=new_decision_id,json=newDecisionId,proto3" json:"new_decision_id,omitempty"`
-	// address of the voter
-	Voter []byte `protobuf:"bytes,2,opt,name=voter,proto3" json:"voter,omitempty"`
-	// reveal of the Decision
-	Selection           uint64 `protobuf:"varint,3,opt,name=selection,proto3" json:"selection,omitempty"`
-	ElectionPlaceholder string `protobuf:"bytes,4,opt,name=election_placeholder,json=electionPlaceholder,proto3" json:"election_placeholder,omitempty"`
+	Sender string `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty"`
+	// id of the decision to reveal
+	DecisionId uint64 `protobuf:"varint,2,opt,name=decision_id,json=decisionId,proto3" json:"decision_id,omitempty"`
+	// salt used in the commit
+	Salt []byte `protobuf:"bytes,3,opt,name=salt,proto3" json:"salt,omitempty"`
+	// option chosen
+	OptionChosen []byte `protobuf:"bytes,4,opt,name=option_chosen,json=optionChosen,proto3" json:"option_chosen,omitempty"`
 }
 
 func (x *MsgReveal) Reset() {
 	*x = MsgReveal{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[4]
+		mi := &file_samricotta_crs_v1_tx_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4331,35 +4214,35 @@ func (*MsgReveal) ProtoMessage() {}
 
 // Deprecated: Use MsgReveal.ProtoReflect.Descriptor instead.
 func (*MsgReveal) Descriptor() ([]byte, []int) {
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP(), []int{4}
+	return file_samricotta_crs_v1_tx_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *MsgReveal) GetNewDecisionId() uint64 {
+func (x *MsgReveal) GetSender() string {
 	if x != nil {
-		return x.NewDecisionId
+		return x.Sender
+	}
+	return ""
+}
+
+func (x *MsgReveal) GetDecisionId() uint64 {
+	if x != nil {
+		return x.DecisionId
 	}
 	return 0
 }
 
-func (x *MsgReveal) GetVoter() []byte {
+func (x *MsgReveal) GetSalt() []byte {
 	if x != nil {
-		return x.Voter
+		return x.Salt
 	}
 	return nil
 }
 
-func (x *MsgReveal) GetSelection() uint64 {
+func (x *MsgReveal) GetOptionChosen() []byte {
 	if x != nil {
-		return x.Selection
+		return x.OptionChosen
 	}
-	return 0
-}
-
-func (x *MsgReveal) GetElectionPlaceholder() string {
-	if x != nil {
-		return x.ElectionPlaceholder
-	}
-	return ""
+	return nil
 }
 
 type MsgRevealResponse struct {
@@ -4371,7 +4254,7 @@ type MsgRevealResponse struct {
 func (x *MsgRevealResponse) Reset() {
 	*x = MsgRevealResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[5]
+		mi := &file_samricotta_crs_v1_tx_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4385,7 +4268,7 @@ func (*MsgRevealResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgRevealResponse.ProtoReflect.Descriptor instead.
 func (*MsgRevealResponse) Descriptor() ([]byte, []int) {
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP(), []int{5}
+	return file_samricotta_crs_v1_tx_proto_rawDescGZIP(), []int{5}
 }
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
@@ -4405,7 +4288,7 @@ type MsgUpdateParams struct {
 func (x *MsgUpdateParams) Reset() {
 	*x = MsgUpdateParams{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[6]
+		mi := &file_samricotta_crs_v1_tx_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4419,7 +4302,7 @@ func (*MsgUpdateParams) ProtoMessage() {}
 
 // Deprecated: Use MsgUpdateParams.ProtoReflect.Descriptor instead.
 func (*MsgUpdateParams) Descriptor() ([]byte, []int) {
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP(), []int{6}
+	return file_samricotta_crs_v1_tx_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *MsgUpdateParams) GetAuthority() string {
@@ -4447,7 +4330,7 @@ type MsgUpdateParamsResponse struct {
 func (x *MsgUpdateParamsResponse) Reset() {
 	*x = MsgUpdateParamsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_samricotta_vote_crs_v1_tx_proto_msgTypes[7]
+		mi := &file_samricotta_crs_v1_tx_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4461,190 +4344,170 @@ func (*MsgUpdateParamsResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgUpdateParamsResponse.ProtoReflect.Descriptor instead.
 func (*MsgUpdateParamsResponse) Descriptor() ([]byte, []int) {
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP(), []int{7}
+	return file_samricotta_crs_v1_tx_proto_rawDescGZIP(), []int{7}
 }
 
-var File_samricotta_vote_crs_v1_tx_proto protoreflect.FileDescriptor
+var File_samricotta_crs_v1_tx_proto protoreflect.FileDescriptor
 
-var file_samricotta_vote_crs_v1_tx_proto_rawDesc = []byte{
-	0x0a, 0x1f, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x76, 0x6f, 0x74,
-	0x65, 0x2f, 0x63, 0x72, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x74, 0x78, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x12, 0x16, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x76, 0x6f,
-	0x74, 0x65, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
+var file_samricotta_crs_v1_tx_proto_rawDesc = []byte{
+	0x0a, 0x1a, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x63, 0x72, 0x73,
+	0x2f, 0x76, 0x31, 0x2f, 0x74, 0x78, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x11, 0x73, 0x61,
+	0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x1a,
 	0x17, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67, 0x2f, 0x76, 0x31, 0x2f, 0x6d,
-	0x73, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x62, 0x75, 0x66, 0x2f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65,
-	0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x22, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74,
-	0x74, 0x61, 0x2f, 0x76, 0x6f, 0x74, 0x65, 0x2f, 0x63, 0x72, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x74,
-	0x79, 0x70, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x81, 0x03, 0x0a, 0x0e, 0x4d,
-	0x73, 0x67, 0x4e, 0x65, 0x77, 0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x0a,
-	0x05, 0x76, 0x6f, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4,
-	0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
-	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x05, 0x76, 0x6f, 0x74, 0x65, 0x72, 0x12, 0x16, 0x0a,
-	0x06, 0x72, 0x65, 0x66, 0x75, 0x6e, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72,
-	0x65, 0x66, 0x75, 0x6e, 0x64, 0x12, 0x42, 0x0a, 0x0f, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x5f,
-	0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19,
-	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0e, 0x63, 0x6f, 0x6d, 0x6d, 0x69,
-	0x74, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x42, 0x0a, 0x0f, 0x72, 0x65, 0x76,
-	0x65, 0x61, 0x6c, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0e, 0x72,
-	0x65, 0x76, 0x65, 0x61, 0x6c, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3c, 0x0a,
-	0x09, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x5f, 0x66, 0x65, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76,
-	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f,
-	0x00, 0x52, 0x08, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x46, 0x65, 0x65, 0x12, 0x25, 0x0a, 0x0e, 0x76,
-	0x6f, 0x74, 0x69, 0x6e, 0x67, 0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x06, 0x20,
-	0x03, 0x28, 0x0c, 0x52, 0x0d, 0x76, 0x6f, 0x74, 0x69, 0x6e, 0x67, 0x4f, 0x70, 0x74, 0x69, 0x6f,
-	0x6e, 0x73, 0x12, 0x22, 0x0a, 0x0d, 0x73, 0x65, 0x6e, 0x64, 0x5f, 0x66, 0x75, 0x6e, 0x64, 0x73,
-	0x5f, 0x74, 0x6f, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0b, 0x73, 0x65, 0x6e, 0x64, 0x46,
-	0x75, 0x6e, 0x64, 0x73, 0x54, 0x6f, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74,
-	0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x22, 0x28,
-	0x0a, 0x16, 0x4d, 0x73, 0x67, 0x4e, 0x65, 0x77, 0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0xa4, 0x01, 0x0a, 0x09, 0x4d, 0x73, 0x67,
-	0x43, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x12, 0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x77, 0x5f, 0x64, 0x65,
-	0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x0d, 0x6e, 0x65, 0x77, 0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x16,
-	0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06,
-	0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x12, 0x2e, 0x0a, 0x05, 0x76, 0x6f, 0x74, 0x65, 0x72, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
-	0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52,
-	0x05, 0x76, 0x6f, 0x74, 0x65, 0x72, 0x3a, 0x27, 0x82, 0xe7, 0xb0, 0x2a, 0x05, 0x76, 0x6f, 0x74,
-	0x65, 0x72, 0x8a, 0xe7, 0xb0, 0x2a, 0x18, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74,
-	0x61, 0x2f, 0x63, 0x72, 0x73, 0x2f, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x22,
-	0x13, 0x0a, 0x11, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0xc3, 0x01, 0x0a, 0x09, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x76, 0x65,
-	0x61, 0x6c, 0x12, 0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x77, 0x5f, 0x64, 0x65, 0x63, 0x69, 0x73, 0x69,
-	0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6e, 0x65, 0x77,
-	0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x6f,
-	0x74, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x76, 0x6f, 0x74, 0x65, 0x72,
-	0x12, 0x1c, 0x0a, 0x09, 0x73, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x04, 0x52, 0x09, 0x73, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x31,
-	0x0a, 0x14, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x70, 0x6c, 0x61, 0x63, 0x65,
-	0x68, 0x6f, 0x6c, 0x64, 0x65, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x13, 0x65, 0x6c,
-	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x6c, 0x61, 0x63, 0x65, 0x68, 0x6f, 0x6c, 0x64, 0x65,
-	0x72, 0x3a, 0x27, 0x82, 0xe7, 0xb0, 0x2a, 0x05, 0x76, 0x6f, 0x74, 0x65, 0x72, 0x8a, 0xe7, 0xb0,
-	0x2a, 0x18, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x63, 0x72, 0x73,
-	0x2f, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x22, 0x13, 0x0a, 0x11, 0x4d, 0x73,
-	0x67, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0xbf, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d,
-	0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67,
-	0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x41, 0x0a, 0x06, 0x70,
-	0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x73, 0x61,
-	0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e, 0x63, 0x72,
-	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f,
-	0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x31,
-	0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x8a, 0xe7,
-	0xb0, 0x2a, 0x1e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x63, 0x72,
-	0x73, 0x2f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d,
-	0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x86, 0x03, 0x0a,
-	0x03, 0x4d, 0x73, 0x67, 0x12, 0x65, 0x0a, 0x0b, 0x4e, 0x65, 0x77, 0x44, 0x65, 0x63, 0x69, 0x73,
-	0x69, 0x6f, 0x6e, 0x12, 0x26, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61,
-	0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67,
-	0x4e, 0x65, 0x77, 0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x1a, 0x2e, 0x2e, 0x73, 0x61,
-	0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e, 0x63, 0x72,
-	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x4e, 0x65, 0x77, 0x44, 0x65, 0x63, 0x69, 0x73,
-	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x06, 0x43,
-	0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x12, 0x21, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74,
-	0x74, 0x61, 0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
-	0x73, 0x67, 0x43, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x1a, 0x29, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69,
-	0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76,
-	0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x06, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x12, 0x21, 0x2e,
-	0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e,
-	0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c,
-	0x1a, 0x29, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x76, 0x6f,
-	0x74, 0x65, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x76,
-	0x65, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x0c, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x27, 0x2e, 0x73, 0x61,
-	0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e, 0x63, 0x72,
-	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2f, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74,
-	0x61, 0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73,
-	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0xd9, 0x01, 0x0a, 0x1a, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x61,
-	0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x76, 0x6f, 0x74, 0x65, 0x2e, 0x63, 0x72,
-	0x73, 0x2e, 0x76, 0x31, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
-	0x37, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61, 0x6d, 0x72,
-	0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x76, 0x6f, 0x74, 0x65, 0x2f, 0x73, 0x61, 0x6d, 0x72,
-	0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x76, 0x6f, 0x74, 0x65, 0x2f, 0x63, 0x72, 0x73, 0x2f,
-	0x76, 0x31, 0x3b, 0x63, 0x72, 0x73, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x53, 0x56, 0x43, 0xaa, 0x02,
-	0x16, 0x53, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x56, 0x6f, 0x74, 0x65,
-	0x2e, 0x43, 0x72, 0x73, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x16, 0x53, 0x61, 0x6d, 0x72, 0x69, 0x63,
-	0x6f, 0x74, 0x74, 0x61, 0x5c, 0x56, 0x6f, 0x74, 0x65, 0x5c, 0x43, 0x72, 0x73, 0x5c, 0x56, 0x31,
-	0xe2, 0x02, 0x22, 0x53, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x5c, 0x56, 0x6f,
-	0x74, 0x65, 0x5c, 0x43, 0x72, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x19, 0x53, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74,
-	0x74, 0x61, 0x3a, 0x3a, 0x56, 0x6f, 0x74, 0x65, 0x3a, 0x3a, 0x43, 0x72, 0x73, 0x3a, 0x3a, 0x56,
-	0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x11,
+	0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x1a, 0x1d, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x63, 0x72,
+	0x73, 0x2f, 0x76, 0x31, 0x2f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x64, 0x75, 0x72,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x63, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
+	0x2f, 0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xab, 0x02, 0x0a, 0x11,
+	0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f,
+	0x6e, 0x12, 0x30, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x06, 0x73, 0x65, 0x6e,
+	0x64, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02,
+	0x20, 0x03, 0x28, 0x0c, 0x52, 0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x27, 0x0a,
+	0x0f, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0e, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x44, 0x75,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x27, 0x0a, 0x0f, 0x72, 0x65, 0x76, 0x65, 0x61, 0x6c,
+	0x5f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x0e, 0x72, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12,
+	0x3c, 0x0a, 0x09, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x5f, 0x66, 0x65, 0x65, 0x18, 0x05, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65,
+	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8,
+	0xde, 0x1f, 0x00, 0x52, 0x08, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x46, 0x65, 0x65, 0x12, 0x16, 0x0a,
+	0x06, 0x72, 0x65, 0x66, 0x75, 0x6e, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72,
+	0x65, 0x66, 0x75, 0x6e, 0x64, 0x12, 0x22, 0x0a, 0x0d, 0x73, 0x65, 0x6e, 0x64, 0x5f, 0x66, 0x75,
+	0x6e, 0x64, 0x73, 0x5f, 0x74, 0x6f, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0b, 0x73, 0x65,
+	0x6e, 0x64, 0x46, 0x75, 0x6e, 0x64, 0x73, 0x54, 0x6f, 0x22, 0x2b, 0x0a, 0x19, 0x4d, 0x73, 0x67,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0x83, 0x01, 0x0a, 0x09, 0x4d, 0x73, 0x67, 0x43, 0x6f,
+	0x6d, 0x6d, 0x69, 0x74, 0x12, 0x30, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x06,
+	0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x12, 0x1f, 0x0a, 0x0b, 0x64, 0x65, 0x63, 0x69, 0x73, 0x69,
+	0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x64, 0x65, 0x63,
+	0x69, 0x73, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69,
+	0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x3a,
+	0x0b, 0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x22, 0x13, 0x0a, 0x11,
+	0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0xa4, 0x01, 0x0a, 0x09, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x12,
+	0x30, 0x0a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65,
+	0x72, 0x12, 0x1f, 0x0a, 0x0b, 0x64, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x64, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e,
+	0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x61, 0x6c, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c,
+	0x52, 0x04, 0x73, 0x61, 0x6c, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e,
+	0x5f, 0x63, 0x68, 0x6f, 0x73, 0x65, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0c, 0x6f,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x68, 0x6f, 0x73, 0x65, 0x6e, 0x3a, 0x0b, 0x82, 0xe7, 0xb0,
+	0x2a, 0x06, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x22, 0x13, 0x0a, 0x11, 0x4d, 0x73, 0x67, 0x52,
+	0x65, 0x76, 0x65, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x92, 0x01,
+	0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09,
+	0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x37, 0x0a, 0x06, 0x70, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x73, 0x61, 0x6d, 0x72,
+	0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61,
+	0x6d, 0x73, 0x3a, 0x0e, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
+	0x74, 0x79, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xe7, 0x02,
+	0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x64, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44,
+	0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x24, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63,
+	0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x1a, 0x2c, 0x2e,
+	0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x65, 0x63, 0x69, 0x73,
+	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4c, 0x0a, 0x06, 0x43,
+	0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x12, 0x1c, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74,
+	0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6d,
+	0x6d, 0x69, 0x74, 0x1a, 0x24, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61,
+	0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6d, 0x6d, 0x69,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4c, 0x0a, 0x06, 0x52, 0x65, 0x76,
+	0x65, 0x61, 0x6c, 0x12, 0x1c, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61,
+	0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x76, 0x65, 0x61,
+	0x6c, 0x1a, 0x24, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63,
+	0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5e, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x22, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63,
+	0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2a, 0x2e, 0x73, 0x61,
+	0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e,
+	0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0xbd, 0x01, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e,
+	0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76,
+	0x31, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x35, 0x67, 0x69,
+	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f,
+	0x74, 0x74, 0x61, 0x2f, 0x63, 0x72, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x61, 0x6d, 0x72,
+	0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x63, 0x72, 0x73, 0x2f, 0x76, 0x31, 0x3b, 0x63, 0x72,
+	0x73, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x53, 0x43, 0x58, 0xaa, 0x02, 0x11, 0x53, 0x61, 0x6d, 0x72,
+	0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x43, 0x72, 0x73, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x11,
+	0x53, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x5c, 0x43, 0x72, 0x73, 0x5c, 0x56,
+	0x31, 0xe2, 0x02, 0x1d, 0x53, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x5c, 0x43,
+	0x72, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0xea, 0x02, 0x13, 0x53, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x3a, 0x3a,
+	0x43, 0x72, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_samricotta_vote_crs_v1_tx_proto_rawDescOnce sync.Once
-	file_samricotta_vote_crs_v1_tx_proto_rawDescData = file_samricotta_vote_crs_v1_tx_proto_rawDesc
+	file_samricotta_crs_v1_tx_proto_rawDescOnce sync.Once
+	file_samricotta_crs_v1_tx_proto_rawDescData = file_samricotta_crs_v1_tx_proto_rawDesc
 )
 
-func file_samricotta_vote_crs_v1_tx_proto_rawDescGZIP() []byte {
-	file_samricotta_vote_crs_v1_tx_proto_rawDescOnce.Do(func() {
-		file_samricotta_vote_crs_v1_tx_proto_rawDescData = protoimpl.X.CompressGZIP(file_samricotta_vote_crs_v1_tx_proto_rawDescData)
+func file_samricotta_crs_v1_tx_proto_rawDescGZIP() []byte {
+	file_samricotta_crs_v1_tx_proto_rawDescOnce.Do(func() {
+		file_samricotta_crs_v1_tx_proto_rawDescData = protoimpl.X.CompressGZIP(file_samricotta_crs_v1_tx_proto_rawDescData)
 	})
-	return file_samricotta_vote_crs_v1_tx_proto_rawDescData
+	return file_samricotta_crs_v1_tx_proto_rawDescData
 }
 
-var file_samricotta_vote_crs_v1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_samricotta_vote_crs_v1_tx_proto_goTypes = []interface{}{
-	(*MsgNewDecision)(nil),          // 0: samricotta.vote.crs.v1.MsgNewDecision
-	(*MsgNewDecisionResponse)(nil),  // 1: samricotta.vote.crs.v1.MsgNewDecisionResponse
-	(*MsgCommit)(nil),               // 2: samricotta.vote.crs.v1.MsgCommit
-	(*MsgCommitResponse)(nil),       // 3: samricotta.vote.crs.v1.MsgCommitResponse
-	(*MsgReveal)(nil),               // 4: samricotta.vote.crs.v1.MsgReveal
-	(*MsgRevealResponse)(nil),       // 5: samricotta.vote.crs.v1.MsgRevealResponse
-	(*MsgUpdateParams)(nil),         // 6: samricotta.vote.crs.v1.MsgUpdateParams
-	(*MsgUpdateParamsResponse)(nil), // 7: samricotta.vote.crs.v1.MsgUpdateParamsResponse
-	(*durationpb.Duration)(nil),     // 8: google.protobuf.Duration
-	(*v1beta1.Coin)(nil),            // 9: cosmos.base.v1beta1.Coin
-	(*Params)(nil),                  // 10: samricotta.vote.crs.v1.Params
+var file_samricotta_crs_v1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_samricotta_crs_v1_tx_proto_goTypes = []interface{}{
+	(*MsgCreateDecision)(nil),         // 0: samricotta.crs.v1.MsgCreateDecision
+	(*MsgCreateDecisionResponse)(nil), // 1: samricotta.crs.v1.MsgCreateDecisionResponse
+	(*MsgCommit)(nil),                 // 2: samricotta.crs.v1.MsgCommit
+	(*MsgCommitResponse)(nil),         // 3: samricotta.crs.v1.MsgCommitResponse
+	(*MsgReveal)(nil),                 // 4: samricotta.crs.v1.MsgReveal
+	(*MsgRevealResponse)(nil),         // 5: samricotta.crs.v1.MsgRevealResponse
+	(*MsgUpdateParams)(nil),           // 6: samricotta.crs.v1.MsgUpdateParams
+	(*MsgUpdateParamsResponse)(nil),   // 7: samricotta.crs.v1.MsgUpdateParamsResponse
+	(*v1beta1.Coin)(nil),              // 8: cosmos.base.v1beta1.Coin
+	(*Params)(nil),                    // 9: samricotta.crs.v1.Params
 }
-var file_samricotta_vote_crs_v1_tx_proto_depIdxs = []int32{
-	8,  // 0: samricotta.vote.crs.v1.MsgNewDecision.commit_duration:type_name -> google.protobuf.Duration
-	8,  // 1: samricotta.vote.crs.v1.MsgNewDecision.reveal_duration:type_name -> google.protobuf.Duration
-	9,  // 2: samricotta.vote.crs.v1.MsgNewDecision.entry_fee:type_name -> cosmos.base.v1beta1.Coin
-	10, // 3: samricotta.vote.crs.v1.MsgUpdateParams.params:type_name -> samricotta.vote.crs.v1.Params
-	0,  // 4: samricotta.vote.crs.v1.Msg.NewDecision:input_type -> samricotta.vote.crs.v1.MsgNewDecision
-	2,  // 5: samricotta.vote.crs.v1.Msg.Commit:input_type -> samricotta.vote.crs.v1.MsgCommit
-	4,  // 6: samricotta.vote.crs.v1.Msg.Reveal:input_type -> samricotta.vote.crs.v1.MsgReveal
-	6,  // 7: samricotta.vote.crs.v1.Msg.UpdateParams:input_type -> samricotta.vote.crs.v1.MsgUpdateParams
-	1,  // 8: samricotta.vote.crs.v1.Msg.NewDecision:output_type -> samricotta.vote.crs.v1.MsgNewDecisionResponse
-	3,  // 9: samricotta.vote.crs.v1.Msg.Commit:output_type -> samricotta.vote.crs.v1.MsgCommitResponse
-	5,  // 10: samricotta.vote.crs.v1.Msg.Reveal:output_type -> samricotta.vote.crs.v1.MsgRevealResponse
-	7,  // 11: samricotta.vote.crs.v1.Msg.UpdateParams:output_type -> samricotta.vote.crs.v1.MsgUpdateParamsResponse
-	8,  // [8:12] is the sub-list for method output_type
-	4,  // [4:8] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+var file_samricotta_crs_v1_tx_proto_depIdxs = []int32{
+	8, // 0: samricotta.crs.v1.MsgCreateDecision.entry_fee:type_name -> cosmos.base.v1beta1.Coin
+	9, // 1: samricotta.crs.v1.MsgUpdateParams.params:type_name -> samricotta.crs.v1.Params
+	0, // 2: samricotta.crs.v1.Msg.CreateDecision:input_type -> samricotta.crs.v1.MsgCreateDecision
+	2, // 3: samricotta.crs.v1.Msg.Commit:input_type -> samricotta.crs.v1.MsgCommit
+	4, // 4: samricotta.crs.v1.Msg.Reveal:input_type -> samricotta.crs.v1.MsgReveal
+	6, // 5: samricotta.crs.v1.Msg.UpdateParams:input_type -> samricotta.crs.v1.MsgUpdateParams
+	1, // 6: samricotta.crs.v1.Msg.CreateDecision:output_type -> samricotta.crs.v1.MsgCreateDecisionResponse
+	3, // 7: samricotta.crs.v1.Msg.Commit:output_type -> samricotta.crs.v1.MsgCommitResponse
+	5, // 8: samricotta.crs.v1.Msg.Reveal:output_type -> samricotta.crs.v1.MsgRevealResponse
+	7, // 9: samricotta.crs.v1.Msg.UpdateParams:output_type -> samricotta.crs.v1.MsgUpdateParamsResponse
+	6, // [6:10] is the sub-list for method output_type
+	2, // [2:6] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_samricotta_vote_crs_v1_tx_proto_init() }
-func file_samricotta_vote_crs_v1_tx_proto_init() {
-	if File_samricotta_vote_crs_v1_tx_proto != nil {
+func init() { file_samricotta_crs_v1_tx_proto_init() }
+func file_samricotta_crs_v1_tx_proto_init() {
+	if File_samricotta_crs_v1_tx_proto != nil {
 		return
 	}
-	file_samricotta_vote_crs_v1_types_proto_init()
+	file_samricotta_crs_v1_types_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_samricotta_vote_crs_v1_tx_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgNewDecision); i {
+		file_samricotta_crs_v1_tx_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgCreateDecision); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4655,8 +4518,8 @@ func file_samricotta_vote_crs_v1_tx_proto_init() {
 				return nil
 			}
 		}
-		file_samricotta_vote_crs_v1_tx_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgNewDecisionResponse); i {
+		file_samricotta_crs_v1_tx_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgCreateDecisionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4667,7 +4530,7 @@ func file_samricotta_vote_crs_v1_tx_proto_init() {
 				return nil
 			}
 		}
-		file_samricotta_vote_crs_v1_tx_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_samricotta_crs_v1_tx_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgCommit); i {
 			case 0:
 				return &v.state
@@ -4679,7 +4542,7 @@ func file_samricotta_vote_crs_v1_tx_proto_init() {
 				return nil
 			}
 		}
-		file_samricotta_vote_crs_v1_tx_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_samricotta_crs_v1_tx_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgCommitResponse); i {
 			case 0:
 				return &v.state
@@ -4691,7 +4554,7 @@ func file_samricotta_vote_crs_v1_tx_proto_init() {
 				return nil
 			}
 		}
-		file_samricotta_vote_crs_v1_tx_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_samricotta_crs_v1_tx_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgReveal); i {
 			case 0:
 				return &v.state
@@ -4703,7 +4566,7 @@ func file_samricotta_vote_crs_v1_tx_proto_init() {
 				return nil
 			}
 		}
-		file_samricotta_vote_crs_v1_tx_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_samricotta_crs_v1_tx_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgRevealResponse); i {
 			case 0:
 				return &v.state
@@ -4715,7 +4578,7 @@ func file_samricotta_vote_crs_v1_tx_proto_init() {
 				return nil
 			}
 		}
-		file_samricotta_vote_crs_v1_tx_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_samricotta_crs_v1_tx_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgUpdateParams); i {
 			case 0:
 				return &v.state
@@ -4727,7 +4590,7 @@ func file_samricotta_vote_crs_v1_tx_proto_init() {
 				return nil
 			}
 		}
-		file_samricotta_vote_crs_v1_tx_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_samricotta_crs_v1_tx_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgUpdateParamsResponse); i {
 			case 0:
 				return &v.state
@@ -4744,18 +4607,18 @@ func file_samricotta_vote_crs_v1_tx_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_samricotta_vote_crs_v1_tx_proto_rawDesc,
+			RawDescriptor: file_samricotta_crs_v1_tx_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_samricotta_vote_crs_v1_tx_proto_goTypes,
-		DependencyIndexes: file_samricotta_vote_crs_v1_tx_proto_depIdxs,
-		MessageInfos:      file_samricotta_vote_crs_v1_tx_proto_msgTypes,
+		GoTypes:           file_samricotta_crs_v1_tx_proto_goTypes,
+		DependencyIndexes: file_samricotta_crs_v1_tx_proto_depIdxs,
+		MessageInfos:      file_samricotta_crs_v1_tx_proto_msgTypes,
 	}.Build()
-	File_samricotta_vote_crs_v1_tx_proto = out.File
-	file_samricotta_vote_crs_v1_tx_proto_rawDesc = nil
-	file_samricotta_vote_crs_v1_tx_proto_goTypes = nil
-	file_samricotta_vote_crs_v1_tx_proto_depIdxs = nil
+	File_samricotta_crs_v1_tx_proto = out.File
+	file_samricotta_crs_v1_tx_proto_rawDesc = nil
+	file_samricotta_crs_v1_tx_proto_goTypes = nil
+	file_samricotta_crs_v1_tx_proto_depIdxs = nil
 }
