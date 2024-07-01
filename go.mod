@@ -1,4 +1,4 @@
-module github.com/samricotta/vote/x/election
+module github.com/samricotta/vote
 
 go 1.21
 
@@ -10,7 +10,6 @@ replace (
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.7.0
 	// Downgraded to avoid bugs in following commits which caused simulations to fail.
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
-// github.com/cosmos/cosmos-sdk => /Users/samricotta/code/cosmos-sdk
 )
 
 require (
@@ -26,7 +25,6 @@ require (
 	github.com/cometbft/cometbft v0.38.7
 	github.com/cosmos/cosmos-db v1.0.2
 	github.com/cosmos/cosmos-sdk v0.50.7
-	github.com/samricotta/vote v0.0.0-20240623134323-2fd6001f9ce0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
 )

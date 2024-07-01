@@ -11,9 +11,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	moduletestutil "github.com/cosmos/cosmos-sdk/types/module/testutil"
 
-	"github.com/samricotta/crs"
-	expectedkeepers "github.com/samricotta/crs/expected_keepers"
-	"github.com/samricotta/crs/keeper"
+	"github.com/samricotta/vote/x/crs"
+	expectedkeepers "github.com/samricotta/vote/x/crs/expected_keepers"
+	"github.com/samricotta/vote/x/crs/keeper"
 )
 
 type testFixture struct {
