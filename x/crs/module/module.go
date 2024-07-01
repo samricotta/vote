@@ -14,8 +14,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/samricotta/crs"
-	"github.com/samricotta/crs/keeper"
+	"github.com/samricotta/vote/x/crs"
+	"github.com/samricotta/vote/x/crs/keeper"
 )
 
 var (

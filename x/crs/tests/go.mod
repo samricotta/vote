@@ -1,4 +1,4 @@
-module github.com/samricotta/crs/tests
+module github.com/samricotta/vote/x/crs/tests
 
 go 1.21
 
@@ -10,7 +10,7 @@ require (
 	cosmossdk.io/depinject v1.0.0-alpha.4
 	cosmossdk.io/log v1.3.1
 	github.com/cosmos/cosmos-sdk v0.50.6
-	github.com/samricotta/crs v1.0.0
+	github.com/samricotta/vote/x/crs v1.0.0
 	github.com/stretchr/testify v1.9.0
 )
 
@@ -158,4 +158,4 @@ require (
 )
 
 // always test the latest module code.
-replace github.com/samricotta/crs => ../.
+replace github.com/samricotta/vote/x/crs => ../.

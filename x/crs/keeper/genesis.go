@@ -3,7 +3,7 @@ package keeper
 import (
 	"context"
 
-	"github.com/samricotta/crs"
+	"github.com/samricotta/vote/x/crs"
 )
 
 // InitGenesis initializes the module state from a genesis state.

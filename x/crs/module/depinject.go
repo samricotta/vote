@@ -9,8 +9,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	modulev1 "github.com/samricotta/crs/api/module/v1"
-	"github.com/samricotta/crs/keeper"
+	modulev1 "github.com/samricotta/vote/x/crs/api/module/v1"
+	"github.com/samricotta/vote/x/crs/keeper"
 )
 
 var _ appmodule.AppModule = AppModule{}
