@@ -3,7 +3,7 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/samricotta/crs"
+	"github.com/samricotta/vote/x/crs"
 	"github.com/stretchr/testify/require"
 )
 

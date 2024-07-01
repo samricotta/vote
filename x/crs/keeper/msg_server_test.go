@@ -8,11 +8,11 @@ import (
 	"github.com/cometbft/cometbft/libs/rand"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/golang/mock/gomock"
-	"github.com/samricotta/crs"
+	"github.com/samricotta/vote/x/crs"
 	"github.com/stretchr/testify/require"
 
-	"github.com/samricotta/crs/keeper"
-	"github.com/samricotta/crs/mocks"
+	"github.com/samricotta/vote/x/crs/keeper"
+	"github.com/samricotta/vote/x/crs/mocks"
 )
 
 func TestUpdateParams(t *testing.T) {

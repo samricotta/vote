@@ -10,7 +10,7 @@ import (
 
 	"cosmossdk.io/collections"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/samricotta/crs"
+	"github.com/samricotta/vote/x/crs"
 )
 
 type msgServer struct {

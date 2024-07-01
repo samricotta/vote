@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/samricotta/crs"
+	"github.com/samricotta/vote/x/crs"
 )
 
 var _ crs.QueryServer = queryServer{}

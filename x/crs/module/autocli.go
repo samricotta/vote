@@ -2,7 +2,7 @@ package module
 
 import (
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
-	crsv1 "github.com/samricotta/crs/api/v1"
+	crsv1 "github.com/samricotta/vote/x/crs/api/v1"
 )
 
 // AutoCLIOptions implements the autocli.HasAutoCLIConfig interface.

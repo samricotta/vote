@@ -13,7 +13,7 @@ import (
 	_ "github.com/cosmos/cosmos-sdk/x/genutil"
 	_ "github.com/cosmos/cosmos-sdk/x/mint"
 	_ "github.com/cosmos/cosmos-sdk/x/staking"
-	_ "github.com/samricotta/crs/module"
+	_ "github.com/samricotta/vote/x/crs/module"
 
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	"cosmossdk.io/core/appconfig"
@@ -22,9 +22,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/testutil/configurator"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 
-	"github.com/samricotta/crs"
-	crsmodulev1 "github.com/samricotta/crs/api/module/v1"
-	"github.com/samricotta/crs/keeper"
+	"github.com/samricotta/vote/x/crs"
+	crsmodulev1 "github.com/samricotta/vote/x/crs/api/module/v1"
+	"github.com/samricotta/vote/x/crs/keeper"
 )
 
 // ExampleModule is a configurator.ModuleOption that add the crs module to the app config.
