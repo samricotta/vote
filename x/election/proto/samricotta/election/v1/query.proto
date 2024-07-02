@@ -1,0 +1,67 @@
+syntax = "proto3";
+package samricotta.election.v1;
+
+option go_package = "github.com/samricotta/election";
+
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "samricotta/election/v1/types.proto";
+import "google/api/annotations.proto";
+import "cosmos/query/v1/query.proto";
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "cosmos_proto/cosmos.proto";
+
+// Msg defines the module Msg service.
+service Query {
+  // Counter returns the current counter value.
+  rpc Election(QueryElectionRequest) returns (QueryElectionResponse) {
+    option (cosmos.query.v1.module_query_safe) = true;
+    option (google.api.http).get =
+        "/samricotta/election/v1/election/{id}";
+  }
+
+  // // Counters returns all the counter values.
+  rpc Counters(QueryCountersRequest) returns (QueryCountersResponse) {
+    option (cosmos.query.v1.module_query_safe) = true;
+    option (google.api.http).get = "/samricotta/election/v1/counters";
+  }
+
+  // Params returns the module parameters.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/samricotta/election/v1/params";
+  }
+}
+
+message QueryElectionRequest {
+  // id defines the id of the Election to query for.
+  uint64 id = 1;
+}
+
+message QueryElectionResponse {
+  // Election defines the Election for the given id.
+  Election Election = 1;
+}
+
+// QueryCounterRequest is the request type for the Query/Counter RPC
+// method.
+message QueryCountersRequest {
+  // address defines the address to query for the counter.
+  string address = 1 [ (cosmos_proto.scalar) = "cosmos.AddressString" ];
+}
+
+// QueryCounterResponse is the response type for the Query/Counter RPC
+// method.
+message QueryCountersResponse {
+  // counter defines the current counter for the sender.
+  uint64 counter = 1;
+}
+
+// QueryParamsRequest is the request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is the response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params defines the parameters of the module.
+  Params params = 1
+      [ (gogoproto.nullable) = false, (amino.dont_omitempty) = true ];
+}

@@ -1,4 +1,4 @@
-module github.com/samricotta/crs
+module github.com/samricotta/vote/x/crs
 
 go 1.21
 
