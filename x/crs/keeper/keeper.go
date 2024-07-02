@@ -24,9 +24,9 @@ type Keeper struct {
 	Schema     collections.Schema
 	Params     collections.Item[crs.Params]
 	DecisionID collections.Sequence
-	Decisions  collections.Map[uint64, crs.Decision]                         // key: ID
-	Commits    collections.Map[collections.Pair[uint64, []byte], crs.Commit] // key: (decision ID, voter)
-	Reveals    collections.Map[collections.Pair[uint64, []byte], crs.Reveal] // key: (decision ID, voter)
+	Decision   collections.Map[uint64, crs.Decision]                         // key: ID
+	Commit     collections.Map[collections.Pair[uint64, []byte], crs.Commit] // key: (decision ID, voter)
+	Reveal     collections.Map[collections.Pair[uint64, []byte], crs.Reveal] // key: (decision ID, voter)
 
 	bankKeeper expectedkeepers.BankKeeper
 }
@@ -44,9 +44,9 @@ func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService s
 		authority:    authority,
 		Params:       collections.NewItem(sb, crs.ParamsKey, "params", codec.CollValue[crs.Params](cdc)),
 		DecisionID:   collections.NewSequence(sb, crs.DecisionIDKey, "decision_id"),
-		Decisions:    collections.NewMap(sb, crs.DecisionKey, "decision", collections.Uint64Key, codec.CollValue[crs.Decision](cdc)),
-		Commits:      collections.NewMap(sb, crs.CommitKey, "commit", collections.PairKeyCodec(collections.Uint64Key, collections.BytesKey), codec.CollValue[crs.Commit](cdc)),
-		Reveals:      collections.NewMap(sb, crs.RevealKey, "reveal", collections.PairKeyCodec(collections.Uint64Key, collections.BytesKey), codec.CollValue[crs.Reveal](cdc)),
+		Decision:     collections.NewMap(sb, crs.DecisionKey, "decision", collections.Uint64Key, codec.CollValue[crs.Decision](cdc)),
+		Commit:       collections.NewMap(sb, crs.CommitKey, "commit", collections.PairKeyCodec(collections.Uint64Key, collections.BytesKey), codec.CollValue[crs.Commit](cdc)),
+		Reveal:       collections.NewMap(sb, crs.RevealKey, "reveal", collections.PairKeyCodec(collections.Uint64Key, collections.BytesKey), codec.CollValue[crs.Reveal](cdc)),
 		bankKeeper:   bankKeeper,
 	}
 

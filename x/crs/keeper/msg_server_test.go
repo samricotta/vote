@@ -169,7 +169,7 @@ func TestCommit(t *testing.T) {
 			},
 			expectErrMsg: "commit period has ended",
 			malleate: func() {
-				f.k.Decisions.Set(f.ctx, 2, crs.Decision{
+				f.k.Decision.Set(f.ctx, 2, crs.Decision{
 					CommitTimeout: f.ctx.BlockTime().Add(-2), // expired
 				})
 			},
@@ -183,7 +183,7 @@ func TestCommit(t *testing.T) {
 			},
 			expectErrMsg: "",
 			malleate: func() {
-				f.k.Decisions.Set(f.ctx, 1, crs.Decision{
+				f.k.Decision.Set(f.ctx, 1, crs.Decision{
 					CommitTimeout: f.ctx.BlockTime().Add(10),
 				})
 			},
@@ -254,7 +254,7 @@ func TestReveal(t *testing.T) {
 			},
 			expectErrMsg: "reveal period has ended",
 			malleate: func() {
-				f.k.Decisions.Set(f.ctx, 2, crs.Decision{
+				f.k.Decision.Set(f.ctx, 2, crs.Decision{
 					RevealTimeout: f.ctx.BlockTime().Add(-2), // expired
 				})
 			},
@@ -269,7 +269,7 @@ func TestReveal(t *testing.T) {
 			},
 			expectErrMsg: "reveal does not match commit",
 			malleate: func() {
-				f.k.Decisions.Set(f.ctx, 1, crs.Decision{
+				f.k.Decision.Set(f.ctx, 1, crs.Decision{
 					RevealTimeout: f.ctx.BlockTime().Add(10),
 				})
 
@@ -280,7 +280,7 @@ func TestReveal(t *testing.T) {
 				)
 				require.NoError(err)
 
-				f.k.Commits.Set(f.ctx, collections.Join(uint64(1), f.addrs[0].Bytes()), crs.Commit{
+				f.k.Commit.Set(f.ctx, collections.Join(uint64(1), f.addrs[0].Bytes()), crs.Commit{
 					Commit: commit,
 				})
 
@@ -296,7 +296,7 @@ func TestReveal(t *testing.T) {
 			},
 			expectErrMsg: "",
 			malleate: func() {
-				f.k.Decisions.Set(f.ctx, 1, crs.Decision{
+				f.k.Decision.Set(f.ctx, 1, crs.Decision{
 					RevealTimeout: f.ctx.BlockTime().Add(10),
 				})
 
@@ -307,7 +307,7 @@ func TestReveal(t *testing.T) {
 				)
 				require.NoError(err)
 
-				f.k.Commits.Set(f.ctx, collections.Join(uint64(1), f.addrs[0].Bytes()), crs.Commit{
+				f.k.Commit.Set(f.ctx, collections.Join(uint64(1), f.addrs[0].Bytes()), crs.Commit{
 					Commit: commit,
 				})
 
@@ -340,11 +340,11 @@ func TestReveal(t *testing.T) {
 		})
 	}
 
-	// f.k.Decisions.Set(f.ctx, 1, crs.Decision{
+	// f.k.Decision.Set(f.ctx, 1, crs.Decision{
 	// 	RevealTimeout: f.ctx.BlockTime().Add(10),
 	// })
 
-	// f.k.Decisions.Set(f.ctx, 2, crs.Decision{
+	// f.k.Decision.Set(f.ctx, 2, crs.Decision{
 	// 	RevealTimeout: f.ctx.BlockTime().Add(-2), // expired
 	// })
 
