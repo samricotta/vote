@@ -10,8 +10,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	expectedkeepers "github.com/samricotta/crs/expected_keepers"
 	"github.com/samricotta/vote/x/crs"
+	expectedkeepers "github.com/samricotta/vote/x/crs/expected_keepers"
 )
 
 type Keeper struct {

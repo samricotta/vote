@@ -81,7 +81,6 @@ func (ms msgServer) Commit(ctx context.Context, msg *crs.MsgCommit) (*crs.MsgCom
 		return nil, fmt.Errorf("invalid sender address: %w", err)
 	}
 
-	// get decision
 	decision, err := ms.k.Decisions.Get(ctx, msg.DecisionId)
 	if err != nil {
 		return nil, err
