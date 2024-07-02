@@ -24,9 +24,9 @@ type Keeper struct {
 	Schema     collections.Schema
 	Params     collections.Item[crs.Params]
 	DecisionID collections.Sequence
-	Decision   collections.Map[uint64, crs.Decision]                         // key: ID
-	Commit     collections.Map[collections.Pair[uint64, []byte], crs.Commit] // key: (decision ID, voter)
-	Reveal     collections.Map[collections.Pair[uint64, []byte], crs.Reveal] // key: (decision ID, voter)
+	Decisions  collections.Map[uint64, crs.Decision]                         // key: ID
+	Commits    collections.Map[collections.Pair[uint64, []byte], crs.Commit] // key: (decision ID, voter)
+	Reveals    collections.Map[collections.Pair[uint64, []byte], crs.Reveal] // key: (decision ID, voter)
 
 	bankKeeper expectedkeepers.BankKeeper
 }
