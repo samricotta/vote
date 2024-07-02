@@ -135,7 +135,7 @@ func (ms msgServer) Reveal(ctx context.Context, msg *crs.MsgReveal) (*crs.MsgRev
 	}
 
 	// check if a reveal already exists for this decision and sender
-	_, err = ms.k.Reveal.Get(ctx, collections.Join(msg.DecisionId, senderAddr))
+	_, err = ms.k.Reveals.Get(ctx, collections.Join(msg.DecisionId, senderAddr))
 	if err == nil {
 		return nil, fmt.Errorf("reveal already exists")
 	}
@@ -161,7 +161,7 @@ func (ms msgServer) Reveal(ctx context.Context, msg *crs.MsgReveal) (*crs.MsgRev
 		Option: msg.OptionChosen,
 	}
 
-	err = ms.k.Reveal.Set(ctx, collections.Join(msg.DecisionId, senderAddr), reveal)
+	err = ms.k.Reveals.Set(ctx, collections.Join(msg.DecisionId, senderAddr), reveal)
 	if err != nil {
 		return nil, err
 	}
