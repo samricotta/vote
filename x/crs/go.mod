@@ -1,4 +1,4 @@
-module github.com/samricotta/crs
+module github.com/samricotta/vote/x/crs
 
 go 1.21
 
@@ -18,6 +18,7 @@ require (
 	github.com/golang/mock v1.6.0
 	github.com/golang/protobuf v1.5.4
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
+	github.com/samricotta/vote/x/crs v0.0.0-20240702100625-8b5837772b5d
 	github.com/stretchr/testify v1.9.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20240227224415-6ceb2ff114de
 	google.golang.org/grpc v1.63.2

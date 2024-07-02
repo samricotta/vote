@@ -956,6 +956,8 @@ var (
 	fd_Decision_options        protoreflect.FieldDescriptor
 	fd_Decision_commit_timeout protoreflect.FieldDescriptor
 	fd_Decision_reveal_timeout protoreflect.FieldDescriptor
+	fd_Decision_refund         protoreflect.FieldDescriptor
+	fd_Decision_payout_address protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -965,6 +967,8 @@ func init() {
 	fd_Decision_options = md_Decision.Fields().ByName("options")
 	fd_Decision_commit_timeout = md_Decision.Fields().ByName("commit_timeout")
 	fd_Decision_reveal_timeout = md_Decision.Fields().ByName("reveal_timeout")
+	fd_Decision_refund = md_Decision.Fields().ByName("refund")
+	fd_Decision_payout_address = md_Decision.Fields().ByName("payout_address")
 }
 
 var _ protoreflect.Message = (*fastReflection_Decision)(nil)
@@ -1056,6 +1060,18 @@ func (x *fastReflection_Decision) Range(f func(protoreflect.FieldDescriptor, pro
 			return
 		}
 	}
+	if x.Refund != false {
+		value := protoreflect.ValueOfBool(x.Refund)
+		if !f(fd_Decision_refund, value) {
+			return
+		}
+	}
+	if x.PayoutAddress != "" {
+		value := protoreflect.ValueOfString(x.PayoutAddress)
+		if !f(fd_Decision_payout_address, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -1079,6 +1095,10 @@ func (x *fastReflection_Decision) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.CommitTimeout != nil
 	case "samricotta.crs.v1.Decision.reveal_timeout":
 		return x.RevealTimeout != nil
+	case "samricotta.crs.v1.Decision.refund":
+		return x.Refund != false
+	case "samricotta.crs.v1.Decision.payout_address":
+		return x.PayoutAddress != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.Decision"))
@@ -1103,6 +1123,10 @@ func (x *fastReflection_Decision) Clear(fd protoreflect.FieldDescriptor) {
 		x.CommitTimeout = nil
 	case "samricotta.crs.v1.Decision.reveal_timeout":
 		x.RevealTimeout = nil
+	case "samricotta.crs.v1.Decision.refund":
+		x.Refund = false
+	case "samricotta.crs.v1.Decision.payout_address":
+		x.PayoutAddress = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.Decision"))
@@ -1134,6 +1158,12 @@ func (x *fastReflection_Decision) Get(descriptor protoreflect.FieldDescriptor) p
 	case "samricotta.crs.v1.Decision.reveal_timeout":
 		value := x.RevealTimeout
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	case "samricotta.crs.v1.Decision.refund":
+		value := x.Refund
+		return protoreflect.ValueOfBool(value)
+	case "samricotta.crs.v1.Decision.payout_address":
+		value := x.PayoutAddress
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.Decision"))
@@ -1164,6 +1194,10 @@ func (x *fastReflection_Decision) Set(fd protoreflect.FieldDescriptor, value pro
 		x.CommitTimeout = value.Message().Interface().(*timestamppb.Timestamp)
 	case "samricotta.crs.v1.Decision.reveal_timeout":
 		x.RevealTimeout = value.Message().Interface().(*timestamppb.Timestamp)
+	case "samricotta.crs.v1.Decision.refund":
+		x.Refund = value.Bool()
+	case "samricotta.crs.v1.Decision.payout_address":
+		x.PayoutAddress = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.Decision"))
@@ -1205,6 +1239,10 @@ func (x *fastReflection_Decision) Mutable(fd protoreflect.FieldDescriptor) proto
 			x.RevealTimeout = new(timestamppb.Timestamp)
 		}
 		return protoreflect.ValueOfMessage(x.RevealTimeout.ProtoReflect())
+	case "samricotta.crs.v1.Decision.refund":
+		panic(fmt.Errorf("field refund of message samricotta.crs.v1.Decision is not mutable"))
+	case "samricotta.crs.v1.Decision.payout_address":
+		panic(fmt.Errorf("field payout_address of message samricotta.crs.v1.Decision is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.Decision"))
@@ -1230,6 +1268,10 @@ func (x *fastReflection_Decision) NewField(fd protoreflect.FieldDescriptor) prot
 	case "samricotta.crs.v1.Decision.reveal_timeout":
 		m := new(timestamppb.Timestamp)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	case "samricotta.crs.v1.Decision.refund":
+		return protoreflect.ValueOfBool(false)
+	case "samricotta.crs.v1.Decision.payout_address":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: samricotta.crs.v1.Decision"))
@@ -1317,6 +1359,13 @@ func (x *fastReflection_Decision) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.RevealTimeout)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		if x.Refund {
+			n += 2
+		}
+		l = len(x.PayoutAddress)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -1345,6 +1394,23 @@ func (x *fastReflection_Decision) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.PayoutAddress) > 0 {
+			i -= len(x.PayoutAddress)
+			copy(dAtA[i:], x.PayoutAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.PayoutAddress)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if x.Refund {
+			i--
+			if x.Refund {
+				dAtA[i] = 1
+			} else {
+				dAtA[i] = 0
+			}
+			i--
+			dAtA[i] = 0x28
 		}
 		if x.RevealTimeout != nil {
 			encoded, err := options.Marshal(x.RevealTimeout)
@@ -1585,6 +1651,58 @@ func (x *fastReflection_Decision) ProtoMethods() *protoiface.Methods {
 				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.RevealTimeout); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
+				iNdEx = postIndex
+			case 5:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Refund", wireType)
+				}
+				var v int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				x.Refund = bool(v != 0)
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field PayoutAddress", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.PayoutAddress = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -2568,6 +2686,9 @@ type Decision struct {
 	Options       [][]byte               `protobuf:"bytes,2,rep,name=options,proto3" json:"options,omitempty"`
 	CommitTimeout *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=commit_timeout,json=commitTimeout,proto3" json:"commit_timeout,omitempty"`
 	RevealTimeout *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=reveal_timeout,json=revealTimeout,proto3" json:"reveal_timeout,omitempty"`
+	Refund        bool                   `protobuf:"varint,5,opt,name=refund,proto3" json:"refund,omitempty"`
+	// if refund is true, only the funds from participants that did not reveal will be sent to this address
+	PayoutAddress string `protobuf:"bytes,6,opt,name=payout_address,json=payoutAddress,proto3" json:"payout_address,omitempty"`
 }
 
 func (x *Decision) Reset() {
@@ -2616,6 +2737,20 @@ func (x *Decision) GetRevealTimeout() *timestamppb.Timestamp {
 		return x.RevealTimeout
 	}
 	return nil
+}
+
+func (x *Decision) GetRefund() bool {
+	if x != nil {
+		return x.Refund
+	}
+	return false
+}
+
+func (x *Decision) GetPayoutAddress() string {
+	if x != nil {
+		return x.PayoutAddress
+	}
+	return ""
 }
 
 type Commit struct {
@@ -2712,7 +2847,7 @@ var file_samricotta_crs_v1_types_proto_rawDesc = []byte{
 	0x3c, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x19, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73,
 	0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00,
-	0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0xfc, 0x01,
+	0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0xd5, 0x02,
 	0x0a, 0x08, 0x44, 0x65, 0x63, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x3c, 0x0a, 0x09, 0x65, 0x6e,
 	0x74, 0x72, 0x79, 0x5f, 0x66, 0x65, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e,
 	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65,
@@ -2728,15 +2863,21 @@ var file_samricotta_crs_v1_types_proto_rawDesc = []byte{
 	0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74,
 	0x61, 0x6d, 0x70, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00, 0x90, 0xdf, 0x1f, 0x01, 0x52, 0x0d, 0x72,
-	0x65, 0x76, 0x65, 0x61, 0x6c, 0x54, 0x69, 0x6d, 0x65, 0x6f, 0x75, 0x74, 0x22, 0x20, 0x0a, 0x06,
-	0x43, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x22, 0x20,
-	0x0a, 0x06, 0x52, 0x65, 0x76, 0x65, 0x61, 0x6c, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x70, 0x74, 0x69,
-	0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x42, 0xc0, 0x01, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f,
-	0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x42, 0x0a, 0x54, 0x79, 0x70, 0x65,
-	0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x35, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
-	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f,
+	0x65, 0x76, 0x65, 0x61, 0x6c, 0x54, 0x69, 0x6d, 0x65, 0x6f, 0x75, 0x74, 0x12, 0x16, 0x0a, 0x06,
+	0x72, 0x65, 0x66, 0x75, 0x6e, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65,
+	0x66, 0x75, 0x6e, 0x64, 0x12, 0x3f, 0x0a, 0x0e, 0x70, 0x61, 0x79, 0x6f, 0x75, 0x74, 0x5f, 0x61,
+	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4,
+	0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x0d, 0x70, 0x61, 0x79, 0x6f, 0x75, 0x74, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x20, 0x0a, 0x06, 0x43, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x12,
+	0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52,
+	0x06, 0x63, 0x6f, 0x6d, 0x6d, 0x69, 0x74, 0x22, 0x20, 0x0a, 0x06, 0x52, 0x65, 0x76, 0x65, 0x61,
+	0x6c, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0c, 0x52, 0x06, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xc7, 0x01, 0x0a, 0x15, 0x63, 0x6f,
+	0x6d, 0x2e, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2e, 0x63, 0x72, 0x73,
+	0x2e, 0x76, 0x31, 0x42, 0x0a, 0x54, 0x79, 0x70, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50,
+	0x01, 0x5a, 0x3c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x73, 0x61,
+	0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74, 0x74, 0x61, 0x2f, 0x76, 0x6f, 0x74, 0x65, 0x2f, 0x78, 0x2f,
 	0x63, 0x72, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74,
 	0x74, 0x61, 0x2f, 0x63, 0x72, 0x73, 0x2f, 0x76, 0x31, 0x3b, 0x63, 0x72, 0x73, 0x76, 0x31, 0xa2,
 	0x02, 0x03, 0x53, 0x43, 0x58, 0xaa, 0x02, 0x11, 0x53, 0x61, 0x6d, 0x72, 0x69, 0x63, 0x6f, 0x74,

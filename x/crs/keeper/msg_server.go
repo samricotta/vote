@@ -49,12 +49,6 @@ func (ms msgServer) CreateDecision(ctx context.Context, msg *crs.MsgCreateDecisi
 		}
 	}
 
-	//check that the senders balance is greater than the entry fee
-	balance := ms.k.bankKeeper.Balance(ctx, senderAddr)
-	if balance.AmountOf(msg.EntryFee.Denom).LT(msg.EntryFee.Amount) {
-		return nil, fmt.Errorf("sender does not have enough balance")
-	}
-
 	// retrieve the next decision id
 	decisionID, err := ms.k.DecisionID.Next(ctx)
 	if err != nil {
@@ -71,7 +65,7 @@ func (ms msgServer) CreateDecision(ctx context.Context, msg *crs.MsgCreateDecisi
 		RevealTimeout: sdkCtx.BlockTime().Add(time.Second * time.Duration(msg.RevealDuration)),
 	}
 
-	err = ms.k.Decision.Set(ctx, decisionID, newDecision)
+	err = ms.k.Decisions.Set(ctx, decisionID, newDecision)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +82,7 @@ func (ms msgServer) Commit(ctx context.Context, msg *crs.MsgCommit) (*crs.MsgCom
 	}
 
 	// get decision
-	decision, err := ms.k.Decision.Get(ctx, msg.DecisionId)
+	decision, err := ms.k.Decisions.Get(ctx, msg.DecisionId)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +94,7 @@ func (ms msgServer) Commit(ctx context.Context, msg *crs.MsgCommit) (*crs.MsgCom
 	}
 
 	// check if a commit already exists for this decision and sender
-	_, err = ms.k.Commit.Get(ctx, collections.Join(msg.DecisionId, senderAddr))
+	_, err = ms.k.Commits.Get(ctx, collections.Join(msg.DecisionId, senderAddr))
 	if err == nil {
 		return nil, fmt.Errorf("commit already exists")
 	}
@@ -110,7 +104,7 @@ func (ms msgServer) Commit(ctx context.Context, msg *crs.MsgCommit) (*crs.MsgCom
 		Commit: msg.Commit,
 	}
 
-	err = ms.k.Commit.Set(ctx, collections.Join(msg.DecisionId, senderAddr), commit)
+	err = ms.k.Commits.Set(ctx, collections.Join(msg.DecisionId, senderAddr), commit)
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +120,7 @@ func (ms msgServer) Reveal(ctx context.Context, msg *crs.MsgReveal) (*crs.MsgRev
 		return nil, fmt.Errorf("invalid sender address: %w", err)
 	}
 
-	decision, err := ms.k.Decision.Get(ctx, msg.DecisionId)
+	decision, err := ms.k.Decisions.Get(ctx, msg.DecisionId)
 	if err != nil {
 		return nil, err
 	}
@@ -137,13 +131,13 @@ func (ms msgServer) Reveal(ctx context.Context, msg *crs.MsgReveal) (*crs.MsgRev
 	}
 
 	// check if a reveal already exists for this decision and sender
-	_, err = ms.k.Reveal.Get(ctx, collections.Join(msg.DecisionId, senderAddr))
+	_, err = ms.k.Reveals.Get(ctx, collections.Join(msg.DecisionId, senderAddr))
 	if err == nil {
 		return nil, fmt.Errorf("reveal already exists")
 	}
 
 	// fetch commit
-	commit, err := ms.k.Commit.Get(ctx, collections.Join(msg.DecisionId, senderAddr))
+	commit, err := ms.k.Commits.Get(ctx, collections.Join(msg.DecisionId, senderAddr))
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +157,7 @@ func (ms msgServer) Reveal(ctx context.Context, msg *crs.MsgReveal) (*crs.MsgRev
 		Option: msg.OptionChosen,
 	}
 
-	err = ms.k.Reveal.Set(ctx, collections.Join(msg.DecisionId, senderAddr), reveal)
+	err = ms.k.Reveals.Set(ctx, collections.Join(msg.DecisionId, senderAddr), reveal)
 	if err != nil {
 		return nil, err
 	}

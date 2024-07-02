@@ -169,7 +169,7 @@ func TestCommit(t *testing.T) {
 			},
 			expectErrMsg: "commit period has ended",
 			malleate: func() {
-				f.k.Decision.Set(f.ctx, 2, crs.Decision{
+				f.k.Decisions.Set(f.ctx, 2, crs.Decision{
 					CommitTimeout: f.ctx.BlockTime().Add(-2), // expired
 				})
 			},
@@ -183,7 +183,7 @@ func TestCommit(t *testing.T) {
 			},
 			expectErrMsg: "",
 			malleate: func() {
-				f.k.Decision.Set(f.ctx, 1, crs.Decision{
+				f.k.Decisions.Set(f.ctx, 1, crs.Decision{
 					CommitTimeout: f.ctx.BlockTime().Add(10),
 				})
 			},
@@ -254,7 +254,7 @@ func TestReveal(t *testing.T) {
 			},
 			expectErrMsg: "reveal period has ended",
 			malleate: func() {
-				f.k.Decision.Set(f.ctx, 2, crs.Decision{
+				f.k.Decisions.Set(f.ctx, 2, crs.Decision{
 					RevealTimeout: f.ctx.BlockTime().Add(-2), // expired
 				})
 			},
@@ -269,7 +269,7 @@ func TestReveal(t *testing.T) {
 			},
 			expectErrMsg: "reveal does not match commit",
 			malleate: func() {
-				f.k.Decision.Set(f.ctx, 1, crs.Decision{
+				f.k.Decisions.Set(f.ctx, 1, crs.Decision{
 					RevealTimeout: f.ctx.BlockTime().Add(10),
 				})
 
@@ -280,7 +280,7 @@ func TestReveal(t *testing.T) {
 				)
 				require.NoError(err)
 
-				f.k.Commit.Set(f.ctx, collections.Join(uint64(1), f.addrs[0].Bytes()), crs.Commit{
+				f.k.Commits.Set(f.ctx, collections.Join(uint64(1), f.addrs[0].Bytes()), crs.Commit{
 					Commit: commit,
 				})
 
@@ -296,7 +296,7 @@ func TestReveal(t *testing.T) {
 			},
 			expectErrMsg: "",
 			malleate: func() {
-				f.k.Decision.Set(f.ctx, 1, crs.Decision{
+				f.k.Decisions.Set(f.ctx, 1, crs.Decision{
 					RevealTimeout: f.ctx.BlockTime().Add(10),
 				})
 
@@ -307,7 +307,7 @@ func TestReveal(t *testing.T) {
 				)
 				require.NoError(err)
 
-				f.k.Commit.Set(f.ctx, collections.Join(uint64(1), f.addrs[0].Bytes()), crs.Commit{
+				f.k.Commits.Set(f.ctx, collections.Join(uint64(1), f.addrs[0].Bytes()), crs.Commit{
 					Commit: commit,
 				})
 
@@ -339,59 +339,4 @@ func TestReveal(t *testing.T) {
 			}
 		})
 	}
-
-	// f.k.Decision.Set(f.ctx, 1, crs.Decision{
-	// 	RevealTimeout: f.ctx.BlockTime().Add(10),
-	// })
-
-	// f.k.Decision.Set(f.ctx, 2, crs.Decision{
-	// 	RevealTimeout: f.ctx.BlockTime().Add(-2), // expired
-	// })
-
 }
-
-// func TestIncrementCounter(t *testing.T) {
-// 	f := initFixture(t)
-// 	require := require.New(t)
-
-// 	testCases := []struct {
-// 		name            string
-// 		request         *crs.MsgIncrementCounter
-// 		expectErrMsg    string
-// 		expectedCounter uint64
-// 	}{
-// 		{
-// 			name: "set invalid sender (not an address)",
-// 			request: &crs.MsgIncrementCounter{
-// 				Sender: "foo",
-// 			},
-// 			expectErrMsg: "invalid sender address",
-// 		},
-// 		{
-// 			name: "set valid sender",
-// 			request: &crs.MsgIncrementCounter{
-// 				Sender: "cosmos139f7kncmglres2nf3h4hc4tade85ekfr8sulz5",
-// 			},
-// 			expectErrMsg:    "",
-// 			expectedCounter: 1,
-// 		},
-// 	}
-
-// 	for _, tc := range testCases {
-// 		tc := tc
-// 		t.Run(tc.name, func(t *testing.T) {
-// 			_, err := f.msgServer.IncrementCounter(f.ctx, tc.request)
-// 			if tc.expectErrMsg != "" {
-// 				require.Error(err)
-// 				require.ErrorContains(err, tc.expectErrMsg)
-// 			} else {
-// 				require.NoError(err)
-
-// 				counter, err := f.k.Counter.Get(f.ctx, tc.request.Sender)
-// 				require.NoError(err)
-// 				require.Equal(tc.expectedCounter, counter)
-// 			}
-// 		})
-// 	}
-
-// }
