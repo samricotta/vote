@@ -69,24 +69,32 @@ func (k Keeper) GetAuthority() string {
 
 func (k Keeper) EndBlocker(ctx context.Context, id uint64) { // Added id as a parameter
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
-	// Iterate over all reveals
 	participants := [][]byte{}
 	now := sdkCtx.BlockTime()
 	reveals := []crs.Reveal{}
-	err := k.Reveals.Walk(
+
+	err := k.Decisions.Walk(
 		ctx,
 		collections.NewPrefixedPairRange[uint64, []byte](id),
-		func(key collections.Pair[uint64, []byte], reveal crs.Reveal) (bool, error) {
-			participants = append(participants, key.K2())
-			reveals = append(reveals, reveal)
+		func(key uint64, decision crs.Decision) (bool, error) {
+			if sdkCtx.BlockTime().After(decision.RevealTimeout) {
+				err := k.Reveals.Walk(
+					ctx,
+					collections.NewPrefixedPairRange[uint64, []byte](id),
+					func(key collections.Pair[uint64, []byte], reveal crs.Reveal) (bool, error) {
+						participants = append(participants, key.K2())
+						reveals = append(reveals, reveal)
+						return false, nil
+					},
+				)
+				if err != nil {
+					return false, err
+				}
+
+			}
 			return false, nil
 		},
 	)
-	if err != nil {
-		return
-	}
-
-	decision, err := k.Decisions.Get(ctx, id)
 	if err != nil {
 		return
 	}
@@ -108,7 +116,7 @@ func (k Keeper) RefundAllParticipants(ctx context.Context, participants [][]byte
 	for _, addr := range participants {
 		err := k.bankKeeper.SendCoinsFromModuleToAccount(ctx, crs.ModuleName, addr, amount)
 		if err != nil {
-			return err 
+			return err
 		}
 	}
 	return nil
