@@ -21,6 +21,8 @@ service Msg {
 
 // MsgCreateDecision represents a request to create a new decision-making process.
 message MsgCreateDecision {
+  option (cosmos.msg.v1.signer) = "sender";
+
   // creator of the decision, can be a user or a module
   string sender = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // options for the decision for example political candidate names or game moves.
@@ -34,7 +36,8 @@ message MsgCreateDecision {
   cosmos.base.v1beta1.Coin entry_fee = 5 [ (gogoproto.nullable) = false ];
   // if the entry fee should be refunded to participants after the reveal period ends
   bool refund = 6;
-  // address to which send the entry fees to, must be empty if refund is true
+  // address to which send the entry fees to, if refund is true, only the fees of the
+  // participants which NOT revealed will be sent to this address (sort of a slashing)
   bytes send_funds_to = 7;
 }
 

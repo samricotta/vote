@@ -1,12 +1,14 @@
 package keeper
 
 import (
+	"context"
 	"fmt"
 
 	"cosmossdk.io/collections"
 	"cosmossdk.io/core/address"
 	storetypes "cosmossdk.io/core/store"
 	"github.com/cosmos/cosmos-sdk/codec"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	"github.com/samricotta/vote/x/crs"
 	expectedkeepers "github.com/samricotta/vote/x/crs/expected_keepers"
@@ -64,3 +66,89 @@ func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService s
 func (k Keeper) GetAuthority() string {
 	return k.authority
 }
+
+// EndBlocker goest through all expired decisions and refunds the participants if needed.
+// It will also delete commits, as we don't need them anymore.
+func (k Keeper) EndBlocker(ctx context.Context) { // Added id as a parameter
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	participants := [][]byte{}
+	now := sdkCtx.BlockTime()
+	reveals := map[string]crs.Reveal{}
+
+	// decisions for which their reveal timeout has passed
+	expiredDecisions := []uint64{}
+
+	err := k.Decisions.Walk(
+		ctx,
+		nil,
+		func(id uint64, decision crs.Decision) (bool, error) {
+			if sdkCtx.BlockTime().Before(decision.RevealTimeout) {
+				return false, nil
+			}
+
+			expiredDecisions = append(expiredDecisions, id)
+
+			// walk through reveals
+			err := k.Reveals.Walk(
+				ctx,
+				collections.NewPrefixedPairRange[uint64, []byte](id),
+				func(key collections.Pair[uint64, []byte], reveal crs.Reveal) (bool, error) {
+					reveals[string(key.K2())] = reveal
+					return false, nil
+				},
+			)
+			if err != nil {
+				return false, err
+			}
+
+			if decision.EntryFee.IsZero() {
+				// there's nothing to refund, so we don't have to check commits
+				return false, nil
+			}
+
+			// now we walk through commits and check if the commiter has revealed
+			// we also check if we should refund the entry fee
+			err = k.Commits.Walk(
+				ctx,
+				collections.NewPrefixedPairRange[uint64, []byte](id),
+				func(key collections.Pair[uint64, []byte], commit crs.Commit) (bool, error) {
+					// if the commiter has not revealed, refund the entry fee
+					if _, ok := reveals[string(key.K2())]; ok {
+						// refund if needed
+
+					}
+					return false, nil
+				})
+			if err != nil {
+				return false, err
+			}
+
+			return false, nil
+		},
+	)
+	if err != nil {
+		return
+	}
+
+	// if len(participants) > 0 && now.After(decision.RevealTimeout) {
+	// 	if err := k.bankKeeper.SendCoinsFromModuleToAccount(ctx, crs.ModuleName, participants[0], sdk.NewCoins(decision.EntryFee)); err != nil {
+	// 		return
+	// 	}
+
+	// 	err = k.RefundAllParticipants(ctx, participants, sdk.NewCoins(decision.EntryFee))
+	// 	if err != nil {
+	// 		sdkCtx.Logger().Error("Error processing refunds:", "error", err)
+	// 		return
+	// 	}
+	// }
+}
+
+// func (k Keeper) RefundAllParticipants(ctx context.Context, participants [][]byte, amount sdk.Coins) error {
+// 	for _, addr := range participants {
+// 		err := k.bankKeeper.SendCoinsFromModuleToAccount(ctx, crs.ModuleName, addr, amount)
+// 		if err != nil {
+// 			return err
+// 		}
+// 	}
+// 	return nil
+// }

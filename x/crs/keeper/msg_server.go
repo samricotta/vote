@@ -25,14 +25,8 @@ func NewMsgServerImpl(keeper Keeper) crs.MsgServer {
 }
 
 func (ms msgServer) CreateDecision(ctx context.Context, msg *crs.MsgCreateDecision) (*crs.MsgCreateDecisionResponse, error) {
-	// check if the voting options are empty
-	// convert sender address from string to bytes
-	// transfer coins from sender's account to module account:
-	// retrieve the next decision ID
-	// fetch parameters from the keeper
-	// create and store new decision
-	// return response
 
+	// check sender address
 	senderAddr, err := ms.k.addressCodec.StringToBytes(msg.Sender)
 	if err != nil {
 		return nil, fmt.Errorf("invalid sender address: %w", err)
@@ -47,6 +41,7 @@ func (ms msgServer) CreateDecision(ctx context.Context, msg *crs.MsgCreateDecisi
 		return nil, fmt.Errorf("reveal duration must be greater than 0")
 	}
 
+	// check if entry fee is nil
 	if !msg.EntryFee.IsNil() {
 		err = ms.k.bankKeeper.SendCoinsFromAccountToModule(ctx, senderAddr, crs.ModuleName, sdk.NewCoins(msg.EntryFee))
 		if err != nil {

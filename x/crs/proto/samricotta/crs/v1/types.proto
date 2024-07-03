@@ -36,6 +36,11 @@ message Decision {
     (gogoproto.stdtime) = true,
     (gogoproto.nullable) = false
   ];
+
+  bool refund = 5;
+
+  // if refund is true, only the funds from participants that did not reveal will be sent to this address
+  string payout_address = 6 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 }
 
 message Commit {
