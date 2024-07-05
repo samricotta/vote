@@ -4,7 +4,10 @@ import (
 	"context"
 	"fmt"
 	"strings"
+	"time"
 
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/samricotta/vote/x/crs"
 	"github.com/samricotta/vote/x/election"
 )
 
@@ -18,26 +21,6 @@ var _ election.MsgServer = msgServer{}
 func NewMsgServerImpl(keeper Keeper) election.MsgServer {
 	return &msgServer{k: keeper}
 }
-
-// IncrementCounter defines the handler for the MsgIncrementCounter message.
-// func (ms msgServer) IncrementCounter(ctx context.Context, msg *election.MsgIncrementCounter) (*election.MsgIncrementCounterResponse, error) {
-// 	if _, err := ms.k.addressCodec.StringToBytes(msg.Sender); err != nil {
-// 		return nil, fmt.Errorf("invalid sender address: %w", err)
-// 	}
-
-// 	counter, err := ms.k.Counters.Get(ctx, msg.Sender)
-// 	if err != nil && !errors.Is(err, collections.ErrNotFound) {
-// 		return nil, err
-// 	}
-
-// 	counter++
-
-// 	if err := ms.k.Counter.Set(ctx, msg.Sender, counter); err != nil {
-// 		return nil, err
-// 	}
-
-// 	return &election.MsgIncrementCounterResponse{}, nil
-// }
 
 // UpdateParams params is defining the handler for the MsgUpdateParams message.
 func (ms msgServer) UpdateParams(ctx context.Context, msg *election.MsgUpdateParams) (*election.MsgUpdateParamsResponse, error) {
@@ -60,28 +43,31 @@ func (ms msgServer) UpdateParams(ctx context.Context, msg *election.MsgUpdatePar
 	return &election.MsgUpdateParamsResponse{}, nil
 }
 
-func NewElection(ctx context.Context, msg *election.MsgNewElection) (*election.MsgNewElectionResponse, error) {
-
-	// check if the election is expired
-	// create a crs.NewDecision object
-	// store the new decision
-	// resolve the election
-	// delete the election
-
+func (ms msgServer) NewElection(ctx context.Context, msg *election.MsgNewElection) (*election.MsgNewElectionResponse, error) {
 	if msg == nil {
 		return nil, fmt.Errorf("election is required")
 	}
 
-	if msg.
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	commitTimeout := sdkCtx.BlockTime().Add(time.Minute * 2)
+	revealTimeout := commitTimeout.Add(time.Minute * 2)
+	options := [][]byte{}
+	for _, v := range msg.Options {
+		options = append(options, []byte(v))
+	}
 
-	// for _, value := range msg.Options {
-	// 	if value == "" {
-	// 		return nil, fmt.Errorf("voting options are required")
-	// 	}
-	// }
+	decision := crs.Decision{
+		EntryFee:      sdk.NewInt64Coin("stake", 1000),
+		Options:       options,
+		CommitTimeout: commitTimeout,
+		RevealTimeout: revealTimeout,
+		Refund:        true,
+		PayoutAddress: "",
+	}
 
-	// election := election.NewDecision{
-	// 	VotingOptions: msg.Options,
-	// }
+	if err := ms.k.crsKeeper.CreateDecision(ctx, decision); err != nil {
+		return nil, err
+	}
 
+	return &election.MsgNewElectionResponse{}, nil
 }

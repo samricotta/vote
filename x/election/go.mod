@@ -15,7 +15,7 @@ require (
 	github.com/cosmos/cosmos-sdk v0.50.7
 	github.com/cosmos/gogoproto v1.4.12
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
-	github.com/samricotta/vote/x/crs v0.0.0-00010101000000-000000000000
+	github.com/samricotta/vote/x/crs v0.0.0-20240702100625-8b5837772b5d
 	github.com/stretchr/testify v1.9.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20240227224415-6ceb2ff114de
 	google.golang.org/grpc v1.63.2

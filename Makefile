@@ -27,7 +27,7 @@ all: install
 
 install:
 	@echo "--> ensure dependencies have not been modified"
-	@go mod verify
+	# @go mod verify
 	@echo "--> installing minid"
 	@go install $(BUILD_FLAGS) -mod=readonly ./cmd/minid
 

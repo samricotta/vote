@@ -13,18 +13,20 @@ import "samricotta/election/v1/types.proto";
 
 // Service Msg defines the RPC methods available for the voting system.
 service Msg {
+  option (cosmos.msg.v1.service) = true;
+
   rpc NewElection(MsgNewElection) returns (MsgNewElectionResponse);
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
 }
 
 message MsgNewElection {
-  uint64 new_decision_id = 1;
-  string election_option = 2;
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (cosmos_proto.scalar) = "cosmos.AddressString" ];
+  repeated string options = 2;
 }
 
-message MsgNewElectionResponse {
-  uint64 election_id = 1;
-}
+message MsgNewElectionResponse {}
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {

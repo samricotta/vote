@@ -3,7 +3,6 @@ package keeper
 import (
 	"bytes"
 	"context"
-	"crypto/sha256"
 	"fmt"
 	"strings"
 	"time"
@@ -11,6 +10,7 @@ import (
 	"cosmossdk.io/collections"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/samricotta/vote/x/crs"
+	"github.com/samricotta/vote/x/crs/utils"
 )
 
 type msgServer struct {
@@ -49,24 +49,19 @@ func (ms msgServer) CreateDecision(ctx context.Context, msg *crs.MsgCreateDecisi
 		}
 	}
 
-	// retrieve the next decision id
-	decisionID, err := ms.k.DecisionID.Next(ctx)
-	if err != nil {
-		return nil, err
-	}
-
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
 	// store decision
+	commitTimeout := sdkCtx.BlockTime().Add(time.Second * time.Duration(msg.CommitDuration))
+	revealTimeout := commitTimeout.Add(time.Second * time.Duration(msg.RevealDuration))
 	newDecision := crs.Decision{
 		EntryFee:      msg.EntryFee,
 		Options:       msg.Options,
-		CommitTimeout: sdkCtx.BlockTime().Add(time.Second * time.Duration(msg.CommitDuration)),
-		RevealTimeout: sdkCtx.BlockTime().Add(time.Second * time.Duration(msg.RevealDuration)),
+		CommitTimeout: commitTimeout,
+		RevealTimeout: revealTimeout,
 	}
 
-	err = ms.k.Decisions.Set(ctx, decisionID, newDecision)
-	if err != nil {
+	if err = ms.k.CreateDecision(ctx, newDecision); err != nil {
 		return nil, err
 	}
 
@@ -125,6 +120,11 @@ func (ms msgServer) Reveal(ctx context.Context, msg *crs.MsgReveal) (*crs.MsgRev
 	}
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
+
+	if sdkCtx.BlockTime().Before(decision.CommitTimeout) {
+		return nil, fmt.Errorf("commit period has not ended")
+	}
+
 	if sdkCtx.BlockTime().After(decision.RevealTimeout) {
 		return nil, fmt.Errorf("reveal period has ended")
 	}
@@ -142,7 +142,7 @@ func (ms msgServer) Reveal(ctx context.Context, msg *crs.MsgReveal) (*crs.MsgRev
 	}
 
 	// check if the reveal matches the commit, by recalculating the sha256 hash
-	hash, err := CalculateCommit(msg.DecisionId, msg.OptionChosen, msg.Salt)
+	hash, err := utils.CalculateCommit(msg.DecisionId, msg.OptionChosen, msg.Salt)
 	if err != nil {
 		return nil, err
 	}
@@ -183,22 +183,4 @@ func (ms msgServer) UpdateParams(ctx context.Context, msg *crs.MsgUpdateParams) 
 	}
 
 	return &crs.MsgUpdateParamsResponse{}, nil
-}
-
-// TODO: move somewhere we can reuse it
-// hash of the commit, must be sha256(decision_id + ":" + option_chosen + ":" + salt)
-func CalculateCommit(decisionID uint64, option, salt []byte) ([]byte, error) {
-	if len(salt) != 32 {
-		return nil, fmt.Errorf("salt must be 32 bytes long")
-	}
-
-	toHash := append([]byte(fmt.Sprintf("%d:", decisionID)), option...)
-	toHash = append(toHash, salt...)
-	sha := sha256.New()
-	_, err := sha.Write(toHash)
-	if err != nil {
-		return nil, err
-	}
-
-	return sha.Sum(nil), nil
 }
