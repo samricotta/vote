@@ -27,11 +27,10 @@ type Keeper struct {
 	Election   collections.Map[uint64, election.Election] // key: ID
 	Params     collections.Item[election.Params]
 
-	bankKeeper expectedkeepers.BankKeeper
-	crsKeeper  expectedkeepers.CrsKeeper
+	crsKeeper expectedkeepers.CrsKeeper
 }
 
-func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService storetypes.KVStoreService, bk expectedkeepers.BankKeeper, crs expectedkeepers.CrsKeeper, authority string) Keeper {
+func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService storetypes.KVStoreService, crs expectedkeepers.CrsKeeper, authority string) Keeper {
 	if _, err := addressCodec.StringToBytes(authority); err != nil {
 		panic(fmt.Errorf("invalid authority address: %w", err))
 	}
@@ -45,7 +44,6 @@ func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService s
 		addressCodec: addressCodec,
 		authority:    authority,
 		Election:     collections.NewMap(sb, ElectionKey, "election", collections.Uint64Key, codec.CollValue[election.Election](cdc)),
-		bankKeeper:   bk,
 		crsKeeper:    crs,
 	}
 
@@ -70,8 +68,8 @@ func (k Keeper) GetGenesisHandler() appmodule.HasGenesis {
 }
 
 func (k Keeper) Endblocker(ctx context.Context) {
-	sdkCtx := sdk.UnwrapSDKContext(ctx)
-	err := k.crsKeeper.
+	// sdkCtx := sdk.UnwrapSDKContext(ctx)
+	// err := k.crsKeeper.
 	// check if the election has expired
 	// check if the election has been resolved
 	// create a crs.NewDecision object

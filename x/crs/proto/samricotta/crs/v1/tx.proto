@@ -13,6 +13,8 @@ import "cosmos/base/v1beta1/coin.proto";
 
 // Service Msg defines the RPC methods available for the commit-reveal scheme system.
 service Msg {
+  option (cosmos.msg.v1.service) = true;
+
   rpc CreateDecision(MsgCreateDecision) returns (MsgCreateDecisionResponse);
   rpc Commit(MsgCommit) returns (MsgCommitResponse);
   rpc Reveal(MsgReveal) returns (MsgRevealResponse);
@@ -38,7 +40,7 @@ message MsgCreateDecision {
   bool refund = 6;
   // address to which send the entry fees to, if refund is true, only the fees of the
   // participants which NOT revealed will be sent to this address (sort of a slashing)
-  bytes send_funds_to = 7;
+  string send_funds_to = 7;
 }
 
 message MsgCreateDecisionResponse {

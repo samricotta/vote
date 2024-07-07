@@ -7,6 +7,7 @@ import (
 
 	"cosmossdk.io/core/appmodule"
 	gwruntime "github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"github.com/spf13/cobra"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -113,4 +114,9 @@ func (am AppModule) ExportGenesis(ctx sdk.Context, cdc codec.JSONCodec) json.Raw
 	}
 
 	return cdc.MustMarshalJSON(gs)
+}
+
+// GetTxCmd returns the root tx command for the crs module.
+func (AppModule) GetTxCmd() *cobra.Command {
+	return NewTxCmd()
 }

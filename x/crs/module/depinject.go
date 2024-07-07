@@ -10,6 +10,7 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
 	modulev1 "github.com/samricotta/vote/x/crs/api/module/v1"
+	expectedkeepers "github.com/samricotta/vote/x/crs/expected_keepers"
 	"github.com/samricotta/vote/x/crs/keeper"
 )
 
@@ -34,6 +35,7 @@ type ModuleInputs struct {
 	Cdc          codec.Codec
 	StoreService store.KVStoreService
 	AddressCodec address.Codec
+	BankKeeper   expectedkeepers.BankKeeper
 
 	Config *modulev1.Module
 }
@@ -52,7 +54,7 @@ func ProvideModule(in ModuleInputs) ModuleOutputs {
 		authority = authtypes.NewModuleAddressOrBech32Address(in.Config.Authority)
 	}
 
-	k := keeper.NewKeeper(in.Cdc, in.AddressCodec, in.StoreService, authority.String())
+	k := keeper.NewKeeper(in.Cdc, in.AddressCodec, in.StoreService, in.BankKeeper, authority.String())
 	m := NewAppModule(in.Cdc, k)
 
 	return ModuleOutputs{Module: m, Keeper: k}

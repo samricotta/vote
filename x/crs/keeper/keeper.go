@@ -7,6 +7,7 @@ import (
 	"cosmossdk.io/collections"
 	"cosmossdk.io/core/address"
 	storetypes "cosmossdk.io/core/store"
+	"cosmossdk.io/math"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
@@ -67,12 +68,20 @@ func (k Keeper) GetAuthority() string {
 	return k.authority
 }
 
+func (k Keeper) CreateDecision(ctx context.Context, decision crs.Decision) error {
+	// retrieve the next decision id
+	decisionID, err := k.DecisionID.Next(ctx)
+	if err != nil {
+		return err
+	}
+
+	return k.Decisions.Set(ctx, decisionID, decision)
+}
+
 // EndBlocker goest through all expired decisions and refunds the participants if needed.
 // It will also delete commits, as we don't need them anymore.
-func (k Keeper) EndBlocker(ctx context.Context) { // Added id as a parameter
+func (k Keeper) EndBlocker(ctx context.Context) error {
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
-	participants := [][]byte{}
-	now := sdkCtx.BlockTime()
 	reveals := map[string]crs.Reveal{}
 
 	// decisions for which their reveal timeout has passed
@@ -106,49 +115,47 @@ func (k Keeper) EndBlocker(ctx context.Context) { // Added id as a parameter
 				return false, nil
 			}
 
+			// entriesToNotRefund counts the number of entries that should not be refunded, and
+			// will be sent to the payout address. This could be because the decision had refund=false
+			// or because the participant has not revealed.
+			var entriesToNotRefund int64
+
 			// now we walk through commits and check if the commiter has revealed
 			// we also check if we should refund the entry fee
 			err = k.Commits.Walk(
 				ctx,
 				collections.NewPrefixedPairRange[uint64, []byte](id),
 				func(key collections.Pair[uint64, []byte], commit crs.Commit) (bool, error) {
-					// if the commiter has not revealed, refund the entry fee
-					if _, ok := reveals[string(key.K2())]; ok {
-						// refund if needed
-
+					_, hasRevealed := reveals[string(key.K2())]
+					if !hasRevealed || !decision.Refund {
+						entriesToNotRefund++
+						return false, nil
 					}
-					return false, nil
+
+					// refund the entry fee
+					err = k.bankKeeper.SendCoinsFromModuleToAccount(ctx, crs.ModuleName, key.K2(), sdk.NewCoins(decision.EntryFee))
+					return false, err
 				})
 			if err != nil {
 				return false, err
 			}
 
+			// now we pay the non-refunded entries to the payout address
+			payoutAmt := decision.EntryFee.Amount.Mul(math.NewInt(entriesToNotRefund))
+			if !payoutAmt.IsZero() {
+				addrBz, err := k.addressCodec.StringToBytes(decision.PayoutAddress)
+				if err != nil {
+					return false, err
+				}
+
+				err = k.bankKeeper.SendCoinsFromModuleToAccount(ctx, crs.ModuleName, addrBz, sdk.NewCoins(sdk.NewCoin(decision.EntryFee.Denom, payoutAmt)))
+				if err != nil {
+					return false, err
+				}
+			}
+
 			return false, nil
 		},
 	)
-	if err != nil {
-		return
-	}
-
-	// if len(participants) > 0 && now.After(decision.RevealTimeout) {
-	// 	if err := k.bankKeeper.SendCoinsFromModuleToAccount(ctx, crs.ModuleName, participants[0], sdk.NewCoins(decision.EntryFee)); err != nil {
-	// 		return
-	// 	}
-
-	// 	err = k.RefundAllParticipants(ctx, participants, sdk.NewCoins(decision.EntryFee))
-	// 	if err != nil {
-	// 		sdkCtx.Logger().Error("Error processing refunds:", "error", err)
-	// 		return
-	// 	}
-	// }
+	return err
 }
-
-// func (k Keeper) RefundAllParticipants(ctx context.Context, participants [][]byte, amount sdk.Coins) error {
-// 	for _, addr := range participants {
-// 		err := k.bankKeeper.SendCoinsFromModuleToAccount(ctx, crs.ModuleName, addr, amount)
-// 		if err != nil {
-// 			return err
-// 		}
-// 	}
-// 	return nil
-// }

@@ -23,8 +23,13 @@ type queryServer struct {
 }
 
 // Decision implements crs.QueryServer.
-func (qs queryServer) Decision(context.Context, *crs.QueryDecisionRequest) (*crs.QueryDecisionResponse, error) {
-	panic("unimplemented")
+func (qs queryServer) Decision(ctx context.Context, req *crs.QueryDecisionRequest) (*crs.QueryDecisionResponse, error) {
+	decision, err := qs.k.Decisions.Get(ctx, req.Id)
+	if err != nil {
+		return nil, status.Error(codes.NotFound, err.Error())
+	}
+
+	return &crs.QueryDecisionResponse{Decision: &decision}, nil
 }
 
 // Params defines the handler for the Query/Params RPC method.
